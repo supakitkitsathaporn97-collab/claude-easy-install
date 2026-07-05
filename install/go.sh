@@ -27,6 +27,7 @@
 # =====================================================================
 set -u
 
+SOULDROP_VERSION="0.6.0"
 REPO_OWNER="kkitkai"
 MARKETPLACE_REPO="$REPO_OWNER/souldrop"
 MARKETPLACE_NAME="souldrop"
@@ -46,6 +47,21 @@ printf '=====================================================\033[0m\n'
 
 claude_installed() {
   command -v claude >/dev/null 2>&1 || [ -x "$HOME/.local/bin/claude" ]
+}
+
+# Record what this run installed to ~/.souldrop/installed.json — /doctor and
+# /uninstall read it. Non-blocking (a failed write hurts nothing).
+write_install_manifest() {
+  # $1 = engine, $2 = items JSON fragment
+  mkdir -p "$HOME/.souldrop" 2>/dev/null || return 0
+  cat > "$HOME/.souldrop/installed.json" <<MANIFEST 2>/dev/null || true
+{
+  "souldrop": "$SOULDROP_VERSION",
+  "engine": "$1",
+  "installedAt": "$(date '+%Y-%m-%dT%H:%M:%S')",
+  "items": $2
+}
+MANIFEST
 }
 
 referral_line() {
@@ -291,6 +307,10 @@ install_claude_engine() {
     note "Bo qua Obsidian - ghi chu van hoat dong dang file. Tai sau tai obsidian.md"
   fi
 
+  # Record the outcome for /doctor and /uninstall.
+  tf() { if [ "$1" -eq 1 ] 2>/dev/null; then echo true; else echo false; fi; }
+  write_install_manifest claude "{ \"plugin\": true, \"documentsPack\": $(tf "$DOCS_OK"), \"browsing\": $(tf "$CHROME_OK"), \"smartMemory\": $(tf "$MEM_OK"), \"obsidian\": $(tf "$OBS_OK") }"
+
   # ---------------------------------------------------------------
   # Done
   # ---------------------------------------------------------------
@@ -436,6 +456,9 @@ install_ollama_engine() {
       PATH="$HOME/.local/bin:$PATH"; export PATH
       ;;
   esac
+
+  # Record the outcome for /doctor and /uninstall.
+  write_install_manifest ollama "{ \"launcher\": true, \"model\": \"$MODEL\" }"
 
   # ---------------------------------------------------------------
   # Done

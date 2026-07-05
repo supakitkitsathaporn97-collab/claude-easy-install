@@ -221,6 +221,7 @@ Bộ não là **markdown thuần — động cơ nào cũng thay được**: fil
 | `/onboard` | Cuộc phỏng vấn tạo trợ lý cá nhân hóa + bộ nhớ + kỹ năng riêng + bộ não thứ hai — bằng tiếng Anh, Việt, Thái, Hàn, Trung, hoặc ngôn ngữ của riêng bạn |
 | `forge-skills` | **Tự động tạo 3–5 kỹ năng riêng cho nghề nghiệp và mục tiêu của bạn** — chạy tự động cuối `/onboard`; chạy lại bất cứ lúc nào bằng `/forge-skills`. Với nghề thiết kế/nội dung, nó còn thêm 1–2 kỹ năng "gu thẩm mỹ" chuyên nghiệp từ bộ mã nguồn mở [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT) |
 | `/doctor` | **Kiểm tra sức khỏe** — soát động cơ, plugin, hồ sơ, bộ nhớ, bộ não thứ hai và các phần mở rộng, lặng lẽ tự sửa được gì thì sửa, rồi in một báo cáo thân thiện. Nói "trợ lý bị lỗi" là nó chạy |
+| `/uninstall` | Gỡ SoulDrop và các phần mở rộng sạch sẽ — hồ sơ, ký ức và ghi chú của bạn **luôn được giữ lại** |
 | `create-skill` | Dạy trợ lý một khả năng mới bằng cách mô tả nó — trợ lý tự viết và cài kỹ năng (cùng tiêu chuẩn chất lượng với forge) |
 | `remember` | Lưu thông tin/sở thích vào bộ nhớ dài hạn của trợ lý |
 | `recall` | Tìm lại những gì bạn từng nói với nó |
@@ -244,7 +245,7 @@ Quá trình khởi tạo tạo kho ghi chú tại `~/second-brain` — các file
 
 ## 🧹 Gỡ cài đặt
 
-Một dòng lệnh gỡ plugin SoulDrop (chạy được trong PowerShell lẫn Terminal):
+Cách dễ nhất: trong trợ lý, gõ **`/uninstall`** — nó hỏi xác nhận một lần, gỡ SoulDrop cùng các phần mở rộng đã cài, và không đụng đến bộ não của bạn. Cách thủ công một dòng (chạy được trong PowerShell lẫn Terminal):
 
 ```
 claude plugin uninstall souldrop ; claude plugin marketplace remove souldrop

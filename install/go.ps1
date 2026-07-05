@@ -32,6 +32,8 @@
 
 $ErrorActionPreference = 'Stop'
 
+$SoulDropVersion = '0.6.0'
+
 # The GitHub account that hosts this marketplace.
 $RepoOwner       = 'kkitkai'
 $MarketplaceRepo = "$RepoOwner/souldrop"
@@ -97,6 +99,25 @@ function Test-ChromeInstalled {
         if ($d -and (Test-Path (Join-Path $d 'Google\Chrome\Application\chrome.exe'))) { return $true }
     }
     return $false
+}
+
+# Record what this run installed to ~/.souldrop/installed.json — /doctor and
+# /uninstall read it. Plain ASCII, non-blocking (a failed write hurts nothing).
+function Write-InstallManifest($engine, $itemsJson) {
+    try {
+        $manifestDir = Join-Path $env:USERPROFILE '.souldrop'
+        New-Item -ItemType Directory -Force -Path $manifestDir | Out-Null
+        $stamp = Get-Date -Format 'yyyy-MM-ddTHH:mm:ss'
+        $manifest = @"
+{
+  "souldrop": "$SoulDropVersion",
+  "engine": "$engine",
+  "installedAt": "$stamp",
+  "items": $itemsJson
+}
+"@
+        Set-Content -Path (Join-Path $manifestDir 'installed.json') -Value $manifest -Encoding Ascii
+    } catch { }
 }
 
 function Show-ReferralLine {
@@ -355,6 +376,10 @@ function Install-ClaudeEngine {
         Write-Note "Bo qua Obsidian - ghi chu van hoat dong dang file. Tai sau tai obsidian.md"
     }
 
+    # Record the outcome for /doctor and /uninstall.
+    $b = @{ $true = 'true'; $false = 'false' }
+    Write-InstallManifest 'claude' ("{ ""plugin"": true, ""documentsPack"": " + $b[$docsOk] + ", ""browsing"": " + $b[$chromeOk] + ", ""smartMemory"": " + $b[$memOk] + ", ""obsidian"": " + $b[$obsOk] + " }")
+
     # ---------------------------------------------------------------
     # Done - tell the user the 3 human steps that remain
     # ---------------------------------------------------------------
@@ -545,6 +570,9 @@ function Install-OllamaEngine {
         Write-Note "Could not create a Desktop shortcut - the 'souldrop' command still works."
         Write-Note "Khong tao duoc shortcut - lenh 'souldrop' van dung duoc."
     }
+
+    # Record the outcome for /doctor and /uninstall.
+    Write-InstallManifest 'ollama' ("{ ""launcher"": true, ""model"": ""$Model"" }")
 
     # ---------------------------------------------------------------
     # Done

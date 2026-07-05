@@ -221,6 +221,7 @@ The brain is **plain markdown — engines are interchangeable**: a persona file 
 | `/onboard` | The interview that creates your personalized assistant + memory + custom skills + second brain — in English, Tiếng Việt, ไทย, 한국어, 中文, or your own language |
 | `forge-skills` | **Auto-builds 3–5 custom skills for your profession and goal** — runs automatically at the end of `/onboard`; re-run anytime with `/forge-skills` or "my goals changed". For design/content professions it also adds 1–2 pro "taste" skills from the open-source [taste-skill](https://github.com/Leonxlnx/taste-skill) collection (MIT) |
 | `/doctor` | **Health check** — verifies engine, plugin, profile, memory, second brain and extras, quietly fixes what it can, and prints one friendly report. Say "something broke" and it runs |
+| `/uninstall` | Cleanly removes SoulDrop and its extras — your profile, memories and notes **always stay** |
 | `create-skill` | Teach your assistant one new ability by describing it — it authors and installs the skill (same quality gate as the forge) |
 | `remember` | Saves facts/preferences to your assistant's long-term memory |
 | `recall` | Finds things you told it before |
@@ -244,7 +245,7 @@ Onboarding creates a note vault at `~/second-brain` — plain markdown files you
 
 ## 🧹 Uninstall
 
-One line removes the SoulDrop plugin (works in PowerShell and Terminal):
+Easiest way: inside your assistant, type **`/uninstall`** — it confirms once, removes SoulDrop and the extras it installed, and leaves your brain files untouched. Manual one-liner (works in PowerShell and Terminal):
 
 ```
 claude plugin uninstall souldrop ; claude plugin marketplace remove souldrop

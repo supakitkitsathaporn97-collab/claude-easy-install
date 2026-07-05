@@ -56,3 +56,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Lint SKILL.md frontmatter
         run: node .github/scripts/lint-skills.mjs
+
+  hooks:
+    name: Safety-net hook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: hooks.json parses + guard self-tests
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('plugins/souldrop/hooks/hooks.json','utf8')); console.log('hooks.json OK')"
+          node plugins/souldrop/hooks/guard.test.js

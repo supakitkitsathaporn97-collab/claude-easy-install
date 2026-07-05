@@ -42,7 +42,7 @@ and the first greeting. Treat `LANG` as a single clean variable — there are no
 per-language branches in the flow itself.
 
 The English strings written in this file are canonical. For Tiếng Việt, ไทย,
-한국어, and 中文, load `templates/i18n.md` (relative to this skill's directory)
+한국어, and 中文, load `${CLAUDE_PLUGIN_ROOT}/skills/onboard/templates/i18n.md`
 after the gate and use the matching block as your base wording. For any other
 language, translate the English strings naturally — same warmth, never
 word-for-word.
@@ -109,8 +109,10 @@ already told you.
 
 ## Step 3 — Generate the files
 
-Read the template at `templates/CLAUDE.md.tmpl` (relative to this skill's
-directory) and fill every `{{placeholder}}` from the interview answers. Rules:
+Read the template at `${CLAUDE_PLUGIN_ROOT}/skills/onboard/templates/CLAUDE.md.tmpl`
+(always via `${CLAUDE_PLUGIN_ROOT}` — never a relative path; the working
+directory is not this skill's directory at runtime) and fill every
+`{{placeholder}}` from the interview answers. Rules:
 
 - Write the profile in `LANG` (the interview language). Fill
   `{{reply_language}}` with the Round B answer — the profile must record the
@@ -129,7 +131,8 @@ Write these files:
 
 1. `~/.claude/CLAUDE.md` — the filled profile (respecting the Step 1 choice:
    fresh-with-backup, or merge).
-2. `~/.claude/memory/MEMORY.md` — from `templates/MEMORY.md.tmpl`. If it already
+2. `~/.claude/memory/MEMORY.md` — from
+   `${CLAUDE_PLUGIN_ROOT}/skills/onboard/templates/MEMORY.md.tmpl`. If it already
    exists, leave it alone and only append the new index line from step 3.
 3. `~/.claude/memory/about-me.md` — the first real memory: a short file recording
    the interview answers (their name, profession, goal, preferences, assistant
@@ -149,8 +152,10 @@ Only write files after "Yes".
 ## Step 5 — Auto second-brain (silent, non-blocking)
 
 Right after the files are written, create the user's note vault at
-`~/second-brain` by copying the skeleton from `../../templates/vault/`
-(relative to this skill's directory; also `${CLAUDE_PLUGIN_ROOT}/templates/vault/`):
+`~/second-brain` by copying the skeleton from
+`${CLAUDE_PLUGIN_ROOT}/templates/vault/` (always via `${CLAUDE_PLUGIN_ROOT}` —
+relative paths like `../../templates/vault/` are unreliable at runtime because
+the working directory is not this skill's directory):
 the `.obsidian/app.json` config, the seven numbered folders, `Home.md`, and
 `README.md`. If the folder already exists, only add missing pieces — never
 touch existing files.

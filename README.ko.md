@@ -217,6 +217,7 @@ SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 
 | `/onboard` | 개인화된 어시스턴트 + 기억 + 커스텀 스킬 + 두 번째 뇌를 만드는 인터뷰 — 영어, 베트남어, 태국어, 한국어, 중국어 또는 원하는 언어로 |
 | `forge-skills` | **직업과 목표에 맞는 커스텀 스킬 3–5개를 자동 생성** — `/onboard` 끝에 자동 실행, 언제든 재실행 가능. 디자인/콘텐츠 직업이라면 오픈소스 [taste-skill](https://github.com/Leonxlnx/taste-skill) 컬렉션(MIT)에서 프로 "감각" 스킬 1–2개도 추가합니다 |
 | `/doctor` | **건강 검진** — 엔진, 플러그인, 프로필, 기억, 두 번째 뇌, 부가 기능을 점검하고, 고칠 수 있는 것은 조용히 고친 뒤 친근한 보고서 하나를 출력합니다. "뭔가 이상해"라고 말해도 실행됩니다 |
+| `/uninstall` | SoulDrop과 부가 기능을 깔끔하게 제거 — 프로필, 기억, 노트는 **항상 남습니다** |
 | `create-skill` | 설명만 하면 어시스턴트가 새 능력을 직접 작성·설치 (단조와 같은 품질 기준) |
 | `remember` | 사실/선호를 장기 기억에 저장 |
 | `recall` | 이전에 말한 내용 검색 |
@@ -240,7 +241,7 @@ SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 
 
 ## 🧹 제거
 
-한 줄이면 SoulDrop 플러그인이 제거됩니다 (PowerShell과 터미널 모두에서 작동):
+가장 쉬운 방법: 어시스턴트 안에서 **`/uninstall`**을 입력하세요 — 한 번 확인한 뒤 SoulDrop과 설치했던 부가 기능을 제거하며, 뇌 파일은 건드리지 않습니다. 수동 한 줄 (PowerShell과 터미널 모두에서 작동):
 
 ```
 claude plugin uninstall souldrop ; claude plugin marketplace remove souldrop

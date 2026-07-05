@@ -21,6 +21,15 @@ Golden rules:
 - **Speak `LANG`** (the profile's language / the session language).
   The card below is the English canon; translate naturally.
 
+## Step 0 — Read the install manifest
+
+Read `~/.souldrop/installed.json` (written by the installer): it carries the
+SoulDrop version, the engine, the install date, and which optional extras the
+installer actually added. Use it to (a) print the version in the card header
+— **"SoulDrop v0.6.0"**, prominently, first line — and (b) know whether
+checks 7–9 were ever supposed to be on. Manifest missing = not an error:
+print the plugin's own version instead and check everything live.
+
 ## Step 1 — Run the checks
 
 Run each check; record ✅ (good), 🔧 (was broken, fixed it), or ⚠️ (needs
@@ -46,7 +55,7 @@ failures. The card's overall verdict counts only checks 1–6.
 
 Print ONE compact card. Shape (adapt to `LANG`, keep it this short):
 
-> **Health check — your assistant / Kiểm tra sức khỏe — trợ lý của bạn**
+> **SoulDrop v0.6.0 — health check / kiểm tra sức khỏe**
 >
 > - ✅ Engine running (Claude Code)
 > - ✅ SoulDrop installed

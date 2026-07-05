@@ -39,7 +39,8 @@ will call the forge itself at the end.
 Two sources, merged:
 
 1. **The domain map** — read `${CLAUDE_PLUGIN_ROOT}/templates/domain-map.md`
-   (from this skill's directory: `../../templates/domain-map.md`). Find the
+   (always via `${CLAUDE_PLUGIN_ROOT}`, never a relative path — the working
+   directory is not this skill's directory at runtime). Find the
    profession row(s) that match the user and start from its candidate skills.
 2. **Their free-text goal** — reason over the goal itself. The goal always
    beats the map: a photographer whose goal is "post more on TikTok" needs

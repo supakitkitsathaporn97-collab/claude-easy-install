@@ -55,11 +55,43 @@ diagnosing itself — every new piece optional, silent-skip, zero questions.
   teal = Free semantics; rx 16/10/4 radius trio; one dominant install CTA;
   gallery honesty rule.
 
+- **Safety-net hook** (`plugins/souldrop/hooks/`) — a PreToolUse hook on the
+  Bash tool blocks the obviously catastrophic commands a beginner should
+  never see run: `rm -rf` on `/`/home/drive roots, `del`/`rd /s` on a drive
+  root, `Remove-Item -Recurse` on roots, `diskpart`, `mkfs`,
+  `Format-Volume`/`format C:`, fork bombs — with a bilingual friendly
+  denial ("Lệnh này nguy hiểm — trợ lý đã chặn để bảo vệ bạn"); and
+  `git reset --hard` surfaces the permission prompt (ask, not deny) so the
+  human decides. Pure-Node guard (Windows+macOS+Linux), fail-open by design
+  (any hook error → command proceeds; the net never breaks the flow),
+  33-case self-test (`hooks/guard.test.js`) wired into CI.
+- **`/uninstall`** — real removal command: one plain-words confirmation,
+  removes plugin + marketplace + the extras the installer added (read from
+  the manifest), optional documents-pack removal — and NEVER deletes the
+  brain (profile, memories, second-brain stay; the goodbye message says so).
+  README uninstall sections now lead with `/uninstall`; the one-liner stays
+  as the manual fallback.
+- **Install manifest** — both installers write `~/.souldrop/installed.json`
+  (SoulDrop version, engine, date, which extras actually installed);
+  `/doctor` and `/uninstall` read it. `/doctor` now opens its health card
+  with the version ("SoulDrop v0.6.0") prominently.
+
 ### Changed
 - Pro installer steps renumbered 5 → 6; NOTICE now covers the Anthropic
   marketplace installs, chrome-devtools-mcp, agentmemory, and taste-skill.
 - Engines table: Pro row now lists real Office/PDF files + browsing;
   "coming in v0.6" for other engines corrected to "planned".
+- **Plugin-path hardening:** every skill/command now resolves plugin files
+  via `${CLAUDE_PLUGIN_ROOT}` only — relative paths like
+  `../../templates/vault/` were unreliable at runtime because the working
+  directory is not the skill's directory (onboard vault copy, i18n +
+  CLAUDE.md/MEMORY.md templates, forge domain-map, create-skill template).
+- CI: new `hooks` job (hooks.json parses + guard self-tests).
+
+### Roadmap (considered for v0.6.0, deliberately deferred to v0.7+)
+- Install profiles (Minimal / Standard / Full) · non-interactive `--yes`
+  flag · auto-update check · web-based onboarding · GitHub Pages docs site ·
+  SoulDrop cloud · Telegram bridge · multi-soul switching · voice mode.
 
 ### Pending (release ritual — Nick)
 - Push to GitHub, cut the **v0.6.0 release** with `SoulDrop-Installer.bat`

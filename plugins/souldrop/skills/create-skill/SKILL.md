@@ -28,8 +28,9 @@ already know from `~/.claude/CLAUDE.md` (their profession, language, tone).
 
 ## Step 2 — Draft the skill
 
-Use `${CLAUDE_PLUGIN_ROOT}/templates/SKILL.md.tmpl` (from this skill's
-directory: `../../templates/SKILL.md.tmpl`) as the shape:
+Use `${CLAUDE_PLUGIN_ROOT}/templates/SKILL.md.tmpl` as the shape
+(always resolve via `${CLAUDE_PLUGIN_ROOT}` — never a relative path; the
+working directory is not this skill's directory at runtime):
 
 - `name`: kebab-case, ≤64 chars, self-explanatory.
 - `description`: THIRD person, ≤300 chars, pushy — what + when, with the
