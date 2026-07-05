@@ -16,9 +16,13 @@ Most Claude Code starter kits give you files to edit by hand. This one **intervi
 
 1. Installs [Claude Code](https://code.claude.com) using **Anthropic's official installer** (we never re-host their software).
 2. Installs the `nick-starter` plugin from this repo.
-3. You type `/onboard` → a friendly interview asks your name, what you need help with, your assistant's **name** and **personality** → it writes a personalized profile and sets up a persistent memory ("second brain") for your assistant.
+3. You type `/onboard` → a friendly interview asks your name, what you do, your **goal**, your assistant's **name** and **personality** → it writes a personalized profile and sets up persistent memory.
+4. Then — automatically — **your assistant builds its own skills**: from your profession and goal it forges 3–5 custom abilities (e.g. a photographer gets client-inquiry replies, quote drafting, shoot planning) and installs them before saying hello.
+5. It also sets up a **second brain**: a ready note vault at `~/second-brain` you can open in the free [Obsidian](https://obsidian.md) app (which the installer also tries to set up for you).
 
-No Node.js, no Git, no admin rights required.
+You are never asked a technical question — the interview is only about you. Every automatic extra is optional: if one can't install, it's skipped with a friendly note and everything else still works.
+
+No Git, no admin rights required. (Node.js is only an optional extra the installer handles itself.)
 
 ## Install — Windows
 
@@ -47,17 +51,28 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude
 - Windows 10 1809+ / macOS 13+ / Ubuntu 20.04+
 - Internet connection
 - A paid Claude subscription (Pro, Max, or Team) — [claude.ai](https://claude.ai)
+- **Don't have Claude yet?** Start with a free 7-day Pro trial → [claude.ai/referral/QbA1I722cA](https://claude.ai/referral/QbA1I722cA) *(referral link — supports this project)*
 
 ## What's inside the plugin
 
 | Skill | What it does |
 |---|---|
-| `/onboard` | The interview that creates your personalized assistant + memory — in English, Tiếng Việt, ไทย, 한국어, 中文, or your own language |
+| `/onboard` | The interview that creates your personalized assistant + memory + custom skills + second brain — in English, Tiếng Việt, ไทย, 한국어, 中文, or your own language |
+| `forge-skills` | **Auto-builds 3–5 custom skills for your profession and goal** — runs automatically at the end of `/onboard`; re-run anytime with `/forge-skills` or "my goals changed" |
+| `create-skill` | Teach your assistant one new ability by describing it — it authors and installs the skill (same quality gate as the forge) |
 | `remember` | Saves facts/preferences to your assistant's long-term memory |
 | `recall` | Finds things you told it before |
 | `learn-from-mistakes` | Turns your corrections into permanent rules |
 | `daily-note` | Simple daily journal |
 | `work-smart` | Makes the assistant plan before acting and avoid wasted steps |
+| `personal` | Personal-assistant baseline: consistent persona, memory habits, honesty, safety boundaries |
+| `leader` | For big tasks: plan, break down, delegate, verify, report one clean answer |
+| `/setup-vault` | (Re)creates the second-brain note vault at `~/second-brain` — Obsidian-ready |
+| `obsidian-markdown` · `obsidian-cli` | Write and organize vault notes properly (wikilinks, tags, safe file operations) |
+
+## Your second brain
+
+`/onboard` creates a note vault at `~/second-brain` — plain markdown files your assistant reads and writes (daily notes, projects, people, ideas). Open the folder in the free [Obsidian](https://obsidian.md) app ("Open folder as vault") to browse it visually — the installer tries to install Obsidian for you, and if that's not possible everything still works as plain files. The installer also tries an optional "smart memory" upgrade (the open-source [agentmemory](https://github.com/rohitg00/agentmemory) plugin); if it can't, your assistant simply keeps remembering via files.
 
 ## FAQ
 

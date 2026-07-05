@@ -1,0 +1,43 @@
+<!--
+  Template for generated skills (forge-skills + create-skill).
+  Frontmatter spec (Anthropic):
+    name:        kebab-case, 1-64 chars, matches the folder name
+    description: THIRD person, <=300 chars, "what + WHEN", deliberately pushy:
+                 list concrete trigger phrases (include the user's language),
+                 end with: even if they don't say "<keyword>" explicitly.
+                 NEVER put an unquoted ": " (colon+space) inside name or
+                 description - it breaks YAML parsing. Dash instead, or quote.
+  Body: imperative, <=500 lines (aim <150), progressive disclosure.
+-->
+---
+name: {{kebab-name}}
+description: {{What it does, third person}}. Use this whenever the user {{concrete trigger contexts and phrases}}, even if they don't say "{{keyword}}" explicitly.
+---
+
+# {{Title in plain words}}
+
+{{One line: the job this skill does for THIS user.}}
+
+## When to use
+
+- {{Concrete situation 1}}
+- {{Concrete situation 2}}
+
+## Steps
+
+1. {{Imperative step — what to ask for or read first}}
+2. {{Imperative step — how to do the core job, grounded in the user's
+   profession, language, and tone from their profile}}
+3. {{Imperative step — how to present the result}}
+
+## Output
+
+{{The exact shape of the deliverable — a short example beats a description.}}
+
+## Rules
+
+- {{Boundary or quality rule specific to this job}}
+- Reply in the user's language and the assistant's personality from
+  `~/.claude/CLAUDE.md`.
+- If key information is missing, ask ONE short human question — never a
+  technical one.

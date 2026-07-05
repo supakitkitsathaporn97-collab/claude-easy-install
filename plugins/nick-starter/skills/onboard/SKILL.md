@@ -69,17 +69,28 @@ Run these rounds with `AskUserQuestion`, in order. `AskUserQuestion` supports up
 to 4 questions per call — group them as shown (2 calls + 1 free-text ask), so the
 interview feels quick, not like a form.
 
-**Round A — about the user** (one AskUserQuestion call, 2 questions):
+**Round A — about the user** (free text + one AskUserQuestion call, 3 questions):
 
 1. *Your name* — has no natural options, so ask it as plain free text BEFORE the
    call, or as an "Other"-driven question with example options. Prefer plain
    conversation: "First — what should your assistant call you?"
-2. *What do you mainly want help with?* (multiSelect: true)
+2. *What do you do?* (their profession — the forge builds skills from this)
+   - Options: "Run my own business / shop", "Freelance & creative work",
+     "Office / company job", "Student / researcher" (+ Other for anything else).
+   - If the answer is broad, ask ONE short plain follow-up ("What kind?") —
+     "photographer" beats "freelance" for building their toolkit later.
+3. *What do you mainly want help with?* (multiSelect: true)
    - Options: "Work & documents", "Content & social media", "Coding & tech",
      "Study & research" (+ Other for anything else, e.g. business, personal life)
-3. *How should your assistant talk to you?*
+4. *How should your assistant talk to you?*
    - Options: "Short & direct", "Friendly & warm", "Professional & formal",
      "Playful & fun"
+
+Then ONE free-text question, conversationally (this is the forge's fuel):
+
+5. *Their goal* — "And in your own words — what's the #1 thing you'd love
+   this assistant to help you achieve?" Accept whatever they say; one short
+   clarifying follow-up at most.
 
 **Round B — about the assistant** (free text + one AskUserQuestion call):
 
@@ -109,6 +120,9 @@ directory) and fill every `{{placeholder}}` from the interview answers. Rules:
   flattery. Expand only when asked.").
 - Capabilities section lists ONLY the jobs they selected, one line each with a
   concrete example of how the assistant helps.
+- Fill `{{profession}}` and `{{goal}}` from Round A answers 2 and 5 — the
+  About section MUST record both verbatim-ish (cleaned up, not embellished);
+  the forge and every future re-run read them from here.
 - Do not add capabilities, rules, or personality traits they didn't ask for.
 
 Write these files:
@@ -118,8 +132,8 @@ Write these files:
 2. `~/.claude/memory/MEMORY.md` — from `templates/MEMORY.md.tmpl`. If it already
    exists, leave it alone and only append the new index line from step 3.
 3. `~/.claude/memory/about-me.md` — the first real memory: a short file recording
-   the interview answers (their name, goals, preferences, assistant name, date).
-   Add one index line for it to `MEMORY.md`.
+   the interview answers (their name, profession, goal, preferences, assistant
+   name, date). Add one index line for it to `MEMORY.md`.
 
 ## Step 4 — Preview & confirm
 
@@ -132,24 +146,62 @@ Ask with `AskUserQuestion`: "Shall I save this?" — Options: "Yes, save it",
 
 Only write files after "Yes".
 
-## Step 5 — First hello
+## Step 5 — Auto second-brain (silent, non-blocking)
 
-After saving, greet the user **as their new assistant, by its new name, in their
-chosen language, in its chosen personality**. Example shape (adapt, don't copy):
+Right after the files are written, create the user's note vault at
+`~/second-brain` by copying the skeleton from `../../templates/vault/`
+(relative to this skill's directory; also `${CLAUDE_PLUGIN_ROOT}/templates/vault/`):
+the `.obsidian/app.json` config, the seven numbered folders, `Home.md`, and
+`README.md`. If the folder already exists, only add missing pieces — never
+touch existing files.
+
+Do NOT ask the user anything about this and do NOT explain the mechanics —
+it gets one warm sentence in the final hello (Step 7). If creation fails for
+any reason, skip it silently (memory still works via `~/.claude/memory/`)
+and drop that sentence — never show an error.
+
+## Step 6 — Auto-forge the user's custom toolkit (non-blocking)
+
+Tell the user ONE friendly line in `LANG`, in the new persona — shape:
+"One moment — I'm building myself a toolkit just for you…" — then run the
+**`forge-skills` skill** from this plugin, start to finish. You already hold
+the profession + goal from the interview, so pass that context straight in
+(the forge won't re-interview, and never asks technical questions).
+
+The forge derives 3–5 tightly-scoped skills, quality-gates them, and installs
+the survivors to `~/.claude/skills/`. If the forge fails entirely or nothing
+passes the gate, continue to Step 7 without mentioning it — the user can say
+"build me skills" later.
+
+## Step 7 — First hello (with the toolkit reveal)
+
+Greet the user **as their new assistant, by its new name, in their chosen
+language, in its chosen personality** — and show off what was just built for
+them (from the forge's Step 6 report: plain-words skill names + one line each
++ an example trigger phrase). Example shape (adapt, don't copy):
 
 > "Xin chào Minh, mình là Linh 👋 Từ giờ mình là trợ lý riêng của bạn.
-> Mình sẽ giúp bạn viết nội dung và tóm tắt tài liệu. Cứ nói chuyện với mình
-> như bình thường — mình nhớ được những gì quan trọng. Bắt đầu nhé?"
+> Trong lúc mình chào bạn, mình đã tự tạo bộ công cụ riêng cho công việc
+> của bạn: trả lời khách hàng, làm báo giá, lên kế hoạch nội dung. Mình cũng
+> đã dựng sẵn một 'bộ não thứ hai' để ghi chú tại `second-brain`. Cứ nói
+> chuyện với mình như bình thường — mình nhớ được những gì quan trọng.
+> Bắt đầu nhé?"
 
 Then tell them, briefly:
 - The new personality fully activates next time they start `claude`
   (this session already behaves like it from now on).
 - They can re-run `/onboard` anytime to change anything — nothing is ever lost,
   old profiles are backed up.
-- Useful starter commands: `/remember` (save a fact), `/recall` (find one),
-  `/daily-note` (journal today).
+- Useful things to say: "remember this" (save a fact), "what did I tell you
+  about…" (recall), `/daily-note` (journal today), and "my goals changed"
+  (rebuilds their toolkit via `/forge-skills`).
+
+Never mention CLAUDE.md, YAML, frontmatter, file paths (beyond the friendly
+`second-brain` folder name), or any other machinery.
 
 ## Re-running
 
 This skill is fully re-runnable. On any re-run, Step 1's existing-file check is
-mandatory — never assume the previous run's state.
+mandatory — never assume the previous run's state. Steps 5–6 are also
+re-run-safe: the vault only fills gaps, and the forge never overwrites an
+existing skill without the human-level "refresh it?" question.

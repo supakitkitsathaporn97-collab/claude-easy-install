@@ -10,6 +10,10 @@
 #       (we never re-host their binary — we call https://claude.ai/install.ps1)
 #    2. Adds this repo as a plugin marketplace
 #    3. Installs the "nick-starter" plugin (the /onboard interview + core skills)
+#    4. OPTIONAL EXTRA: tries to add smart memory (Node.js LTS + the open-source
+#       agentmemory plugin). If anything fails it is skipped — never blocks.
+#    5. OPTIONAL EXTRA: tries to install the free Obsidian note app for your
+#       second brain. Also skipped gracefully on any failure.
 #
 #  Requirements / Yeu cau:
 #    - Windows 10 1809+ , internet
@@ -42,7 +46,7 @@ Write-Host "=====================================================" -ForegroundCo
 # ---------------------------------------------------------------
 # Step 1 — Claude Code itself (official Anthropic installer)
 # ---------------------------------------------------------------
-Write-Step "Step 1/3: Checking Claude Code... / Kiem tra Claude Code..."
+Write-Step "Step 1/5: Checking Claude Code... / Kiem tra Claude Code..."
 
 function Test-ClaudeInstalled {
     $cmd = Get-Command claude -ErrorAction SilentlyContinue
@@ -86,7 +90,7 @@ Write-Ok ("claude found at: " + $claudeCmd.Source)
 # ---------------------------------------------------------------
 # Step 2 — Add the plugin marketplace (idempotent)
 # ---------------------------------------------------------------
-Write-Step "Step 2/3: Adding the starter marketplace... / Them kho plugin..."
+Write-Step "Step 2/5: Adding the starter marketplace... / Them kho plugin..."
 
 # `marketplace add` fails politely if it already exists -> then just update it.
 claude plugin marketplace add $MarketplaceRepo 2>$null
@@ -107,7 +111,7 @@ if ($LASTEXITCODE -eq 0) {
 # ---------------------------------------------------------------
 # Step 3 — Install the starter plugin (idempotent)
 # ---------------------------------------------------------------
-Write-Step "Step 3/3: Installing the starter plugin... / Cai plugin khoi dong..."
+Write-Step "Step 3/5: Installing the starter plugin... / Cai plugin khoi dong..."
 
 claude plugin install "$PluginName@$MarketplaceName" 2>$null
 if ($LASTEXITCODE -eq 0) {
@@ -122,6 +126,94 @@ if ($LASTEXITCODE -eq 0) {
         Write-Note "Cai plugin that bai. Thu chay thu cong trong Claude Code:"
         Write-Note "  /plugin install $PluginName@$MarketplaceName"
     }
+}
+
+# ---------------------------------------------------------------
+# Step 4 — OPTIONAL: smart memory (agentmemory). Fully automatic,
+# fully non-blocking: any failure = one friendly line, keep going.
+# ---------------------------------------------------------------
+Write-Step "Step 4/5: Smart memory (optional extra)... / Bo nho thong minh (tuy chon)..."
+
+$prevEAP = $ErrorActionPreference
+$ErrorActionPreference = 'Continue'   # optional extras must never hard-stop
+$memOk = $false
+try {
+    # agentmemory (Apache-2.0, github.com/rohitg00/agentmemory) needs Node 20+.
+    function Get-NodeMajor {
+        $n = Get-Command node -ErrorAction SilentlyContinue
+        if ($null -eq $n) { return 0 }
+        try { return [int](((node -v) -replace '^v','') -split '\.')[0] } catch { return 0 }
+    }
+    $nodeMajor = Get-NodeMajor
+    if ($nodeMajor -lt 20) {
+        $wingetCmd = Get-Command winget -ErrorAction SilentlyContinue
+        if ($null -ne $wingetCmd) {
+            Write-Note "Adding Node.js LTS (needed for smart memory)... / Dang cai Node.js LTS..."
+            winget install --id OpenJS.NodeJS.LTS -e --silent --accept-package-agreements --accept-source-agreements | Out-Null
+            # Make node visible in THIS session.
+            $nodeDir = Join-Path $env:ProgramFiles 'nodejs'
+            if ((Test-Path $nodeDir) -and ($env:Path -notlike "*$nodeDir*")) {
+                $env:Path = "$nodeDir;$env:Path"
+            }
+            $nodeMajor = Get-NodeMajor
+        }
+    }
+    if ($nodeMajor -ge 20) {
+        # agentmemory writes its data store relative to the CURRENT directory —
+        # run the install from a stable home dir so memories survive restarts.
+        $memHome = Join-Path $env:USERPROFILE '.agentmemory'
+        New-Item -ItemType Directory -Force -Path $memHome | Out-Null
+        Push-Location $memHome
+        try {
+            claude plugin marketplace add rohitg00/agentmemory 2>$null
+            claude plugin install agentmemory 2>$null
+            if ($LASTEXITCODE -eq 0) { $memOk = $true }
+            else {
+                claude plugin install agentmemory@agentmemory 2>$null
+                if ($LASTEXITCODE -eq 0) { $memOk = $true }
+            }
+        } finally { Pop-Location }
+    }
+} catch { $memOk = $false }
+$ErrorActionPreference = $prevEAP
+
+if ($memOk) {
+    Write-Ok "Smart memory installed. / Da cai bo nho thong minh."
+} else {
+    Write-Note "Smart memory skipped - your assistant still remembers everything via files."
+    Write-Note "Bo qua bo nho thong minh - tro ly van ghi nho day du bang file."
+}
+
+# ---------------------------------------------------------------
+# Step 5 — OPTIONAL: Obsidian note app (for the second brain).
+# Same rule: automatic, never blocks, friendly skip on failure.
+# ---------------------------------------------------------------
+Write-Step "Step 5/5: Obsidian note app (optional extra)... / Ung dung ghi chu Obsidian (tuy chon)..."
+
+$prevEAP = $ErrorActionPreference
+$ErrorActionPreference = 'Continue'
+$obsOk = $false
+try {
+    $obsExe = Join-Path $env:LOCALAPPDATA 'Programs\Obsidian\Obsidian.exe'
+    if (Test-Path $obsExe) {
+        $obsOk = $true
+        Write-Ok "Obsidian already installed. / Obsidian da co san."
+    } else {
+        $wingetCmd = Get-Command winget -ErrorAction SilentlyContinue
+        if ($null -ne $wingetCmd) {
+            winget install --id Obsidian.Obsidian -e --silent --accept-package-agreements --accept-source-agreements | Out-Null
+            if (Test-Path $obsExe) {
+                $obsOk = $true
+                Write-Ok "Obsidian installed. / Da cai Obsidian."
+            }
+        }
+    }
+} catch { $obsOk = $false }
+$ErrorActionPreference = $prevEAP
+
+if (-not $obsOk) {
+    Write-Note "Obsidian skipped - your notes still work as plain files. Get it anytime at obsidian.md"
+    Write-Note "Bo qua Obsidian - ghi chu van hoat dong dang file. Tai sau tai obsidian.md"
 }
 
 # ---------------------------------------------------------------
@@ -142,6 +234,15 @@ Write-Host "     (A paid Claude plan - Pro or Max - is required.)"
 Write-Host "     Dang nhap khi trinh duyet mo ra."
 Write-Host "     (Can tai khoan Claude tra phi - Pro hoac Max.)"
 Write-Host ""
+
+# Referral shown ONLY when no Claude login is detected on this machine.
+$claudeCreds = Join-Path $env:USERPROFILE '.claude\.credentials.json'
+if (-not (Test-Path $claudeCreds)) {
+    Write-Host "     Don't have a paid Claude plan yet? Start with a free 7-day Pro trial:" -ForegroundColor Yellow
+    Write-Host "     https://claude.ai/referral/QbA1I722cA" -ForegroundColor Yellow
+    Write-Host "     (referral link - supports this project / link gioi thieu - ung ho du an nay)"
+    Write-Host ""
+}
 Write-Host "  3. Type:  /onboard"
 Write-Host "     to create your own personal AI assistant."
 Write-Host "     de tao tro ly AI ca nhan cua rieng ban."

@@ -11,6 +11,10 @@
 #       (we call https://claude.ai/install.sh — never re-host it)
 #    2. Adds this repo as a plugin marketplace
 #    3. Installs the "nick-starter" plugin (/onboard interview + core skills)
+#    4. OPTIONAL EXTRA: tries to add smart memory (Node.js + the open-source
+#       agentmemory plugin). Any failure = skipped with one friendly line.
+#    5. OPTIONAL EXTRA: tries to install the free Obsidian note app (macOS,
+#       via Homebrew). Also skipped gracefully — these extras never block.
 #
 #  Requirements: macOS 13+ / Ubuntu 20.04+, internet,
 #  and a paid Claude plan (Pro/Max) for the login step afterwards.
@@ -36,7 +40,7 @@ printf '=====================================================\033[0m\n'
 # ---------------------------------------------------------------
 # Step 1 — Claude Code itself (official Anthropic installer)
 # ---------------------------------------------------------------
-step "Step 1/3: Checking Claude Code... / Kiem tra Claude Code..."
+step "Step 1/5: Checking Claude Code... / Kiem tra Claude Code..."
 
 if command -v claude >/dev/null 2>&1 || [ -x "$HOME/.local/bin/claude" ]; then
   ok "Claude Code is already installed. / Claude Code da duoc cai dat."
@@ -68,7 +72,7 @@ ok "claude found: $(command -v claude)"
 # ---------------------------------------------------------------
 # Step 2 — Add the plugin marketplace (idempotent)
 # ---------------------------------------------------------------
-step "Step 2/3: Adding the starter marketplace... / Them kho plugin..."
+step "Step 2/5: Adding the starter marketplace... / Them kho plugin..."
 
 if claude plugin marketplace add "$MARKETPLACE_REPO" >/dev/null 2>&1; then
   ok "Marketplace added. / Da them kho plugin."
@@ -84,7 +88,7 @@ fi
 # ---------------------------------------------------------------
 # Step 3 — Install the starter plugin (idempotent)
 # ---------------------------------------------------------------
-step "Step 3/3: Installing the starter plugin... / Cai plugin khoi dong..."
+step "Step 3/5: Installing the starter plugin... / Cai plugin khoi dong..."
 
 if claude plugin install "$PLUGIN_NAME@$MARKETPLACE_NAME" >/dev/null 2>&1; then
   ok "Plugin '$PLUGIN_NAME' installed. / Da cai plugin '$PLUGIN_NAME'."
@@ -94,6 +98,74 @@ else
   note "Plugin install failed. Try manually inside Claude Code:"
   note "Cai plugin that bai. Thu thu cong trong Claude Code:"
   note "  /plugin install $PLUGIN_NAME@$MARKETPLACE_NAME"
+fi
+
+# ---------------------------------------------------------------
+# Step 4 — OPTIONAL: smart memory (agentmemory). Fully automatic,
+# fully non-blocking: any failure = one friendly line, keep going.
+# ---------------------------------------------------------------
+step "Step 4/5: Smart memory (optional extra)... / Bo nho thong minh (tuy chon)..."
+
+node_major() {
+  command -v node >/dev/null 2>&1 || { echo 0; return; }
+  node -v 2>/dev/null | sed 's/^v//' | cut -d. -f1 | grep -E '^[0-9]+$' || echo 0
+}
+
+MEM_OK=0
+NODE_MAJOR="$(node_major)"
+# agentmemory (Apache-2.0, github.com/rohitg00/agentmemory) needs Node 20+.
+if [ "$NODE_MAJOR" -lt 20 ] 2>/dev/null; then
+  if [ "$(uname -s)" = "Darwin" ] && command -v brew >/dev/null 2>&1; then
+    note "Adding Node.js (needed for smart memory)... / Dang cai Node.js..."
+    brew install node >/dev/null 2>&1 || true
+    NODE_MAJOR="$(node_major)"
+  fi
+  # On Linux we don't sudo-install anything automatically — skip instead.
+fi
+if [ "$NODE_MAJOR" -ge 20 ] 2>/dev/null; then
+  # agentmemory writes its data store relative to the CURRENT directory —
+  # run the install from a stable home dir so memories survive restarts.
+  mkdir -p "$HOME/.agentmemory" 2>/dev/null || true
+  if ( cd "$HOME/.agentmemory" 2>/dev/null && {
+        claude plugin marketplace add rohitg00/agentmemory >/dev/null 2>&1 || true
+        claude plugin install agentmemory >/dev/null 2>&1 \
+          || claude plugin install agentmemory@agentmemory >/dev/null 2>&1
+      } ); then
+    MEM_OK=1
+  fi
+fi
+
+if [ "$MEM_OK" -eq 1 ]; then
+  ok "Smart memory installed. / Da cai bo nho thong minh."
+else
+  note "Smart memory skipped - your assistant still remembers everything via files."
+  note "Bo qua bo nho thong minh - tro ly van ghi nho day du bang file."
+fi
+
+# ---------------------------------------------------------------
+# Step 5 — OPTIONAL: Obsidian note app (for the second brain).
+# Same rule: automatic, never blocks, friendly skip on failure.
+# ---------------------------------------------------------------
+step "Step 5/5: Obsidian note app (optional extra)... / Ung dung Obsidian (tuy chon)..."
+
+OBS_OK=0
+if [ "$(uname -s)" = "Darwin" ]; then
+  if [ -d "/Applications/Obsidian.app" ]; then
+    OBS_OK=1
+    ok "Obsidian already installed. / Obsidian da co san."
+  elif command -v brew >/dev/null 2>&1; then
+    brew install --cask obsidian >/dev/null 2>&1 || true
+    if [ -d "/Applications/Obsidian.app" ]; then
+      OBS_OK=1
+      ok "Obsidian installed. / Da cai Obsidian."
+    fi
+  fi
+fi
+# On Linux we don't auto-install desktop apps — the vault works as plain files.
+
+if [ "$OBS_OK" -eq 0 ]; then
+  note "Obsidian skipped - your notes still work as plain files. Get it anytime at obsidian.md"
+  note "Bo qua Obsidian - ghi chu van hoat dong dang file. Tai sau tai obsidian.md"
 fi
 
 # ---------------------------------------------------------------
@@ -109,6 +181,14 @@ printf '  2. Log in when the browser opens.\n'
 printf '     (A paid Claude plan - Pro or Max - is required.)\n'
 printf '     Dang nhap khi trinh duyet mo ra.\n'
 printf '     (Can tai khoan Claude tra phi - Pro hoac Max.)\n\n'
+
+# Referral shown ONLY when no Claude login is detected on this machine.
+if [ ! -f "$HOME/.claude/.credentials.json" ] \
+   && ! grep -q oauthAccount "$HOME/.claude.json" 2>/dev/null; then
+  printf '\033[33m     Dont have a paid Claude plan yet? Start with a free 7-day Pro trial:\n'
+  printf '     https://claude.ai/referral/QbA1I722cA\033[0m\n'
+  printf '     (referral link - supports this project / link gioi thieu - ung ho du an nay)\n\n'
+fi
 printf '  3. Type:  /onboard\n'
 printf '     to create your own personal AI assistant.\n'
 printf '     de tao tro ly AI ca nhan cua rieng ban.\n\n'

@@ -1,7 +1,7 @@
 {
   "name": "nick-starter",
-  "version": "0.2.0",
-  "description": "Starter kit for beginners: run /onboard to be interviewed (English, Vietnamese, Thai, Korean, Chinese — or any language you name) and get a personalized AI assistant — its own name, personality, goals, and a persistent memory scaffold — written into ~/.claude/CLAUDE.md. Includes core skills: work-smart, remember, recall, learn-from-mistakes, daily-note.",
+  "version": "0.3.0",
+  "description": "Starter kit for beginners: run /onboard to be interviewed (English, Vietnamese, Thai, Korean, Chinese — or any language you name) and get a personalized AI assistant — its own name, personality, goals, persistent memory, a ready second-brain vault, AND custom skills it forges automatically for your profession and goal. Core skills: work-smart, remember, recall, learn-from-mistakes, daily-note, personal, leader, create-skill, forge-skills, obsidian-markdown, obsidian-cli.",
   "author": {
     "name": "SK Production",
     "url": "https://github.com/supakitkitsathaporn97-collab"
@@ -9,5 +9,5 @@
   "homepage": "https://github.com/supakitkitsathaporn97-collab/claude-easy-install",
   "repository": "https://github.com/supakitkitsathaporn97-collab/claude-easy-install",
   "license": "MIT",
-  "keywords": ["onboarding", "starter", "persona", "memory", "vietnamese", "thai", "korean", "chinese", "i18n", "beginner"]
+  "keywords": ["onboarding", "starter", "persona", "memory", "second-brain", "skill-forge", "obsidian", "vietnamese", "thai", "korean", "chinese", "i18n", "beginner"]
 }
