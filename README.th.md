@@ -15,12 +15,12 @@
 <br>
 <br>
 
-[![CI](https://img.shields.io/github/actions/workflow/status/supakitkitsathaporn97-collab/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/actions/workflows/validate.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/kkitkai/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/kkitkai/souldrop/actions/workflows/validate.yml)
 [![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/pulls)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/kkitkai/souldrop/pulls)
 
 <br>
 
@@ -44,7 +44,7 @@
 
 ### 🖱️ วิธีที่ง่ายที่สุด (Windows) — โหลด 1 ไฟล์ แล้วดับเบิลคลิก
 
-1. **[ดาวน์โหลดตัวติดตั้งที่นี่](https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/SoulDrop-Installer.bat)** — **คลิกขวา**ที่ลิงก์ → **"Save link as..."** → เซฟไว้ที่เดสก์ท็อป
+1. **[ดาวน์โหลดตัวติดตั้งที่นี่](https://raw.githubusercontent.com/kkitkai/souldrop/main/SoulDrop-Installer.bat)** — **คลิกขวา**ที่ลิงก์ → **"Save link as..."** → เซฟไว้ที่เดสก์ท็อป
 2. **ดับเบิลคลิก**ไฟล์ `SoulDrop-Installer.bat` ที่โหลดมา แค่นั้น — ตัวติดตั้งรันเอง
 3. ถ้า Windows ขึ้นเตือนสีน้ำเงิน (SmartScreen): กด **"More info"** → **"Run anyway"** ตามตรง: คำเตือนนี้ขึ้นกับ*ทุก*ไฟล์ที่โหลดจากอินเทอร์เน็ตที่ไม่มีลายเซ็นดิจิทัล — ไฟล์นี้แค่เรียกสคริปต์ติดตั้งทางการด้านล่าง เปิดอ่านเองด้วย Notepad ได้
 
@@ -55,13 +55,13 @@
 **Windows** — เปิด **PowerShell** (เปิดไม่เป็น? [ดูคู่มือมีภาพด้านล่าง](#-คู่มือทีละขั้นสำหรับมือใหม่)) แล้ววาง:
 
 ```powershell
-irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
+irm https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.ps1 | iex
 ```
 
 **macOS / Linux** — เปิด **Terminal** (เปิดไม่เป็น? [ดูคู่มือมีภาพด้านล่าง](#-คู่มือทีละขั้นสำหรับมือใหม่)) แล้ววาง:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 ### จากนั้น
@@ -97,7 +97,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 คำสั่งที่ต้องวางบน Mac (ก๊อปด้วยปุ่ม 📋 มุมขวาของกล่องคำสั่ง):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 เคล็ดลับ: บน Mac **วาง = Cmd ⌘ + V** (ไม่ใช่ Ctrl+V) ถ้า Mac ขึ้นหน้าต่างถามให้ติดตั้ง **"command line developer tools"** กด **Install** ได้เลย — นั่นคือชุดเครื่องมือทางการของ Apple ที่ตัวติดตั้งต้องใช้ เสร็จแล้วรันคำสั่งด้านบนอีกครั้ง
@@ -110,7 +110,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 กด **Ctrl + Alt + T** (ลินุกซ์ส่วนใหญ่: Ubuntu, Mint...) — หรือหา "Terminal" ในเมนูแอป วางคำสั่งนี้แล้วกด Enter (**วางใน terminal = Ctrl + Shift + V** ไม่ใช่ Ctrl+V):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 ตามตรง: ตัวติดตั้ง**ไม่รัน sudo เองเด็ดขาด** ถ้าเครื่องขาด git มันจะพิมพ์คำสั่ง `sudo apt-get install -y git` ให้**คุณรันเอง** แล้วค่อยรันคำสั่งด้านบนใหม่ — โปร่งใส ไม่แตะสิทธิ์ระบบเองโดยพลการ
@@ -131,7 +131,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 2. กดแท็บ **Code** ที่แถบบนสุดของแอป แล้วเลือก **Local**
 3. พิมพ์สองคำสั่งนี้ในช่องแชต (ก๊อปทีละบรรทัด วาง Enter):
    ```
-   /plugin marketplace add supakitkitsathaporn97-collab/souldrop
+   /plugin marketplace add kkitkai/souldrop
    /plugin install souldrop@souldrop
    ```
 4. พิมพ์ `/onboard` — เลือกภาษา แล้วพบผู้ช่วยของคุณเอง เสร็จ!

@@ -15,12 +15,12 @@
 <br>
 <br>
 
-[![CI](https://img.shields.io/github/actions/workflow/status/supakitkitsathaporn97-collab/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/actions/workflows/validate.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/kkitkai/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/kkitkai/souldrop/actions/workflows/validate.yml)
 [![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/pulls)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/kkitkai/souldrop/pulls)
 
 <br>
 
@@ -44,7 +44,7 @@
 
 ### 🖱️ 最简单的方式 (Windows) — 下载 1 个文件，双击
 
-1. **[点这里下载安装文件](https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/SoulDrop-Installer.bat)** — **右键**点击链接 → **"链接另存为..."** → 保存到桌面。
+1. **[点这里下载安装文件](https://raw.githubusercontent.com/kkitkai/souldrop/main/SoulDrop-Installer.bat)** — **右键**点击链接 → **"链接另存为..."** → 保存到桌面。
 2. **双击**下载好的 `SoulDrop-Installer.bat`。就这样 — 安装器自己运行。
 3. 如果 Windows 弹出蓝色 SmartScreen 警告: 点 **"更多信息"** → **"仍要运行"**。坦白说: 这个警告对*任何*从网上下载的未签名文件都会出现 — 这个文件只是调用下面的官方安装脚本，你可以用记事本打开亲自读一读。
 
@@ -55,13 +55,13 @@
 **Windows** — 打开 **PowerShell**(不会开? [看下面的图解教程](#-完全新手的分步教程))，粘贴:
 
 ```powershell
-irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
+irm https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.ps1 | iex
 ```
 
 **macOS / Linux** — 打开**终端**(不会开? [看下面的图解教程](#-完全新手的分步教程))，粘贴:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 ### 然后
@@ -97,7 +97,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 Mac 上要粘贴的命令 (用代码块右上角的 📋 按钮复制):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 小技巧: 在 Mac 上**粘贴 = Cmd ⌘ + V** (不是 Ctrl+V)。如果 Mac 弹窗询问是否安装 **"command line developer tools"**，直接点 **Install** — 那是安装程序需要的 Apple 官方工具，装好后再运行一次上面的命令即可。
@@ -110,7 +110,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 按 **Ctrl + Alt + T** (大多数发行版: Ubuntu、Mint...) — 或在应用菜单里找 "Terminal"。粘贴这条命令然后按回车 (**终端里粘贴 = Ctrl + Shift + V**，不是 Ctrl+V):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 实话实说: 安装程序**绝不会自动运行 sudo**。如果缺少 git，它只会打印出 `sudo apt-get install -y git` 这条命令让**你自己运行**，然后你再重新运行上面的命令 — 透明，绝不擅自动用系统权限。
@@ -131,7 +131,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 2. 点应用顶栏的 **Code** 标签页，选 **Local**。
 3. 在输入框里依次输入这两条命令 (逐行复制、粘贴、回车):
    ```
-   /plugin marketplace add supakitkitsathaporn97-collab/souldrop
+   /plugin marketplace add kkitkai/souldrop
    /plugin install souldrop@souldrop
    ```
 4. 输入 `/onboard` — 选择语言，认识你自己的助手。搞定!

@@ -15,12 +15,12 @@
 <br>
 <br>
 
-[![CI](https://img.shields.io/github/actions/workflow/status/supakitkitsathaporn97-collab/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/actions/workflows/validate.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/kkitkai/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/kkitkai/souldrop/actions/workflows/validate.yml)
 [![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/pulls)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/kkitkai/souldrop/pulls)
 
 <br>
 
@@ -44,7 +44,7 @@ The installer takes care of **everything** — including any helper tools it nee
 
 ### 🖱️ Easiest way (Windows) — download 1 file, double-click
 
-1. **[Download the installer here](https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/SoulDrop-Installer.bat)** — **right-click** the link → **"Save link as..."** → save it to your Desktop.
+1. **[Download the installer here](https://raw.githubusercontent.com/kkitkai/souldrop/main/SoulDrop-Installer.bat)** — **right-click** the link → **"Save link as..."** → save it to your Desktop.
 2. **Double-click** the downloaded `SoulDrop-Installer.bat`. That's it — the installer runs itself.
 3. If Windows shows a blue SmartScreen warning: click **"More info"** → **"Run anyway"**. Honest note: that warning appears for *any* unsigned file downloaded from the internet — this one only runs the official install script below, and you can open it in Notepad and read it yourself.
 
@@ -55,13 +55,13 @@ The installer takes care of **everything** — including any helper tools it nee
 **Windows** — open **PowerShell** (never done that? [see the illustrated guide below](#-complete-beginner-walkthrough)) and paste:
 
 ```powershell
-irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
+irm https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.ps1 | iex
 ```
 
 **macOS / Linux** — open **Terminal** (never done that? [see the illustrated guide below](#-complete-beginner-walkthrough)) and paste:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 ### Then
@@ -97,7 +97,7 @@ Small tip: in PowerShell, **right-click = paste**. Copy the install command abov
 The command to paste on a Mac (copy it with the 📋 button, top-right of the code block):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 Small tip: on a Mac, **paste = Cmd ⌘ + V** (not Ctrl+V). If a dialog pops up asking to install the **"command line developer tools"**, click **Install** — that's Apple's official toolkit the installer needs; when it finishes, run the command above again.
@@ -110,7 +110,7 @@ Small tip: on a Mac, **paste = Cmd ⌘ + V** (not Ctrl+V). If a dialog pops up a
 Press **Ctrl + Alt + T** (most distros: Ubuntu, Mint...) — or find "Terminal" in your apps menu. Paste this command and press Enter (**paste inside a terminal = Ctrl + Shift + V**, not Ctrl+V):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 Honest note: the installer **never runs sudo by itself**. If git is missing, it just prints the exact `sudo apt-get install -y git` line for **you to run yourself**, then you re-run the command above — transparent, and it never touches system privileges on its own.
@@ -131,7 +131,7 @@ Already **chatting with Claude in the Claude Desktop app**? Then you can use Sou
 2. Click the **Code** tab in the app's top bar, then pick **Local**.
 3. Type these two commands into the prompt box (copy each line, paste, Enter):
    ```
-   /plugin marketplace add supakitkitsathaporn97-collab/souldrop
+   /plugin marketplace add kkitkai/souldrop
    /plugin install souldrop@souldrop
    ```
 4. Type `/onboard` — pick your language and meet your own assistant. Done!

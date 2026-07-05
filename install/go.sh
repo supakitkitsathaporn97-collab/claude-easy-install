@@ -5,7 +5,7 @@
 #  Tha mot linh hon vao bat ky may nao — tro ly AI ca nhan, tu dong hoan toan.
 #
 #  Usage:
-#    curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+#    curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 #
 #  What it does / Script nay lam gi:
 #    1. Detects the best AI engine for you — automatically:
@@ -26,7 +26,7 @@
 # =====================================================================
 set -u
 
-REPO_OWNER="supakitkitsathaporn97-collab"
+REPO_OWNER="kkitkai"
 MARKETPLACE_REPO="$REPO_OWNER/souldrop"
 MARKETPLACE_NAME="souldrop"
 PLUGIN_NAME="souldrop"

@@ -114,7 +114,7 @@ The **SoulDrop** release: rebrand + multi-engine architecture + a free tier.
   Marketplace name, plugin name (`nick-starter` → `souldrop`), plugin folder
   (`plugins/nick-starter/` → `plugins/souldrop/`), install URLs, banners, and
   all five READMEs. Old GitHub URLs redirect automatically. New install:
-  `claude plugin marketplace add supakitkitsathaporn97-collab/souldrop` +
+  `claude plugin marketplace add kkitkai/souldrop` +
   `claude plugin install souldrop@souldrop`.
 
 ### Added

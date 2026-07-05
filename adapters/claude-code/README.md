@@ -29,6 +29,6 @@ Claude plan (Pro/Max/Team).
 Install commands (what the bootstrap runs):
 
 ```
-claude plugin marketplace add supakitkitsathaporn97-collab/souldrop
+claude plugin marketplace add kkitkai/souldrop
 claude plugin install souldrop@souldrop
 ```

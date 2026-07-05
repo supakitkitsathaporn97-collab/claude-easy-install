@@ -15,12 +15,12 @@
 <br>
 <br>
 
-[![CI](https://img.shields.io/github/actions/workflow/status/supakitkitsathaporn97-collab/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/actions/workflows/validate.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/kkitkai/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/kkitkai/souldrop/actions/workflows/validate.yml)
 [![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/pulls)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-2FD6C3?style=flat-square&labelColor=20242C)](https://github.com/kkitkai/souldrop/pulls)
 
 <br>
 
@@ -44,7 +44,7 @@
 
 ### 🖱️ 가장 쉬운 방법 (Windows) — 파일 1개 받아서 더블클릭
 
-1. **[여기서 설치 파일 다운로드](https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/SoulDrop-Installer.bat)** — 링크를 **우클릭** → **"다른 이름으로 링크 저장..."** → 바탕화면에 저장하세요.
+1. **[여기서 설치 파일 다운로드](https://raw.githubusercontent.com/kkitkai/souldrop/main/SoulDrop-Installer.bat)** — 링크를 **우클릭** → **"다른 이름으로 링크 저장..."** → 바탕화면에 저장하세요.
 2. 받은 `SoulDrop-Installer.bat` 파일을 **더블클릭**하세요. 끝 — 설치가 저절로 진행됩니다.
 3. Windows가 파란 SmartScreen 경고를 띄우면: **"추가 정보"** → **"실행"**을 누르세요. 솔직히 말씀드리면: 이 경고는 서명되지 않은 *모든* 인터넷 다운로드 파일에 뜹니다 — 이 파일은 아래의 공식 설치 스크립트를 호출할 뿐이고, 메모장으로 열어 직접 읽어볼 수 있습니다.
 
@@ -55,13 +55,13 @@
 **Windows** — **PowerShell**을 열고(방법을 모르신다면 [아래 그림 가이드](#-왕초보를-위한-단계별-가이드) 참고) 붙여넣기:
 
 ```powershell
-irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
+irm https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.ps1 | iex
 ```
 
 **macOS / Linux** — **터미널**을 열고(방법을 모르신다면 [아래 그림 가이드](#-왕초보를-위한-단계별-가이드) 참고) 붙여넣기:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 ### 그다음
@@ -97,7 +97,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 Mac에서 붙여넣을 명령어 (코드 블록 오른쪽 위 📋 버튼으로 복사):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 팁: Mac에서는 **붙여넣기 = Cmd ⌘ + V**입니다 (Ctrl+V 아님). **"command line developer tools"**를 설치하겠냐는 창이 뜨면 **Install**을 누르세요 — 설치 프로그램에 필요한 Apple 공식 도구입니다. 설치가 끝나면 위 명령어를 다시 실행하세요.
@@ -110,7 +110,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 **Ctrl + Alt + T**를 누르세요 (대부분의 배포판: Ubuntu, Mint...) — 또는 앱 메뉴에서 "Terminal"을 찾으세요. 아래 명령어를 붙여넣고 Enter를 누르세요 (**터미널 안에서 붙여넣기 = Ctrl + Shift + V**, Ctrl+V 아님):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh | bash
 ```
 
 솔직한 안내: 설치 프로그램은 **절대 sudo를 스스로 실행하지 않습니다**. git이 없으면 `sudo apt-get install -y git` 명령어를 출력해 **직접 실행하시도록** 안내할 뿐입니다. 실행하신 뒤 위 명령어를 다시 실행하세요 — 투명하게, 시스템 권한은 절대 임의로 건드리지 않습니다.
@@ -131,7 +131,7 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 2. 앱 상단의 **Code** 탭을 클릭하고 **Local**을 선택하세요.
 3. 입력창에 이 두 명령을 차례로 입력하세요 (한 줄씩 복사, 붙여넣기, Enter):
    ```
-   /plugin marketplace add supakitkitsathaporn97-collab/souldrop
+   /plugin marketplace add kkitkai/souldrop
    /plugin install souldrop@souldrop
    ```
 4. `/onboard`를 입력하세요 — 언어를 고르고 나만의 어시스턴트를 만나세요. 끝!

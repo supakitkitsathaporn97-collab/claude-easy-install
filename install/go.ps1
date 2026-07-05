@@ -4,7 +4,7 @@
 #  Tha mot linh hon vao bat ky may nao - tro ly AI ca nhan, tu dong hoan toan.
 #
 #  Usage (paste into PowerShell):
-#    irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
+#    irm https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.ps1 | iex
 #
 #  What this script does / Script nay lam gi:
 #    1. Detects the best AI engine for you - automatically:
@@ -33,7 +33,7 @@
 $ErrorActionPreference = 'Stop'
 
 # The GitHub account that hosts this marketplace.
-$RepoOwner       = 'supakitkitsathaporn97-collab'
+$RepoOwner       = 'kkitkai'
 $MarketplaceRepo = "$RepoOwner/souldrop"
 $MarketplaceName = 'souldrop'
 $PluginName      = 'souldrop'
