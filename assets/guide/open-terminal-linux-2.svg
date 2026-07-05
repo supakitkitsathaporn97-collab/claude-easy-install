@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 200" role="img" aria-label="Step 2 - paste the install command with Ctrl + Shift + V and press Enter">
+  <title>Step 2 — paste with Ctrl + Shift + V / Bước 2 — dán lệnh bằng Ctrl + Shift + V</title>
+  <defs>
+    <linearGradient id="gl2-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1C212C"/>
+      <stop offset="1" stop-color="#12151C"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="778" height="198" rx="16" fill="url(#gl2-tile)" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+
+  <circle cx="58" cy="100" r="26" fill="#E8B04B"/>
+  <text x="58" y="111" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#12151C">2</text>
+
+  <text x="104" y="74" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#E8ECF4">Dán lệnh cài đặt rồi nhấn Enter</text>
+  <text x="104" y="104" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">Sao chép lệnh trong README (nút 📋), rồi bấm Ctrl + Shift + V để dán</text>
+  <text x="104" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">(trong terminal Linux dán = Ctrl+Shift+V, không phải Ctrl+V). Enter. Xong!</text>
+  <text x="104" y="152" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-style="italic" fill="#5C6577">Copy the command, paste with Ctrl + Shift + V, hit Enter.</text>
+
+  <!-- simplified Linux terminal window with pasted command -->
+  <g transform="translate(548,44)">
+    <rect x="0" y="0" width="208" height="118" rx="8" fill="#161A22" stroke="rgba(255,255,255,0.15)"/>
+    <rect x="0" y="0" width="208" height="22" rx="8" fill="#232834"/>
+    <rect x="0" y="12" width="208" height="10" fill="#232834"/>
+    <text x="10" y="15" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#8A93A6">Terminal</text>
+    <circle cx="196" cy="11" r="4" fill="#E06C5B"/>
+    <text x="10" y="42" font-family="Consolas, monospace" font-size="10" fill="#E8ECF4">you@linux:~$</text>
+    <text x="10" y="58" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">curl -fsSL https://ra</text>
+    <text x="10" y="72" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">w.githubusercontent.c</text>
+    <text x="10" y="86" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">om/.../go.sh | bash</text>
+    <rect x="120" y="92" width="6" height="11" fill="#2FD6C3"/>
+    <!-- Ctrl + Shift + V key caps -->
+    <g transform="translate(138,86)">
+      <rect x="0" y="0" width="24" height="20" rx="4" fill="#E8B04B"/>
+      <text x="12" y="13" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="700" fill="#12151C">Ctrl</text>
+      <rect x="27" y="0" width="26" height="20" rx="4" fill="#E8B04B"/>
+      <text x="40" y="13" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="7.5" font-weight="700" fill="#12151C">Shift</text>
+      <rect x="56" y="0" width="16" height="20" rx="4" fill="#E8B04B"/>
+      <text x="64" y="13" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" font-weight="700" fill="#12151C">V</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 200" role="img" aria-label="Step 4 - paste the install command with Cmd + V and press Enter">
+  <title>Step 4 — paste with Cmd + V / Bước 4 — dán lệnh bằng Cmd ⌘ + V</title>
+  <defs>
+    <linearGradient id="gm4-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1C212C"/>
+      <stop offset="1" stop-color="#12151C"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="778" height="198" rx="16" fill="url(#gm4-tile)" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+
+  <circle cx="58" cy="100" r="26" fill="#E8B04B"/>
+  <text x="58" y="111" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#12151C">4</text>
+
+  <text x="104" y="74" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#E8ECF4">Dán lệnh cài đặt rồi nhấn Enter</text>
+  <text x="104" y="104" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">Sao chép lệnh trong README (nút 📋), bấm Cmd ⌘ + V để dán vào</text>
+  <text x="104" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">cửa sổ Terminal (trên Mac dán = Cmd+V). Nhấn Enter. Xong!</text>
+  <text x="104" y="152" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-style="italic" fill="#5C6577">Copy the command, press Cmd ⌘ + V to paste, hit Enter.</text>
+
+  <!-- simplified Terminal window with pasted command -->
+  <g transform="translate(548,44)">
+    <rect x="0" y="0" width="208" height="118" rx="8" fill="#161A22" stroke="rgba(255,255,255,0.15)"/>
+    <rect x="0" y="0" width="208" height="22" rx="8" fill="#232834"/>
+    <rect x="0" y="12" width="208" height="10" fill="#232834"/>
+    <circle cx="14" cy="11" r="4" fill="#E06C5B"/>
+    <circle cx="27" cy="11" r="4" fill="#E8B04B"/>
+    <circle cx="40" cy="11" r="4" fill="#57C25E"/>
+    <text x="104" y="15" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#8A93A6">Terminal</text>
+    <text x="10" y="42" font-family="Consolas, monospace" font-size="10" fill="#E8ECF4">you@mac ~ $</text>
+    <text x="10" y="58" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">curl -fsSL https://ra</text>
+    <text x="10" y="72" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">w.githubusercontent.c</text>
+    <text x="10" y="86" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">om/.../go.sh | bash</text>
+    <rect x="120" y="92" width="6" height="11" fill="#2FD6C3"/>
+    <!-- Cmd + V key caps -->
+    <g transform="translate(150,86)">
+      <rect x="0" y="0" width="26" height="20" rx="4" fill="#E8B04B"/>
+      <text x="13" y="14" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#12151C">⌘</text>
+      <text x="31" y="14" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#8A93A6">+</text>
+      <rect x="40" y="0" width="20" height="20" rx="4" fill="#E8B04B"/>
+      <text x="50" y="14" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#12151C">V</text>
+    </g>
+  </g>
+</svg>

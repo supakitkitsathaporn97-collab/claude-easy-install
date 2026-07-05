@@ -48,6 +48,8 @@
 2. 받은 `SoulDrop-Installer.bat` 파일을 **더블클릭**하세요. 끝 — 설치가 저절로 진행됩니다.
 3. Windows가 파란 SmartScreen 경고를 띄우면: **"추가 정보"** → **"실행"**을 누르세요. 솔직히 말씀드리면: 이 경고는 서명되지 않은 *모든* 인터넷 다운로드 파일에 뜹니다 — 이 파일은 아래의 공식 설치 스크립트를 호출할 뿐이고, 메모장으로 열어 직접 읽어볼 수 있습니다.
 
+*Mac을 쓰시나요? 위 파일은 Windows 전용입니다 — 가장 쉬운 방법은 바로 아래의 한 줄 명령어입니다: 복사해서 한 번만 붙여넣으면 끝.*
+
 ### ⌨️ 명령어 한 줄 방식 (PowerShell / 터미널이 익숙한 분)
 
 **Windows** — **PowerShell**을 열고(방법을 모르신다면 [아래 그림 가이드](#-왕초보를-위한-단계별-가이드) 참고) 붙여넣기:
@@ -56,7 +58,7 @@
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
 ```
 
-**macOS / Linux** — **터미널**을 열고 붙여넣기:
+**macOS / Linux** — **터미널**을 열고(방법을 모르신다면 [아래 그림 가이드](#-왕초보를-위한-단계별-가이드) 참고) 붙여넣기:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
@@ -74,9 +76,9 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 
 ## 🧭 왕초보를 위한 단계별 가이드
 
-> "명령줄"을 한 번도 써본 적 없으신가요? 괜찮습니다 — 이 섹션이 그림과 함께 한 단계씩 안내합니다. 천천히 따라오세요.
+> "명령줄"을 한 번도 써본 적 없으신가요? 괜찮습니다 — 이 섹션이 그림과 함께 한 단계씩 안내합니다. 천천히 따라오세요. 사용 중인 컴퓨터를 고르세요: 🪟 Windows · 🍎 macOS · 🐧 Linux.
 
-### PowerShell 여는 방법 (Windows)
+### 🪟 PowerShell 여는 방법 (Windows)
 
 <img src="assets/guide/open-powershell-1.svg" alt="1단계 — Windows 키 누르기 (키보드 왼쪽 아래, 사각형 4개 로고 키)" width="740">
 <img src="assets/guide/open-powershell-2.svg" alt="2단계 — PowerShell 입력; 검색창이 저절로 열립니다" width="740">
@@ -84,6 +86,34 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 <img src="assets/guide/open-powershell-4.svg" alt="4단계 — 설치 명령어 붙여넣기 (우클릭 = 붙여넣기) 후 Enter" width="740">
 
 팁: PowerShell에서는 **우클릭 = 붙여넣기**입니다. 위의 설치 명령어를 📋 버튼으로 복사하고, 파란 창에 우클릭한 뒤 Enter — 끝입니다.
+
+### 🍎 Mac에서 터미널 여는 방법
+
+<img src="assets/guide/open-terminal-mac-1.svg" alt="1단계 — Cmd ⌘ + Space를 동시에 눌러 Spotlight 열기" width="740">
+<img src="assets/guide/open-terminal-mac-2.svg" alt="2단계 — Spotlight 검색창에 Terminal 입력" width="740">
+<img src="assets/guide/open-terminal-mac-3.svg" alt="3단계 — Enter 누르기; 터미널 창이 열립니다" width="740">
+<img src="assets/guide/open-terminal-mac-4.svg" alt="4단계 — Cmd + V로 설치 명령어 붙여넣고 Enter" width="740">
+
+Mac에서 붙여넣을 명령어 (코드 블록 오른쪽 위 📋 버튼으로 복사):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+팁: Mac에서는 **붙여넣기 = Cmd ⌘ + V**입니다 (Ctrl+V 아님). **"command line developer tools"**를 설치하겠냐는 창이 뜨면 **Install**을 누르세요 — 설치 프로그램에 필요한 Apple 공식 도구입니다. 설치가 끝나면 위 명령어를 다시 실행하세요.
+
+### 🐧 Linux에서 터미널 열기
+
+<img src="assets/guide/open-terminal-linux-1.svg" alt="1단계 — Ctrl + Alt + T를 눌러 터미널 열기" width="740">
+<img src="assets/guide/open-terminal-linux-2.svg" alt="2단계 — Ctrl + Shift + V로 설치 명령어 붙여넣고 Enter" width="740">
+
+**Ctrl + Alt + T**를 누르세요 (대부분의 배포판: Ubuntu, Mint...) — 또는 앱 메뉴에서 "Terminal"을 찾으세요. 아래 명령어를 붙여넣고 Enter를 누르세요 (**터미널 안에서 붙여넣기 = Ctrl + Shift + V**, Ctrl+V 아님):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+솔직한 안내: 설치 프로그램은 **절대 sudo를 스스로 실행하지 않습니다**. git이 없으면 `sudo apt-get install -y git` 명령어를 출력해 **직접 실행하시도록** 안내할 뿐입니다. 실행하신 뒤 위 명령어를 다시 실행하세요 — 투명하게, 시스템 권한은 절대 임의로 건드리지 않습니다.
 
 ### Claude를 쓰는 두 가지 방법 — 맞는 쪽을 고르세요
 

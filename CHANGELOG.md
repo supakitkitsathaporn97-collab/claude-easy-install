@@ -3,6 +3,43 @@
 All notable changes to this project are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/) · Versioning: [SemVer](https://semver.org/).
 
+## [0.5.1] — 2026-07-05
+
+The Windows walkthrough gets siblings: **macOS and Linux hand-holding at the
+same quality level**, in all 5 README languages.
+
+### Added
+- **🍎 "How to open Terminal on a Mac"** section in all 5 READMEs
+  (Vietnamese primary): Cmd ⌘ + Space → type "Terminal" → Enter → paste with
+  Cmd + V — with **4 new SVG step cards**
+  (`assets/guide/open-terminal-mac-1..4.svg`) in the exact same brand style
+  as the PowerShell cards (dark tile, gold badge, teal highlight, simplified
+  self-drawn mockups — Spotlight bar, Mac keyboard, terminal window; no real
+  Apple UI copied). The Mac one-paste command (`curl … | bash`) is repeated
+  right beside the cards, plus an honest note about Apple's
+  "command line developer tools" dialog (click Install, re-run). No
+  Gatekeeper warning to explain — the script is piped straight to bash, so
+  there is no quarantined file.
+- **🐧 "Opening a terminal on Linux"** section in all 5 READMEs (shorter, 2
+  SVG cards: `open-terminal-linux-1..2.svg`): Ctrl + Alt + T on most
+  distros, paste with **Ctrl + Shift + V** (not Ctrl+V — the classic
+  beginner trap), and an honest note that the installer **never runs sudo by
+  itself** — it prints the `apt-get` hint for the user to run themselves
+  (matches existing `go.sh` behavior).
+- Walkthrough restructured as three platform subsections — 🪟 Windows ·
+  🍎 macOS · 🐧 Linux — with a pick-your-system line in the intro. The
+  one-click `.bat` stays clearly labeled Windows-only, and Mac users get a
+  pointer that the one-paste command is their easiest path. The
+  macOS / Linux install line now links to the illustrated guide, same as the
+  Windows line always did.
+
+### Idea for later
+- A downloadable double-click `.command` file for Mac (the `.bat`
+  equivalent) was considered and postponed: as a downloaded file it would be
+  quarantined and hit the Gatekeeper "unidentified developer" wall — exactly
+  the friction the piped one-paste command avoids. Revisit if we ever sign
+  the installer.
+
 ## [0.5.0] — 2026-07-05
 
 The **beginner-love** release: hand-hold everything, one-click for lazy people.

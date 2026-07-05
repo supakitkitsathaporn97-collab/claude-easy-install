@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 200" role="img" aria-label="Step 1 - press Ctrl + Alt + T to open a terminal">
+  <title>Step 1 — press Ctrl + Alt + T / Bước 1 — bấm Ctrl + Alt + T</title>
+  <defs>
+    <linearGradient id="gl1-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1C212C"/>
+      <stop offset="1" stop-color="#12151C"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="778" height="198" rx="16" fill="url(#gl1-tile)" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+
+  <!-- step badge -->
+  <circle cx="58" cy="100" r="26" fill="#E8B04B"/>
+  <text x="58" y="111" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#12151C">1</text>
+
+  <!-- text -->
+  <text x="104" y="82" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#E8ECF4">Bấm Ctrl + Alt + T cùng lúc</text>
+  <text x="104" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">Mở terminal nhanh trên đa số bản Linux (Ubuntu, Mint...).</text>
+  <text x="104" y="138" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-style="italic" fill="#5C6577">Press Ctrl + Alt + T — opens a terminal on most distros.</text>
+
+  <!-- simplified keyboard -->
+  <g transform="translate(510,52)">
+    <rect x="0" y="0" width="240" height="104" rx="10" fill="#20242C" stroke="rgba(255,255,255,0.12)"/>
+    <!-- top rows of anonymous keys -->
+    <g fill="#2A3040">
+      <rect x="12" y="12" width="22" height="18" rx="4"/><rect x="38" y="12" width="22" height="18" rx="4"/><rect x="64" y="12" width="22" height="18" rx="4"/><rect x="90" y="12" width="22" height="18" rx="4"/><rect x="116" y="12" width="22" height="18" rx="4"/><rect x="142" y="12" width="22" height="18" rx="4"/><rect x="168" y="12" width="22" height="18" rx="4"/><rect x="194" y="12" width="34" height="18" rx="4"/>
+      <rect x="12" y="36" width="30" height="18" rx="4"/><rect x="46" y="36" width="22" height="18" rx="4"/><rect x="98" y="36" width="22" height="18" rx="4"/><rect x="124" y="36" width="22" height="18" rx="4"/><rect x="150" y="36" width="22" height="18" rx="4"/><rect x="176" y="36" width="52" height="18" rx="4"/>
+      <rect x="12" y="60" width="38" height="18" rx="4"/><rect x="54" y="60" width="22" height="18" rx="4"/><rect x="80" y="60" width="22" height="18" rx="4"/><rect x="106" y="60" width="22" height="18" rx="4"/><rect x="132" y="60" width="22" height="18" rx="4"/><rect x="158" y="60" width="70" height="18" rx="4"/>
+      <rect x="76" y="84" width="98" height="14" rx="4"/><rect x="178" y="84" width="26" height="14" rx="4"/><rect x="208" y="84" width="20" height="14" rx="4"/>
+    </g>
+    <!-- Ctrl key, highlighted -->
+    <rect x="12" y="82" width="26" height="18" rx="4" fill="#E8B04B"/>
+    <text x="25" y="94" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="700" fill="#12151C">Ctrl</text>
+    <!-- Alt key, highlighted -->
+    <rect x="42" y="82" width="30" height="18" rx="4" fill="#E8B04B"/>
+    <text x="57" y="94" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="700" fill="#12151C">Alt</text>
+    <!-- T key, highlighted (row above) -->
+    <rect x="72" y="36" width="22" height="18" rx="4" fill="#E8B04B"/>
+    <text x="83" y="49" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="700" fill="#12151C">T</text>
+    <!-- pointer rings -->
+    <ellipse cx="42" cy="91" rx="38" ry="15" fill="none" stroke="#2FD6C3" stroke-width="2.5" opacity="0.9"/>
+    <circle cx="83" cy="45" r="15" fill="none" stroke="#2FD6C3" stroke-width="2.5" opacity="0.9"/>
+  </g>
+</svg>

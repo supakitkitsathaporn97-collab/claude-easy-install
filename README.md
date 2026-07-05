@@ -48,6 +48,8 @@ The installer takes care of **everything** — including any helper tools it nee
 2. **Double-click** the downloaded `SoulDrop-Installer.bat`. That's it — the installer runs itself.
 3. If Windows shows a blue SmartScreen warning: click **"More info"** → **"Run anyway"**. Honest note: that warning appears for *any* unsigned file downloaded from the internet — this one only runs the official install script below, and you can open it in Notepad and read it yourself.
 
+*On a Mac? The file above is Windows-only — your easiest path is the one-paste command just below: copy it, paste it once, done.*
+
 ### ⌨️ One-paste command (if you're OK with PowerShell / Terminal)
 
 **Windows** — open **PowerShell** (never done that? [see the illustrated guide below](#-complete-beginner-walkthrough)) and paste:
@@ -56,7 +58,7 @@ The installer takes care of **everything** — including any helper tools it nee
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
 ```
 
-**macOS / Linux** — open **Terminal** and paste:
+**macOS / Linux** — open **Terminal** (never done that? [see the illustrated guide below](#-complete-beginner-walkthrough)) and paste:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
@@ -74,9 +76,9 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 
 ## 🧭 Complete beginner walkthrough
 
-> Never used a "command line"? No problem — this section walks you through every step, with pictures. Take it slow.
+> Never used a "command line"? No problem — this section walks you through every step, with pictures. Take it slow. Pick your system: 🪟 Windows · 🍎 macOS · 🐧 Linux.
 
-### How to open PowerShell (Windows)
+### 🪟 How to open PowerShell (Windows)
 
 <img src="assets/guide/open-powershell-1.svg" alt="Step 1 — press the Windows key (the four-squares key, bottom-left of the keyboard)" width="740">
 <img src="assets/guide/open-powershell-2.svg" alt="Step 2 — type PowerShell; the search box opens by itself" width="740">
@@ -84,6 +86,34 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 <img src="assets/guide/open-powershell-4.svg" alt="Step 4 — paste the install command (right-click = paste) and press Enter" width="740">
 
 Small tip: in PowerShell, **right-click = paste**. Copy the install command above with the 📋 button (top-right of the code block), right-click the blue window, press Enter — done.
+
+### 🍎 How to open Terminal (macOS)
+
+<img src="assets/guide/open-terminal-mac-1.svg" alt="Step 1 — press Cmd + Space together to open Spotlight" width="740">
+<img src="assets/guide/open-terminal-mac-2.svg" alt="Step 2 — type Terminal into the Spotlight bar" width="740">
+<img src="assets/guide/open-terminal-mac-3.svg" alt="Step 3 — press Enter; the Terminal window opens" width="740">
+<img src="assets/guide/open-terminal-mac-4.svg" alt="Step 4 — paste the install command with Cmd + V and press Enter" width="740">
+
+The command to paste on a Mac (copy it with the 📋 button, top-right of the code block):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+Small tip: on a Mac, **paste = Cmd ⌘ + V** (not Ctrl+V). If a dialog pops up asking to install the **"command line developer tools"**, click **Install** — that's Apple's official toolkit the installer needs; when it finishes, run the command above again.
+
+### 🐧 Opening a terminal on Linux
+
+<img src="assets/guide/open-terminal-linux-1.svg" alt="Step 1 — press Ctrl + Alt + T to open a terminal" width="740">
+<img src="assets/guide/open-terminal-linux-2.svg" alt="Step 2 — paste the install command with Ctrl + Shift + V and press Enter" width="740">
+
+Press **Ctrl + Alt + T** (most distros: Ubuntu, Mint...) — or find "Terminal" in your apps menu. Paste this command and press Enter (**paste inside a terminal = Ctrl + Shift + V**, not Ctrl+V):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+Honest note: the installer **never runs sudo by itself**. If git is missing, it just prints the exact `sudo apt-get install -y git` line for **you to run yourself**, then you re-run the command above — transparent, and it never touches system privileges on its own.
 
 ### Two ways to use Claude — pick what fits you
 
@@ -113,7 +143,7 @@ Already **chatting with Claude in the Claude Desktop app**? Then you can use Sou
 The SoulDrop installer **already installs Ollama for you** — this is only for people who prefer doing it themselves:
 
 1. Go to [ollama.com/download](https://ollama.com/download) → download for Windows / Mac → install it like any normal app (Next, Next, Finish).
-2. Open PowerShell / Terminal ([illustrated guide above](#how-to-open-powershell-windows)) and pull the model that fits your RAM:
+2. Open PowerShell / Terminal ([illustrated guide above](#-how-to-open-powershell-windows)) and pull the model that fits your RAM:
 
    | Your RAM | Type this | Download |
    |---|---|---|

@@ -48,6 +48,8 @@
 2. **双击**下载好的 `SoulDrop-Installer.bat`。就这样 — 安装器自己运行。
 3. 如果 Windows 弹出蓝色 SmartScreen 警告: 点 **"更多信息"** → **"仍要运行"**。坦白说: 这个警告对*任何*从网上下载的未签名文件都会出现 — 这个文件只是调用下面的官方安装脚本，你可以用记事本打开亲自读一读。
 
+*用 Mac? 上面的文件只适用于 Windows — 对你来说最简单的方式是下面的一条命令: 复制，粘贴一次，搞定。*
+
 ### ⌨️ 一条命令方式 (熟悉 PowerShell / 终端的人)
 
 **Windows** — 打开 **PowerShell**(不会开? [看下面的图解教程](#-完全新手的分步教程))，粘贴:
@@ -56,7 +58,7 @@
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
 ```
 
-**macOS / Linux** — 打开**终端**，粘贴:
+**macOS / Linux** — 打开**终端**(不会开? [看下面的图解教程](#-完全新手的分步教程))，粘贴:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
@@ -74,9 +76,9 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 
 ## 🧭 完全新手的分步教程
 
-> 从没用过"命令行"? 没关系 — 这一节手把手带你走每一步，配图解。慢慢来。
+> 从没用过"命令行"? 没关系 — 这一节手把手带你走每一步，配图解。慢慢来。选择你的系统: 🪟 Windows · 🍎 macOS · 🐧 Linux。
 
-### 怎么打开 PowerShell (Windows)
+### 🪟 怎么打开 PowerShell (Windows)
 
 <img src="assets/guide/open-powershell-1.svg" alt="第 1 步 — 按 Windows 键 (键盘左下角，四个方块的那个键)" width="740">
 <img src="assets/guide/open-powershell-2.svg" alt="第 2 步 — 输入 PowerShell，搜索框会自动打开" width="740">
@@ -84,6 +86,34 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 <img src="assets/guide/open-powershell-4.svg" alt="第 4 步 — 粘贴安装命令 (右键 = 粘贴) 然后按回车" width="740">
 
 小技巧: 在 PowerShell 里，**右键 = 粘贴**。用 📋 按钮复制上面的安装命令，右键点蓝色窗口，按回车 — 完成。
+
+### 🍎 在 Mac 上打开终端
+
+<img src="assets/guide/open-terminal-mac-1.svg" alt="第 1 步 — 同时按 Cmd ⌘ + Space 打开聚焦搜索 (Spotlight)" width="740">
+<img src="assets/guide/open-terminal-mac-2.svg" alt="第 2 步 — 在 Spotlight 搜索框输入 Terminal" width="740">
+<img src="assets/guide/open-terminal-mac-3.svg" alt="第 3 步 — 按回车，终端窗口打开" width="740">
+<img src="assets/guide/open-terminal-mac-4.svg" alt="第 4 步 — 用 Cmd + V 粘贴安装命令，然后按回车" width="740">
+
+Mac 上要粘贴的命令 (用代码块右上角的 📋 按钮复制):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+小技巧: 在 Mac 上**粘贴 = Cmd ⌘ + V** (不是 Ctrl+V)。如果 Mac 弹窗询问是否安装 **"command line developer tools"**，直接点 **Install** — 那是安装程序需要的 Apple 官方工具，装好后再运行一次上面的命令即可。
+
+### 🐧 在 Linux 上打开终端
+
+<img src="assets/guide/open-terminal-linux-1.svg" alt="第 1 步 — 按 Ctrl + Alt + T 打开终端" width="740">
+<img src="assets/guide/open-terminal-linux-2.svg" alt="第 2 步 — 用 Ctrl + Shift + V 粘贴安装命令，然后按回车" width="740">
+
+按 **Ctrl + Alt + T** (大多数发行版: Ubuntu、Mint...) — 或在应用菜单里找 "Terminal"。粘贴这条命令然后按回车 (**终端里粘贴 = Ctrl + Shift + V**，不是 Ctrl+V):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+实话实说: 安装程序**绝不会自动运行 sudo**。如果缺少 git，它只会打印出 `sudo apt-get install -y git` 这条命令让**你自己运行**，然后你再重新运行上面的命令 — 透明，绝不擅自动用系统权限。
 
 ### 用 Claude 的两种方式 — 选适合你的
 

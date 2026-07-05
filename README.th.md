@@ -48,6 +48,8 @@
 2. **ดับเบิลคลิก**ไฟล์ `SoulDrop-Installer.bat` ที่โหลดมา แค่นั้น — ตัวติดตั้งรันเอง
 3. ถ้า Windows ขึ้นเตือนสีน้ำเงิน (SmartScreen): กด **"More info"** → **"Run anyway"** ตามตรง: คำเตือนนี้ขึ้นกับ*ทุก*ไฟล์ที่โหลดจากอินเทอร์เน็ตที่ไม่มีลายเซ็นดิจิทัล — ไฟล์นี้แค่เรียกสคริปต์ติดตั้งทางการด้านล่าง เปิดอ่านเองด้วย Notepad ได้
 
+*ใช้ Mac? ไฟล์ด้านบนใช้ได้เฉพาะ Windows — วิธีที่ง่ายที่สุดของคุณคือคำสั่งบรรทัดเดียวด้านล่างนี้: ก๊อปแล้ววางครั้งเดียวจบ*
+
 ### ⌨️ วิธีวางคำสั่งเดียว (สำหรับคนที่ใช้ PowerShell / Terminal เป็น)
 
 **Windows** — เปิด **PowerShell** (เปิดไม่เป็น? [ดูคู่มือมีภาพด้านล่าง](#-คู่มือทีละขั้นสำหรับมือใหม่)) แล้ววาง:
@@ -56,7 +58,7 @@
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
 ```
 
-**macOS / Linux** — เปิด **Terminal** แล้ววาง:
+**macOS / Linux** — เปิด **Terminal** (เปิดไม่เป็น? [ดูคู่มือมีภาพด้านล่าง](#-คู่มือทีละขั้นสำหรับมือใหม่)) แล้ววาง:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
@@ -74,9 +76,9 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 
 ## 🧭 คู่มือทีละขั้นสำหรับมือใหม่
 
-> ไม่เคยใช้ "command line"? ไม่เป็นไร — ส่วนนี้จูงมือทีละขั้น มีภาพประกอบ ค่อย ๆ ทำได้เลย
+> ไม่เคยใช้ "command line"? ไม่เป็นไร — ส่วนนี้จูงมือทีละขั้น มีภาพประกอบ ค่อย ๆ ทำได้เลย เลือกเครื่องของคุณ: 🪟 Windows · 🍎 macOS · 🐧 Linux
 
-### วิธีเปิด PowerShell (Windows)
+### 🪟 วิธีเปิด PowerShell (Windows)
 
 <img src="assets/guide/open-powershell-1.svg" alt="ขั้นที่ 1 — กดปุ่ม Windows (ปุ่มสี่เหลี่ยม 4 ช่อง มุมล่างซ้ายของคีย์บอร์ด)" width="740">
 <img src="assets/guide/open-powershell-2.svg" alt="ขั้นที่ 2 — พิมพ์ PowerShell ช่องค้นหาจะเปิดเอง" width="740">
@@ -84,6 +86,34 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 <img src="assets/guide/open-powershell-4.svg" alt="ขั้นที่ 4 — วางคำสั่งติดตั้ง (คลิกขวา = วาง) แล้วกด Enter" width="740">
 
 เคล็ดลับ: ใน PowerShell **คลิกขวา = วาง** ก๊อปคำสั่งติดตั้งด้านบนด้วยปุ่ม 📋 แล้วคลิกขวาในหน้าต่างสีน้ำเงิน กด Enter — เสร็จ
+
+### 🍎 วิธีเปิด Terminal บน Mac
+
+<img src="assets/guide/open-terminal-mac-1.svg" alt="ขั้นที่ 1 — กด Cmd ⌘ + Space พร้อมกันเพื่อเปิด Spotlight" width="740">
+<img src="assets/guide/open-terminal-mac-2.svg" alt="ขั้นที่ 2 — พิมพ์ Terminal ในแถบ Spotlight" width="740">
+<img src="assets/guide/open-terminal-mac-3.svg" alt="ขั้นที่ 3 — กด Enter หน้าต่าง Terminal จะเปิดขึ้น" width="740">
+<img src="assets/guide/open-terminal-mac-4.svg" alt="ขั้นที่ 4 — วางคำสั่งติดตั้งด้วย Cmd + V แล้วกด Enter" width="740">
+
+คำสั่งที่ต้องวางบน Mac (ก๊อปด้วยปุ่ม 📋 มุมขวาของกล่องคำสั่ง):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+เคล็ดลับ: บน Mac **วาง = Cmd ⌘ + V** (ไม่ใช่ Ctrl+V) ถ้า Mac ขึ้นหน้าต่างถามให้ติดตั้ง **"command line developer tools"** กด **Install** ได้เลย — นั่นคือชุดเครื่องมือทางการของ Apple ที่ตัวติดตั้งต้องใช้ เสร็จแล้วรันคำสั่งด้านบนอีกครั้ง
+
+### 🐧 เปิด terminal บน Linux
+
+<img src="assets/guide/open-terminal-linux-1.svg" alt="ขั้นที่ 1 — กด Ctrl + Alt + T เพื่อเปิด terminal" width="740">
+<img src="assets/guide/open-terminal-linux-2.svg" alt="ขั้นที่ 2 — วางคำสั่งติดตั้งด้วย Ctrl + Shift + V แล้วกด Enter" width="740">
+
+กด **Ctrl + Alt + T** (ลินุกซ์ส่วนใหญ่: Ubuntu, Mint...) — หรือหา "Terminal" ในเมนูแอป วางคำสั่งนี้แล้วกด Enter (**วางใน terminal = Ctrl + Shift + V** ไม่ใช่ Ctrl+V):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.sh | bash
+```
+
+ตามตรง: ตัวติดตั้ง**ไม่รัน sudo เองเด็ดขาด** ถ้าเครื่องขาด git มันจะพิมพ์คำสั่ง `sudo apt-get install -y git` ให้**คุณรันเอง** แล้วค่อยรันคำสั่งด้านบนใหม่ — โปร่งใส ไม่แตะสิทธิ์ระบบเองโดยพลการ
 
 ### สองวิธีใช้ Claude — เลือกที่เหมาะกับคุณ
 

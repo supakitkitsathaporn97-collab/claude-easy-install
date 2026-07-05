@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 200" role="img" aria-label="Step 3 - press Enter; the Terminal window opens">
+  <title>Step 3 — press Enter, Terminal opens / Bước 3 — nhấn Enter, cửa sổ Terminal mở ra</title>
+  <defs>
+    <linearGradient id="gm3-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1C212C"/>
+      <stop offset="1" stop-color="#12151C"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="778" height="198" rx="16" fill="url(#gm3-tile)" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+
+  <circle cx="58" cy="100" r="26" fill="#E8B04B"/>
+  <text x="58" y="111" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#12151C">3</text>
+
+  <text x="104" y="82" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#E8ECF4">Nhấn Enter — cửa sổ Terminal mở ra</text>
+  <text x="104" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">Cửa sổ nhỏ có dấu $ nhấp nháy và 3 chấm tròn ở góc trên — đó là Terminal.</text>
+  <text x="104" y="138" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-style="italic" fill="#5C6577">Press Enter — a small window with a blinking $ is your Terminal.</text>
+
+  <!-- simplified Terminal window (self-drawn, not a real screenshot) -->
+  <g transform="translate(548,44)">
+    <rect x="0" y="0" width="208" height="118" rx="8" fill="#161A22" stroke="rgba(255,255,255,0.15)"/>
+    <rect x="0" y="0" width="208" height="22" rx="8" fill="#232834"/>
+    <rect x="0" y="12" width="208" height="10" fill="#232834"/>
+    <!-- traffic-light dots -->
+    <circle cx="14" cy="11" r="4" fill="#E06C5B"/>
+    <circle cx="27" cy="11" r="4" fill="#E8B04B"/>
+    <circle cx="40" cy="11" r="4" fill="#57C25E"/>
+    <text x="104" y="15" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#8A93A6">Terminal</text>
+    <text x="10" y="46" font-family="Consolas, monospace" font-size="11" fill="#E8ECF4">Last login: today</text>
+    <text x="10" y="66" font-family="Consolas, monospace" font-size="11" fill="#E8ECF4">you@mac ~ $</text>
+    <rect x="92" y="56" width="6" height="12" fill="#2FD6C3"/>
+  </g>
+</svg>
