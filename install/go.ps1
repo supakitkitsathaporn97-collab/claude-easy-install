@@ -3,7 +3,7 @@
 #  Cai dat Claude Code + tro ly AI ca nhan chi voi 1 lenh
 #
 #  Usage (paste into PowerShell):
-#    irm https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/install/go.ps1 | iex
+#    irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.ps1 | iex
 #
 #  What this script does / Script nay lam gi:
 #    1. Installs Claude Code using Anthropic's OFFICIAL installer
@@ -24,7 +24,7 @@ $ErrorActionPreference = 'Stop'
 
 # The GitHub account that hosts this marketplace.
 # Replaced with the real account name at publish time.
-$RepoOwner = 'KIT_GITHUB_OWNER'
+$RepoOwner = 'supakitkitsathaporn97-collab'
 $MarketplaceRepo = "$RepoOwner/claude-easy-install"
 $MarketplaceName = 'claude-easy-install'
 $PluginName = 'nick-starter'

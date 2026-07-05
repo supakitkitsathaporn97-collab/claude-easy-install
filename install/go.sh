@@ -4,7 +4,7 @@
 #  Cai dat Claude Code + tro ly AI ca nhan chi voi 1 lenh
 #
 #  Usage:
-#    curl -fsSL https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/install/go.sh | bash
+#    curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.sh | bash
 #
 #  What it does / Script nay lam gi:
 #    1. Installs Claude Code via Anthropic's OFFICIAL installer
@@ -19,7 +19,7 @@
 set -u
 
 # Replaced with the real GitHub account at publish time.
-REPO_OWNER="KIT_GITHUB_OWNER"
+REPO_OWNER="supakitkitsathaporn97-collab"
 MARKETPLACE_REPO="$REPO_OWNER/claude-easy-install"
 MARKETPLACE_NAME="claude-easy-install"
 PLUGIN_NAME="nick-starter"

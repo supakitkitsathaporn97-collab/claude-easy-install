@@ -25,7 +25,7 @@ No Node.js, no Git, no admin rights required.
 Open **PowerShell** (press Start, type "PowerShell", Enter) and paste:
 
 ```powershell
-irm https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/install/go.ps1 | iex
+irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.ps1 | iex
 ```
 
 ### Install — macOS / Linux
@@ -33,7 +33,7 @@ irm https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/
 Open **Terminal** and paste:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.sh | bash
 ```
 
 ### Then
@@ -95,7 +95,7 @@ Không cần Node.js, không cần Git, không cần quyền admin.
 Mở **PowerShell** (bấm Start, gõ "PowerShell", Enter) rồi dán:
 
 ```powershell
-irm https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/install/go.ps1 | iex
+irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.ps1 | iex
 ```
 
 ### Cài đặt — macOS / Linux
@@ -103,7 +103,7 @@ irm https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/
 Mở **Terminal** rồi dán:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/KIT_GITHUB_OWNER/claude-easy-install/main/install/go.sh | bash
+curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.sh | bash
 ```
 
 ### Sau đó

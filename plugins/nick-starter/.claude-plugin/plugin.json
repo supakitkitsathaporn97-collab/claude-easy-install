@@ -4,10 +4,10 @@
   "description": "Starter kit for beginners: run /onboard to be interviewed (Vietnamese or English) and get a personalized AI assistant — its own name, personality, goals, and a persistent memory scaffold — written into ~/.claude/CLAUDE.md. Includes core skills: work-smart, remember, recall, learn-from-mistakes, daily-note.",
   "author": {
     "name": "SK Production",
-    "url": "https://github.com/KIT_GITHUB_OWNER"
+    "url": "https://github.com/supakitkitsathaporn97-collab"
   },
-  "homepage": "https://github.com/KIT_GITHUB_OWNER/claude-easy-install",
-  "repository": "https://github.com/KIT_GITHUB_OWNER/claude-easy-install",
+  "homepage": "https://github.com/supakitkitsathaporn97-collab/claude-easy-install",
+  "repository": "https://github.com/supakitkitsathaporn97-collab/claude-easy-install",
   "license": "MIT",
   "keywords": ["onboarding", "starter", "persona", "memory", "vietnamese", "beginner"]
 }
