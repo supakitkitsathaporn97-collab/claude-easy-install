@@ -3,6 +3,54 @@
 All notable changes to this project are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/) · Versioning: [SemVer](https://semver.org/).
 
+## [0.5.0] — 2026-07-05
+
+The **beginner-love** release: hand-hold everything, one-click for lazy people.
+Nobody should ever have to install a tool by hand again.
+
+### Added
+- **One-click installer for Windows:** `SoulDrop-Installer.bat` at the repo
+  root — download, double-click, done. It relaunches the official `go.ps1`
+  with `-ExecutionPolicy Bypass` and pauses at the end so the window never
+  vanishes. READMEs explain the SmartScreen "More info → Run anyway" step
+  honestly (it appears for any unsigned download).
+- **Git auto-install:** `claude plugin marketplace add` clones this repo with
+  git, so both installers now install git themselves when it's missing —
+  winget `Git.Git` on Windows; brew or Apple's Command Line Tools on macOS;
+  a one-line `apt-get` hint on Linux (we never auto-sudo). Silent,
+  non-blocking, one friendly line — users are never told to install git.
+- **Complete beginner walkthrough** in all 5 READMEs (Vietnamese richest):
+  how to open PowerShell with 4 self-made SVG step cards
+  (`assets/guide/open-powershell-1..4.svg`, brand palette, simplified UI —
+  no copyrighted screenshots); **two ways to use Claude** — Claude Desktop's
+  built-in Code tab (`/plugin marketplace add` + `/plugin install` +
+  `/onboard`, no terminal at all) vs the CLI, as a friendly Easy-vs-Power
+  table; manual Ollama install with a pick-your-model-by-RAM table; and a
+  "🎬 Video tutorials" slot wired for GitHub's inline-player rule (only
+  `user-attachments` uploads render inline — repo `.mp4` files do not; see
+  `assets/media/README.md` for the drop-zone recipe).
+- README install section now has **two paths**: 🖱️ download-and-double-click
+  (the .bat) and ⌨️ the one-paste command.
+
+### Fixed
+- **Ollama launchers (`adapters/ollama/souldrop.ps1` / `.sh`): model checked
+  before chat.** The launcher now verifies the model exists via `/api/tags`
+  and auto-pulls it with visible progress if missing — no more chatting into
+  a void. After 3 consecutive chat failures it states the REAL reason
+  (engine down / model missing / likely low memory) instead of repeating
+  "the engine hiccuped".
+- **`go.sh`:** no more raw `/dev/tty` error line when there is no usable
+  terminal (CI, containers) — the engine question quietly defaults to Free.
+- **`go.ps1` / `go.sh`:** no longer print "OK: Official installer finished"
+  when Anthropic's installer actually failed — the failure is now caught and
+  reported honestly, with the usual fix (low RAM ≈ 512 MB free needed; open
+  a new terminal and re-run).
+
+### Changed
+- Future-engine mentions (Codex · Antigravity · OpenClaw) moved from
+  "v0.5" to "v0.6" in READMEs and `assets/engines.svg` — this release is
+  about beginners, not new engines.
+
 ## [0.4.0] — 2026-07-05
 
 The **SoulDrop** release: rebrand + multi-engine architecture + a free tier.

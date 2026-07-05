@@ -80,6 +80,32 @@ if ! engine_up; then
   exit 1
 fi
 
+# --- Make sure the model is actually downloaded (auto-pull, one time).
+# v0.4.1 bug: we used to chat against a missing model and show a vague
+# "hiccup" — now we check /api/tags first and pull with visible progress.
+model_present() {
+  case "$MODEL" in
+    *:*) WANT="\"name\":\"$MODEL\"" ;;
+    *)   WANT="\"name\":\"$MODEL:latest\"" ;;
+  esac
+  curl -fsS --max-time 5 "$API_BASE/api/tags" 2>/dev/null | grep -qF "$WANT"
+}
+
+if ! model_present; then
+  sys_line "Your AI brain ($MODEL) is not downloaded yet - getting it now (one time only)..."
+  sys_line "Bo nao AI ($MODEL) chua duoc tai - dang tai ngay (chi mot lan)..."
+  # ollama prints its own progress bar — let it show.
+  ollama pull "$MODEL" || true
+  if ! model_present; then
+    warn_line ""
+    warn_line "  Could not download the model (check internet and disk space)."
+    warn_line "  Khong tai duoc model (kiem tra mang va dung luong o dia)."
+    warn_line "  Try again later, or re-run the installer. / Thu lai sau, hoac chay lai trinh cai dat."
+    exit 1
+  fi
+  sys_line "AI brain ready. / Bo nao AI da san sang."
+fi
+
 # =====================================================================
 #  FIRST RUN — the onboarding interview (human questions only)
 # =====================================================================
@@ -234,6 +260,7 @@ build_system_prompt() {
 
 # Rolling message history as ready-made JSON objects.
 MSGS=()
+HICCUPS=0   # consecutive failures — after 3 we say the REAL reason
 
 printf '\n\033[35m  SoulDrop - chatting with %s (model: %s, 100%% local)\033[0m\n' "$AGENT_LABEL" "$MODEL"
 printf '\033[90m  Type your message. "exit" to quit. Say "remember ..." to save a fact.\n'
@@ -305,11 +332,28 @@ sys.stdout.write("".join(full))')"
   fi
 
   if [ -z "$REPLY" ]; then
-    warn_line "  The engine hiccuped - try again. / Dong co bi loi - thu lai nhe."
+    HICCUPS=$((HICCUPS + 1))
+    if [ "$HICCUPS" -lt 3 ]; then
+      warn_line "  The engine hiccuped - try again. / Dong co bi loi - thu lai nhe."
+    else
+      # 3 fails in a row is not a hiccup — tell the user the real reason.
+      warn_line "  This keeps failing - here is the real reason / Loi lien tuc - ly do that su:"
+      if ! engine_up; then
+        warn_line "  -> The Ollama engine stopped responding. Open a new terminal and run 'souldrop' again."
+        warn_line "     Ollama ngung phan hoi. Mo terminal moi va chay 'souldrop' lan nua."
+      elif ! model_present; then
+        warn_line "  -> The AI model ($MODEL) is missing. Re-run 'souldrop' to download it again."
+        warn_line "     Model AI ($MODEL) bi thieu. Chay lai 'souldrop' de tai lai."
+      else
+        warn_line "  -> The engine returned empty replies. Likely low memory - close other apps and try again."
+        warn_line "     Dong co tra loi rong. Co the thieu RAM - dong bot ung dung khac roi thu lai."
+      fi
+    fi
     # Drop the unanswered user turn so history stays consistent.
     MSGS=("${MSGS[@]:0:${#MSGS[@]}-1}")
     continue
   fi
+  HICCUPS=0
 
   REPLY_JSON="$(printf '%s' "$REPLY" | json_escape)"
   MSGS+=("{\"role\":\"assistant\",\"content\":$REPLY_JSON}")

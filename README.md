@@ -16,7 +16,7 @@
 <br>
 
 [![CI](https://img.shields.io/github/actions/workflow/status/supakitkitsathaporn97-collab/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/actions/workflows/validate.yml)
-[![Version](https://img.shields.io/badge/version-0.4.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
@@ -38,9 +38,19 @@ One command. A friendly interview (never a technical question). Out comes an ass
 
 ---
 
-## 🚀 Install — one command
+## 🚀 Install
 
-**Windows** — open **PowerShell** (press Start, type "PowerShell", Enter) and paste:
+The installer takes care of **everything** — including any helper tools it needs (git, Node...). You never have to install anything yourself first.
+
+### 🖱️ Easiest way (Windows) — download 1 file, double-click
+
+1. **[Download the installer here](https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/SoulDrop-Installer.bat)** — **right-click** the link → **"Save link as..."** → save it to your Desktop.
+2. **Double-click** the downloaded `SoulDrop-Installer.bat`. That's it — the installer runs itself.
+3. If Windows shows a blue SmartScreen warning: click **"More info"** → **"Run anyway"**. Honest note: that warning appears for *any* unsigned file downloaded from the internet — this one only runs the official install script below, and you can open it in Notepad and read it yourself.
+
+### ⌨️ One-paste command (if you're OK with PowerShell / Terminal)
+
+**Windows** — open **PowerShell** (never done that? [see the illustrated guide below](#-complete-beginner-walkthrough)) and paste:
 
 ```powershell
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
@@ -62,10 +72,72 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 1. Double-click **SoulDrop** on your Desktop (Windows) or type `souldrop` in a new terminal.
 2. Answer six friendly questions (your name, your work, your goal, its name...) — done. Everything runs on your machine; nothing leaves it.
 
+## 🧭 Complete beginner walkthrough
+
+> Never used a "command line"? No problem — this section walks you through every step, with pictures. Take it slow.
+
+### How to open PowerShell (Windows)
+
+<img src="assets/guide/open-powershell-1.svg" alt="Step 1 — press the Windows key (the four-squares key, bottom-left of the keyboard)" width="740">
+<img src="assets/guide/open-powershell-2.svg" alt="Step 2 — type PowerShell; the search box opens by itself" width="740">
+<img src="assets/guide/open-powershell-3.svg" alt="Step 3 — press Enter; a dark-blue window opens: that's PowerShell" width="740">
+<img src="assets/guide/open-powershell-4.svg" alt="Step 4 — paste the install command (right-click = paste) and press Enter" width="740">
+
+Small tip: in PowerShell, **right-click = paste**. Copy the install command above with the 📋 button (top-right of the code block), right-click the blue window, press Enter — done.
+
+### Two ways to use Claude — pick what fits you
+
+Already **chatting with Claude in the Claude Desktop app**? Then you can use SoulDrop **right inside the app** — no terminal at all.
+
+| | 🖥️ Claude Desktop — *easiest* | ⚡ Claude CLI — *the power version* |
+|---|---|---|
+| Best for | Beginners who already chat with Claude | Anyone who wants full power |
+| Needs a terminal? | **No** | Yes (PowerShell / Terminal) |
+| How to open | Open the Claude app → click the **Code** tab | Type `claude` in a terminal |
+| Power | Full SoulDrop skills | Full + deeper automation |
+
+**Way A — Claude Desktop (no terminal):**
+1. Get the app at [claude.com/download](https://claude.com/download) and sign in (Pro/Max plan required).
+2. Click the **Code** tab in the app's top bar, then pick **Local**.
+3. Type these two commands into the prompt box (copy each line, paste, Enter):
+   ```
+   /plugin marketplace add supakitkitsathaporn97-collab/souldrop
+   /plugin install souldrop@souldrop
+   ```
+4. Type `/onboard` — pick your language and meet your own assistant. Done!
+
+**Way B — Claude CLI (stronger for long-running work):** follow the Install section above → open a terminal → type `claude` → type `/onboard`.
+
+### Installing Ollama by hand (Free engine — optional)
+
+The SoulDrop installer **already installs Ollama for you** — this is only for people who prefer doing it themselves:
+
+1. Go to [ollama.com/download](https://ollama.com/download) → download for Windows / Mac → install it like any normal app (Next, Next, Finish).
+2. Open PowerShell / Terminal ([illustrated guide above](#how-to-open-powershell-windows)) and pull the model that fits your RAM:
+
+   | Your RAM | Type this | Download |
+   |---|---|---|
+   | 16 GB or more | `ollama pull llama3.1:8b` | ~4.9 GB |
+   | 8–16 GB | `ollama pull llama3.2:3b` | ~2 GB |
+   | Under 8 GB | `ollama pull llama3.2:1b` | ~1.3 GB |
+
+   *Not sure how much RAM you have?* Press the Windows key → type `about` → Enter → look for **"Installed RAM"**.
+3. Re-run the SoulDrop installer above — it will detect Ollama and continue with the remaining steps.
+
+### 🎬 Video tutorials
+
+<!-- TODO(Nick): drag the final .mp4 files into the GitHub web editor and paste
+     the generated https://github.com/user-attachments/assets/... URLs on their
+     own lines right below this comment — that is the ONLY form GitHub renders
+     as an inline video player (repo-committed .mp4 files do NOT render).
+     Masters + preview GIFs go in assets/media/ (see assets/media/README.md). -->
+
+*Vietnamese video tutorials (with voice-over) are on their way — they will appear right here. Until then, the illustrated steps above cover the full install.*
+
 ## 🧠 Choose your engine
 
 <p align="center">
-  <img src="assets/engines.svg" alt="One brain feeding many engines — Claude Code (Pro), Ollama (Free, local), and more coming in v0.5" width="780">
+  <img src="assets/engines.svg" alt="One brain feeding many engines — Claude Code (Pro), Ollama (Free, local), and more coming in v0.6" width="780">
 </p>
 
 SoulDrop separates the **brain** (who your assistant is — plain markdown files you own) from the **engine** (what runs it). Same soul, any engine:
@@ -74,7 +146,7 @@ SoulDrop separates the **brain** (who your assistant is — plain markdown files
 |---|---|---|
 | **Pro — [Claude Code](https://code.claude.com)** | Paid Claude plan (Pro/Max) | The smartest tier: full skills, **auto skill-forge** (it builds custom abilities for your profession), subagents |
 | **Free — [Ollama](https://ollama.com) (local)** | **$0, no account** | A real assistant running 100% on your own computer: persona, memory, "remember ...", second brain. Private by default |
-| Codex · Antigravity · OpenClaw | — | 🔜 coming in v0.5 |
+| Codex · Antigravity · OpenClaw | — | 🔜 coming in v0.6 |
 
 You don't have to choose anything technical — the installer **detects Claude Code automatically**, and otherwise asks exactly one human question: *Free or Pro?*
 

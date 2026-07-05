@@ -16,7 +16,7 @@
 <br>
 
 [![CI](https://img.shields.io/github/actions/workflow/status/supakitkitsathaporn97-collab/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/actions/workflows/validate.yml)
-[![Version](https://img.shields.io/badge/version-0.4.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
@@ -38,9 +38,19 @@ Một lệnh duy nhất. Một cuộc phỏng vấn thân thiện (không bao gi
 
 ---
 
-## 🚀 Cài đặt — một lệnh duy nhất
+## 🚀 Cài đặt
 
-**Windows** — mở **PowerShell** (bấm Start, gõ "PowerShell", Enter) rồi dán:
+Trình cài đặt tự lo **tất cả** — kể cả các công cụ phụ nó cần (git, Node...). Bạn không phải tự cài bất cứ thứ gì trước.
+
+### 🖱️ Cách dễ nhất (Windows) — tải 1 file, nháy đúp
+
+1. **[Tải file cài đặt tại đây](https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/SoulDrop-Installer.bat)** — nhấn **chuột phải** vào link → chọn **"Save link as..." / "Lưu liên kết thành..."** → lưu ra Desktop.
+2. **Nháy đúp** file `SoulDrop-Installer.bat` vừa tải. Xong — trình cài đặt tự chạy.
+3. Nếu Windows hiện cảnh báo xanh (SmartScreen): bấm **"More info"** → **"Run anyway"**. Nói thật: cảnh báo này hiện với *mọi* file tải từ internet chưa có chữ ký số — file này chỉ gọi đúng script cài đặt chính thức bên dưới, và bạn có thể mở nó bằng Notepad để tự đọc.
+
+### ⌨️ Cách một-lệnh (cho ai quen PowerShell / Terminal)
+
+**Windows** — mở **PowerShell** (chưa biết mở? [xem hướng dẫn có hình bên dưới](#-hướng-dẫn-từng-bước-cho-người-mới-hoàn-toàn)) rồi dán:
 
 ```powershell
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
@@ -62,10 +72,72 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 1. Nhấn đúp **SoulDrop** ngoài màn hình (Windows) hoặc gõ `souldrop` trong terminal mới.
 2. Trả lời sáu câu hỏi thân thiện (tên bạn, công việc, mục tiêu, tên trợ lý...) — xong. Mọi thứ chạy trên máy bạn; không có gì rời khỏi máy.
 
+## 🧭 Hướng dẫn từng bước cho người mới hoàn toàn
+
+> Chưa từng dùng "dòng lệnh"? Không sao cả — mục này cầm tay chỉ việc từng bước một, có hình minh họa. Cứ làm theo, chậm cũng được.
+
+### Cách mở PowerShell (Windows)
+
+<img src="assets/guide/open-powershell-1.svg" alt="Bước 1 — bấm phím Windows (phím 4 ô vuông, góc dưới trái bàn phím)" width="740">
+<img src="assets/guide/open-powershell-2.svg" alt="Bước 2 — gõ chữ PowerShell, ô tìm kiếm tự mở ra" width="740">
+<img src="assets/guide/open-powershell-3.svg" alt="Bước 3 — nhấn Enter, cửa sổ xanh đậm mở ra: đó là PowerShell" width="740">
+<img src="assets/guide/open-powershell-4.svg" alt="Bước 4 — dán lệnh cài đặt (chuột phải = dán) rồi nhấn Enter" width="740">
+
+Mẹo nhỏ: trong PowerShell, **chuột phải = dán**. Sao chép lệnh cài đặt ở trên bằng nút 📋 (góc phải khối lệnh), rồi chuột phải vào cửa sổ xanh, nhấn Enter — thế là xong.
+
+### Hai cách dùng Claude — chọn cách hợp với bạn
+
+Bạn **đã chat với Claude qua app Claude Desktop rồi**? Vậy bạn có thể dùng SoulDrop **ngay trong app** — không cần đụng tới terminal.
+
+| | 🖥️ Claude Desktop — *dễ nhất* | ⚡ Claude CLI — *bản "xịn"* |
+|---|---|---|
+| Dành cho | Người mới, đã quen chat với Claude | Ai muốn full sức mạnh |
+| Cần terminal? | **Không** | Có (PowerShell / Terminal) |
+| Cách mở | Mở app Claude → bấm tab **Code** | Gõ `claude` trong terminal |
+| Sức mạnh | Đầy đủ kỹ năng SoulDrop | Đầy đủ + tự động hóa sâu hơn |
+
+**Cách A — Claude Desktop (không cần terminal):**
+1. Tải app tại [claude.com/download](https://claude.com/download) và đăng nhập (cần gói Pro/Max).
+2. Bấm tab **Code** trên thanh trên cùng của app, chọn **Local**.
+3. Gõ lần lượt hai lệnh này vào ô chat (copy từng dòng, dán, Enter):
+   ```
+   /plugin marketplace add supakitkitsathaporn97-collab/souldrop
+   /plugin install souldrop@souldrop
+   ```
+4. Gõ `/onboard` — chọn ngôn ngữ, và gặp trợ lý của riêng bạn. Hết!
+
+**Cách B — Claude CLI (mạnh hơn cho việc dài hơi):** làm theo mục Cài đặt ở trên → mở terminal → gõ `claude` → gõ `/onboard`.
+
+### Cài Ollama thủ công (bản Miễn phí — tùy chọn)
+
+Trình cài đặt SoulDrop **đã tự cài Ollama giúp bạn** — mục này chỉ dành cho ai muốn tự tay làm:
+
+1. Vào [ollama.com/download](https://ollama.com/download) → tải bản Windows / Mac → cài như một ứng dụng bình thường (Next, Next, Finish).
+2. Mở PowerShell / Terminal ([hướng dẫn có hình ở trên](#cách-mở-powershell-windows)) và gõ lệnh tải model theo RAM của máy:
+
+   | RAM máy bạn | Gõ lệnh này | Tải về |
+   |---|---|---|
+   | 16 GB trở lên | `ollama pull llama3.1:8b` | ~4.9 GB |
+   | 8–16 GB | `ollama pull llama3.2:3b` | ~2 GB |
+   | Dưới 8 GB | `ollama pull llama3.2:1b` | ~1.3 GB |
+
+   *Không biết máy có bao nhiêu RAM?* Bấm phím Windows → gõ `about` → Enter → xem dòng **"Installed RAM"**.
+3. Chạy lại trình cài đặt SoulDrop ở trên — nó thấy Ollama có sẵn và tự đi tiếp các bước còn lại.
+
+### 🎬 Video hướng dẫn
+
+<!-- TODO(Nick): drag the final .mp4 files into the GitHub web editor and paste
+     the generated https://github.com/user-attachments/assets/... URLs on their
+     own lines right below this comment — that is the ONLY form GitHub renders
+     as an inline video player (repo-committed .mp4 files do NOT render).
+     Masters + preview GIFs go in assets/media/ (see assets/media/README.md). -->
+
+*Video hướng dẫn tiếng Việt (có thuyết minh) đang trên đường tới — sẽ xuất hiện ngay tại đây. Trong lúc chờ, các hình minh họa ở trên đủ để bạn cài từ đầu đến cuối.*
+
 ## 🧠 Chọn động cơ của bạn
 
 <p align="center">
-  <img src="assets/engines.svg" alt="Một bộ não nuôi nhiều động cơ — Claude Code (Pro), Ollama (Miễn phí, tại máy), và nhiều hơn ở v0.5" width="780">
+  <img src="assets/engines.svg" alt="Một bộ não nuôi nhiều động cơ — Claude Code (Pro), Ollama (Miễn phí, tại máy), và nhiều hơn ở v0.6" width="780">
 </p>
 
 SoulDrop tách **bộ não** (trợ lý của bạn là ai — các file markdown thuần thuộc về bạn) khỏi **động cơ** (thứ chạy nó). Cùng một linh hồn, động cơ nào cũng được:
@@ -74,7 +146,7 @@ SoulDrop tách **bộ não** (trợ lý của bạn là ai — các file markdow
 |---|---|---|
 | **Pro — [Claude Code](https://code.claude.com)** | Tài khoản Claude trả phí (Pro/Max) | Bậc thông minh nhất: đủ bộ kỹ năng, **tự rèn kỹ năng riêng** cho nghề của bạn, subagent |
 | **Miễn phí — [Ollama](https://ollama.com) (chạy tại máy)** | **0đ, không cần tài khoản** | Trợ lý thật sự chạy 100% trên máy của bạn: tính cách, bộ nhớ, "nhớ ...", bộ não thứ hai. Riêng tư mặc định |
-| Codex · Antigravity · OpenClaw | — | 🔜 sẽ có ở v0.5 |
+| Codex · Antigravity · OpenClaw | — | 🔜 sẽ có ở v0.6 |
 
 Bạn không phải chọn gì mang tính kỹ thuật — trình cài đặt **tự phát hiện Claude Code**, nếu chưa có thì chỉ hỏi đúng một câu: *Miễn phí hay Pro?*
 

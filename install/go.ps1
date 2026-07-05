@@ -83,8 +83,19 @@ function Install-ClaudeEngine {
         Write-Note "Not found - installing via the official Anthropic installer..."
         Write-Note "Chua co - dang cai dat bang trinh cai dat chinh thuc cua Anthropic..."
         # Official installer. We call it; we do not copy or re-host it.
-        Invoke-Expression (Invoke-RestMethod -Uri 'https://claude.ai/install.ps1')
-        Write-Ok "Official installer finished. / Trinh cai dat chinh thuc da chay xong."
+        # Only report success if it actually succeeded (v0.4.1 bug: we used to
+        # print OK even when the installer failed).
+        $installerFailed = $false
+        try {
+            Invoke-Expression (Invoke-RestMethod -Uri 'https://claude.ai/install.ps1')
+            if ($LASTEXITCODE -is [int] -and $LASTEXITCODE -ne 0) { $installerFailed = $true }
+        } catch { $installerFailed = $true }
+        if ((-not $installerFailed) -and (Test-ClaudeInstalled)) {
+            Write-Ok "Official installer finished. / Trinh cai dat chinh thuc da chay xong."
+        } else {
+            Write-Note "The official installer did not finish. It can fail on low memory (it needs ~512 MB free RAM)."
+            Write-Note "Trinh cai dat chua xong - co the thieu RAM (can ~512MB trong). Mo mot terminal MOI va chay lai lenh cai dat."
+        }
     }
 
     # Refresh PATH for THIS session so `claude` resolves immediately.
@@ -112,6 +123,31 @@ function Install-ClaudeEngine {
     # Step 2 - Add the plugin marketplace (idempotent)
     # ---------------------------------------------------------------
     Write-Step "Step 2/5: Adding the SoulDrop marketplace... / Them kho plugin SoulDrop..."
+
+    # `marketplace add` clones this repo with git - many fresh Windows machines
+    # don't have git, and beginners should never have to install it themselves.
+    # Auto-install silently; never block on failure (same rule as the extras).
+    $gitCmd = Get-Command git -ErrorAction SilentlyContinue
+    if ($null -eq $gitCmd) {
+        $gitExe = Join-Path $env:ProgramFiles 'Git\cmd\git.exe'
+        if (-not (Test-Path $gitExe)) {
+            $wingetCmd = Get-Command winget -ErrorAction SilentlyContinue
+            if ($null -ne $wingetCmd) {
+                Write-Note "Adding a small helper tool (git - needed to fetch the plugin)... / Dang cai mot cong cu nho (git - can de tai plugin)..."
+                $prevGitEAP = $ErrorActionPreference
+                $ErrorActionPreference = 'Continue'
+                try {
+                    winget install --id Git.Git -e --silent --accept-package-agreements --accept-source-agreements | Out-Null
+                } catch { }
+                $ErrorActionPreference = $prevGitEAP
+            }
+        }
+        # Make git visible in THIS session (fresh installs land in Program Files).
+        $gitDir = Join-Path $env:ProgramFiles 'Git\cmd'
+        if ((Test-Path $gitDir) -and ($env:Path -notlike "*$gitDir*")) {
+            $env:Path = "$gitDir;$env:Path"
+        }
+    }
 
     # `marketplace add` fails politely if it already exists -> then just update it.
     claude plugin marketplace add $MarketplaceRepo 2>$null

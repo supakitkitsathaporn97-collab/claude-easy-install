@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 200" role="img" aria-label="Step 4 - paste the install command and press Enter">
+  <title>Step 4 — paste the command / Bước 4 — dán lệnh cài đặt</title>
+  <defs>
+    <linearGradient id="g4-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1C212C"/>
+      <stop offset="1" stop-color="#12151C"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="778" height="198" rx="16" fill="url(#g4-tile)" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+
+  <circle cx="58" cy="100" r="26" fill="#E8B04B"/>
+  <text x="58" y="111" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#12151C">4</text>
+
+  <text x="104" y="74" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#E8ECF4">Dán lệnh cài đặt rồi nhấn Enter</text>
+  <text x="104" y="104" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">Sao chép lệnh trong README (nút 📋), rồi CHUỘT PHẢI vào cửa sổ</text>
+  <text x="104" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8A93A6">xanh để dán (chuột phải = dán trong PowerShell). Nhấn Enter. Xong!</text>
+  <text x="104" y="152" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-style="italic" fill="#5C6577">Copy the command, RIGHT-CLICK the blue window to paste, press Enter.</text>
+
+  <!-- simplified PowerShell window with pasted command -->
+  <g transform="translate(548,44)">
+    <rect x="0" y="0" width="208" height="118" rx="8" fill="#012456" stroke="rgba(255,255,255,0.15)"/>
+    <rect x="0" y="0" width="208" height="22" rx="8" fill="#0A1A38"/>
+    <rect x="0" y="12" width="208" height="10" fill="#0A1A38"/>
+    <text x="10" y="15" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#8A93A6">Windows PowerShell</text>
+    <text x="10" y="44" font-family="Consolas, monospace" font-size="10" fill="#E8ECF4">PS C:\Users\Ban&gt;</text>
+    <text x="10" y="62" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">irm https://raw.github</text>
+    <text x="10" y="76" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">usercontent.com/.../go</text>
+    <text x="10" y="90" font-family="Consolas, monospace" font-size="10" fill="#E8B04B">.ps1 | iex</text>
+    <rect x="76" y="98" width="6" height="11" fill="#2FD6C3"/>
+    <!-- mouse with right button highlighted -->
+    <g transform="translate(162,74)">
+      <rect x="0" y="0" width="30" height="40" rx="14" fill="#20242C" stroke="rgba(255,255,255,0.25)"/>
+      <path d="M15 0 v16" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+      <path d="M15 1 a14 14 0 0 1 14 14 v2 h-14 Z" fill="#2FD6C3"/>
+    </g>
+  </g>
+</svg>

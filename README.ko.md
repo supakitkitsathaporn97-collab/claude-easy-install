@@ -16,7 +16,7 @@
 <br>
 
 [![CI](https://img.shields.io/github/actions/workflow/status/supakitkitsathaporn97-collab/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/supakitkitsathaporn97-collab/souldrop/actions/workflows/validate.yml)
-[![Version](https://img.shields.io/badge/version-0.4.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
@@ -38,9 +38,19 @@
 
 ---
 
-## 🚀 설치 — 명령어 하나
+## 🚀 설치
 
-**Windows** — **PowerShell**을 열고(시작 버튼 → "PowerShell" 입력 → Enter) 붙여넣기:
+설치 프로그램이 **모든 것**을 알아서 처리합니다 — 필요한 보조 도구(git, Node...)까지 포함해서요. 미리 직접 설치할 것은 하나도 없습니다.
+
+### 🖱️ 가장 쉬운 방법 (Windows) — 파일 1개 받아서 더블클릭
+
+1. **[여기서 설치 파일 다운로드](https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/SoulDrop-Installer.bat)** — 링크를 **우클릭** → **"다른 이름으로 링크 저장..."** → 바탕화면에 저장하세요.
+2. 받은 `SoulDrop-Installer.bat` 파일을 **더블클릭**하세요. 끝 — 설치가 저절로 진행됩니다.
+3. Windows가 파란 SmartScreen 경고를 띄우면: **"추가 정보"** → **"실행"**을 누르세요. 솔직히 말씀드리면: 이 경고는 서명되지 않은 *모든* 인터넷 다운로드 파일에 뜹니다 — 이 파일은 아래의 공식 설치 스크립트를 호출할 뿐이고, 메모장으로 열어 직접 읽어볼 수 있습니다.
+
+### ⌨️ 명령어 한 줄 방식 (PowerShell / 터미널이 익숙한 분)
+
+**Windows** — **PowerShell**을 열고(방법을 모르신다면 [아래 그림 가이드](#-왕초보를-위한-단계별-가이드) 참고) 붙여넣기:
 
 ```powershell
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldrop/main/install/go.ps1 | iex
@@ -62,10 +72,68 @@ curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/souldr
 1. 바탕화면의 **SoulDrop**을 더블클릭(Windows)하거나 새 터미널에서 `souldrop`을 입력하세요.
 2. 친근한 질문 6개(이름, 하는 일, 목표, 어시스턴트 이름...)에 답하면 끝. 모든 것이 당신 컴퓨터에서 실행되고, 아무것도 밖으로 나가지 않습니다.
 
+## 🧭 왕초보를 위한 단계별 가이드
+
+> "명령줄"을 한 번도 써본 적 없으신가요? 괜찮습니다 — 이 섹션이 그림과 함께 한 단계씩 안내합니다. 천천히 따라오세요.
+
+### PowerShell 여는 방법 (Windows)
+
+<img src="assets/guide/open-powershell-1.svg" alt="1단계 — Windows 키 누르기 (키보드 왼쪽 아래, 사각형 4개 로고 키)" width="740">
+<img src="assets/guide/open-powershell-2.svg" alt="2단계 — PowerShell 입력; 검색창이 저절로 열립니다" width="740">
+<img src="assets/guide/open-powershell-3.svg" alt="3단계 — Enter 누르기; 진한 파란색 창이 열리면 그것이 PowerShell입니다" width="740">
+<img src="assets/guide/open-powershell-4.svg" alt="4단계 — 설치 명령어 붙여넣기 (우클릭 = 붙여넣기) 후 Enter" width="740">
+
+팁: PowerShell에서는 **우클릭 = 붙여넣기**입니다. 위의 설치 명령어를 📋 버튼으로 복사하고, 파란 창에 우클릭한 뒤 Enter — 끝입니다.
+
+### Claude를 쓰는 두 가지 방법 — 맞는 쪽을 고르세요
+
+이미 **Claude Desktop 앱에서 Claude와 대화**하고 계신가요? 그럼 SoulDrop을 **앱 안에서 바로** 쓸 수 있습니다 — 터미널이 전혀 필요 없습니다.
+
+| | 🖥️ Claude Desktop — *가장 쉬움* | ⚡ Claude CLI — *파워 버전* |
+|---|---|---|
+| 추천 대상 | 이미 Claude와 대화하는 초보자 | 최대 성능을 원하는 분 |
+| 터미널 필요? | **아니요** | 예 (PowerShell / 터미널) |
+| 여는 방법 | Claude 앱 → **Code** 탭 클릭 | 터미널에 `claude` 입력 |
+| 성능 | SoulDrop 스킬 전부 | 전부 + 더 깊은 자동화 |
+
+**방법 A — Claude Desktop (터미널 불필요):**
+1. [claude.com/download](https://claude.com/download)에서 앱을 받고 로그인하세요 (Pro/Max 요금제 필요).
+2. 앱 상단의 **Code** 탭을 클릭하고 **Local**을 선택하세요.
+3. 입력창에 이 두 명령을 차례로 입력하세요 (한 줄씩 복사, 붙여넣기, Enter):
+   ```
+   /plugin marketplace add supakitkitsathaporn97-collab/souldrop
+   /plugin install souldrop@souldrop
+   ```
+4. `/onboard`를 입력하세요 — 언어를 고르고 나만의 어시스턴트를 만나세요. 끝!
+
+**방법 B — Claude CLI (긴 작업에 더 강력):** 위의 설치 섹션을 따라 한 뒤 → 터미널을 열고 → `claude` 입력 → `/onboard` 입력.
+
+### Ollama 수동 설치 (무료 엔진 — 선택)
+
+SoulDrop 설치 프로그램이 **Ollama를 이미 자동으로 설치**합니다 — 직접 하고 싶은 분만 보세요:
+
+1. [ollama.com/download](https://ollama.com/download)에서 Windows / Mac 버전을 받아 일반 앱처럼 설치하세요.
+2. PowerShell / 터미널을 열고 RAM에 맞는 모델을 받으세요:
+
+   | 내 RAM | 이 명령 입력 | 다운로드 |
+   |---|---|---|
+   | 16 GB 이상 | `ollama pull llama3.1:8b` | ~4.9 GB |
+   | 8–16 GB | `ollama pull llama3.2:3b` | ~2 GB |
+   | 8 GB 미만 | `ollama pull llama3.2:1b` | ~1.3 GB |
+
+3. 위의 SoulDrop 설치 프로그램을 다시 실행하세요 — Ollama를 감지하고 나머지 단계를 이어갑니다.
+
+### 🎬 튜토리얼 영상
+
+<!-- TODO(Nick): drag the final .mp4 files into the GitHub web editor and paste
+     the generated user-attachments URLs below — the only form GitHub renders inline. -->
+
+*튜토리얼 영상(베트남어 보이스오버)이 준비 중입니다 — 곧 여기에 올라옵니다. 그때까지는 위의 그림 단계만으로 설치를 끝까지 마칠 수 있습니다.*
+
 ## 🧠 엔진을 선택하세요
 
 <p align="center">
-  <img src="assets/engines.svg" alt="하나의 뇌가 여러 엔진에 연결됩니다 — Claude Code (Pro), Ollama (무료, 로컬), 그리고 v0.5에 더 추가" width="780">
+  <img src="assets/engines.svg" alt="하나의 뇌가 여러 엔진에 연결됩니다 — Claude Code (Pro), Ollama (무료, 로컬), 그리고 v0.6에 더 추가" width="780">
 </p>
 
 SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 마크다운 파일)와 **엔진**(그것을 실행하는 것)을 분리합니다. 같은 영혼, 어떤 엔진이든:
@@ -74,7 +142,7 @@ SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 
 |---|---|---|
 | **Pro — [Claude Code](https://code.claude.com)** | 유료 Claude 요금제 (Pro/Max) | 가장 똑똑한 티어: 전체 스킬, **자동 스킬 단조**(직업에 맞는 커스텀 능력 자동 생성), 서브에이전트 |
 | **무료 — [Ollama](https://ollama.com) (로컬)** | **0원, 계정 불필요** | 당신 컴퓨터에서 100% 실행되는 진짜 어시스턴트: 페르소나, 기억, "기억해...", 두 번째 뇌. 기본적으로 프라이빗 |
-| Codex · Antigravity · OpenClaw | — | 🔜 v0.5 예정 |
+| Codex · Antigravity · OpenClaw | — | 🔜 v0.6 예정 |
 
 기술적인 선택은 필요 없습니다 — 설치 프로그램이 **Claude Code를 자동 감지**하고, 없으면 딱 한 가지만 묻습니다: *무료 또는 Pro?*
 

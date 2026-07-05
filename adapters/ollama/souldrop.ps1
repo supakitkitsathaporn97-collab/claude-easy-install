@@ -52,15 +52,17 @@ function Test-Engine {
     } catch { return $false }
 }
 
+function Find-OllamaExe {
+    $cmd = Get-Command ollama -ErrorAction SilentlyContinue
+    if ($null -ne $cmd) { return $cmd.Source }
+    $exe = Join-Path $env:LOCALAPPDATA 'Programs\Ollama\ollama.exe'
+    if (Test-Path $exe) { return $exe }
+    return $null
+}
+
 if (-not (Test-Engine)) {
     Write-Sys "Starting the AI engine... / Dang khoi dong dong co AI..."
-    $ollamaExe = $null
-    $cmd = Get-Command ollama -ErrorAction SilentlyContinue
-    if ($null -ne $cmd) { $ollamaExe = $cmd.Source }
-    else {
-        $exe = Join-Path $env:LOCALAPPDATA 'Programs\Ollama\ollama.exe'
-        if (Test-Path $exe) { $ollamaExe = $exe }
-    }
+    $ollamaExe = Find-OllamaExe
     if ($null -ne $ollamaExe) {
         try { Start-Process -FilePath $ollamaExe -ArgumentList 'serve' -WindowStyle Hidden } catch { }
         for ($i = 0; $i -lt 30; $i++) {
@@ -80,6 +82,39 @@ if (-not (Test-Engine)) {
     Write-Warn "  Or install the Pro engine (smarter, needs a Claude plan):"
     Write-Warn "  https://claude.ai/referral/QbA1I722cA  (free 7-day trial - referral link)"
     exit 1
+}
+
+# --- Make sure the model is actually downloaded (auto-pull, one time).
+# v0.4.1 bug: we used to chat against a missing model and show a vague
+# "hiccup" - now we check /api/tags first and pull with visible progress.
+function Test-ModelPresent {
+    try {
+        $tags = Invoke-RestMethod -Uri "$ApiBase/api/tags" -TimeoutSec 5
+        $want = $Model
+        if ($want -notmatch ':') { $want = "${Model}:latest" }
+        foreach ($m in @($tags.models)) {
+            if ($m.name -eq $want) { return $true }
+        }
+    } catch { }
+    return $false
+}
+
+if (-not (Test-ModelPresent)) {
+    Write-Sys "Your AI brain ($Model) is not downloaded yet - getting it now (one time only)..."
+    Write-Sys "Bo nao AI ($Model) chua duoc tai - dang tai ngay (chi mot lan)..."
+    $pullExe = Find-OllamaExe
+    if ($null -ne $pullExe) {
+        # ollama prints its own progress bar - let it show.
+        & $pullExe pull $Model
+    }
+    if (-not (Test-ModelPresent)) {
+        Write-Warn ""
+        Write-Warn "  Could not download the model (check internet and disk space)."
+        Write-Warn "  Khong tai duoc model (kiem tra mang va dung luong o dia)."
+        Write-Warn "  Try again later, or re-run the installer. / Thu lai sau, hoac chay lai trinh cai dat."
+        exit 1
+    }
+    Write-Sys "AI brain ready. / Bo nao AI da san sang."
 }
 
 # =====================================================================
@@ -274,6 +309,7 @@ Write-Host "  Go tin nhan. 'exit' de thoat. Noi 'nho ...' de luu mot dieu can nh
 Write-Host ""
 
 $history = New-Object Collections.ArrayList
+$hiccups = 0   # consecutive failures - after 3 we say the REAL reason
 
 while ($true) {
     Write-Host -NoNewline "$UserLabel> " -ForegroundColor Cyan
@@ -305,9 +341,27 @@ while ($true) {
     try {
         $reply = Invoke-ChatStream $messages
         [void]$history.Add(@{ role = 'assistant'; content = $reply })
+        $hiccups = 0
     } catch {
+        $hiccups++
         Write-Host ""
-        Write-Warn "  The engine hiccuped - try again. / Dong co bi loi - thu lai nhe."
-        Write-Sys  "  ($($_.Exception.Message))"
+        if ($hiccups -lt 3) {
+            Write-Warn "  The engine hiccuped - try again. / Dong co bi loi - thu lai nhe."
+            Write-Sys  "  ($($_.Exception.Message))"
+        } else {
+            # 3 fails in a row is not a hiccup - tell the user the real reason.
+            Write-Warn "  This keeps failing - here is the real reason / Loi lien tuc - ly do that su:"
+            if (-not (Test-Engine)) {
+                Write-Warn "  -> The Ollama engine stopped responding. Restart your computer, then run 'souldrop' again."
+                Write-Warn "     Ollama ngung phan hoi. Khoi dong lai may, roi chay 'souldrop' lan nua."
+            } elseif (-not (Test-ModelPresent)) {
+                Write-Warn "  -> The AI model ($Model) is missing. Re-run 'souldrop' to download it again."
+                Write-Warn "     Model AI ($Model) bi thieu. Chay lai 'souldrop' de tai lai."
+            } else {
+                Write-Warn "  -> The engine error was: $($_.Exception.Message)"
+                Write-Warn "     Likely low memory - close other apps, or restart and try again."
+                Write-Warn "     Co the thieu RAM - dong bot ung dung khac, hoac khoi dong lai may roi thu lai."
+            }
+        }
     }
 }

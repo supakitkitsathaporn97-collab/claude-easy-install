@@ -69,8 +69,14 @@ install_claude_engine() {
     note "Not found - installing via the official Anthropic installer..."
     note "Chua co - dang cai bang trinh cai dat chinh thuc cua Anthropic..."
     # Official installer. We call it; we do not copy or re-host it.
-    curl -fsSL https://claude.ai/install.sh | bash
-    ok "Official installer finished. / Trinh cai dat chinh thuc da chay xong."
+    # Only report success if it actually succeeded (v0.4.1 bug: we used to
+    # print OK even when the installer failed).
+    if curl -fsSL https://claude.ai/install.sh | bash; then
+      ok "Official installer finished. / Trinh cai dat chinh thuc da chay xong."
+    else
+      note "The official installer did not finish. It can fail on low memory (it needs ~512 MB free RAM)."
+      note "Trinh cai dat chua xong - co the thieu RAM (can ~512MB trong). Mo terminal MOI va chay lai lenh cai dat."
+    fi
   fi
 
   # Make `claude` visible in THIS shell session.
@@ -94,6 +100,32 @@ install_claude_engine() {
   # Step 2 — Add the plugin marketplace (idempotent)
   # ---------------------------------------------------------------
   step "Step 2/5: Adding the SoulDrop marketplace... / Them kho plugin SoulDrop..."
+
+  # `marketplace add` clones this repo with git — beginners should never have
+  # to install git themselves. Auto-install where we safely can; never block.
+  have_git() {
+    # On macOS a git *stub* exists even without Command Line Tools and pops a
+    # GUI dialog when called — only count git as real if CLT is installed.
+    command -v git >/dev/null 2>&1 || return 1
+    [ "$(uname -s)" != "Darwin" ] || xcode-select -p >/dev/null 2>&1
+  }
+  if ! have_git; then
+    note "Adding a small helper tool (git - needed to fetch the plugin)... / Dang cai mot cong cu nho (git - can de tai plugin)..."
+    if [ "$(uname -s)" = "Darwin" ]; then
+      if command -v brew >/dev/null 2>&1; then
+        brew install git >/dev/null 2>&1 || true
+      else
+        # No Homebrew: ask Apple's Command Line Tools installer (GUI dialog).
+        xcode-select --install >/dev/null 2>&1 || true
+        note "If a macOS dialog appeared, click Install, wait for it, then re-run this command."
+        note "Neu macOS hien hop thoai, bam Install, doi xong, roi chay lai lenh nay."
+      fi
+    else
+      # Linux: we never sudo-install automatically — one friendly hint instead.
+      note "Please run:  sudo apt-get install -y git   (then re-run this command)"
+      note "Hay chay:    sudo apt-get install -y git   (roi chay lai lenh nay)"
+    fi
+  fi
 
   if claude plugin marketplace add "$MARKETPLACE_REPO" >/dev/null 2>&1; then
     ok "Marketplace added. / Da them kho plugin."
@@ -371,7 +403,8 @@ else
   ENGINE_CHOICE=""
   if [ -r /dev/tty ]; then
     printf '  Type 1 or 2 / Go 1 hoac 2 (Enter = 1): '
-    read -r ENGINE_CHOICE < /dev/tty || ENGINE_CHOICE=""
+    # No usable tty (CI, some containers): stay quiet and default to Free.
+    read -r ENGINE_CHOICE < /dev/tty 2>/dev/null || ENGINE_CHOICE=""
   fi
   if [ "$(printf '%s' "$ENGINE_CHOICE" | tr -d '[:space:]')" = "2" ]; then
     install_claude_engine
