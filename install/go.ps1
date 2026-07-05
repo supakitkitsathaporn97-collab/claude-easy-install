@@ -15,8 +15,8 @@
 #    2. PRO  = installs Claude Code via Anthropic's OFFICIAL installer
 #       (we never re-host their binary - we call https://claude.ai/install.ps1),
 #       adds this repo as a plugin marketplace, installs the "souldrop" plugin
-#       (/onboard interview + core skills), plus optional extras (smart memory,
-#       Obsidian) that never block on failure.
+#       (/onboard interview + core skills), plus optional extras (documents
+#       pack, browsing, smart memory, Obsidian) that never block on failure.
 #    3. FREE = installs Ollama via its official winget package, picks an AI
 #       model sized to your computer's RAM, downloads it, and installs the
 #       `souldrop` chat launcher (Desktop shortcut + terminal command).
@@ -59,6 +59,46 @@ function Test-ClaudeInstalled {
     return (Test-Path $native)
 }
 
+function Get-NodeMajor {
+    $n = Get-Command node -ErrorAction SilentlyContinue
+    if ($null -eq $n) { return 0 }
+    try { return [int](((node -v) -replace '^v','') -split '\.')[0] } catch { return 0 }
+}
+
+# Node 20+ powers two optional extras (browsing + smart memory). Install it
+# once via winget when missing; return the major version either way.
+function Ensure-NodeLts {
+    $nodeMajor = Get-NodeMajor
+    if ($nodeMajor -lt 20) {
+        $wingetCmd = Get-Command winget -ErrorAction SilentlyContinue
+        if ($null -ne $wingetCmd) {
+            Write-Note "Adding Node.js LTS (a helper tool)... / Dang cai Node.js LTS (cong cu ho tro)..."
+            try {
+                winget install --id OpenJS.NodeJS.LTS -e --silent --accept-package-agreements --accept-source-agreements | Out-Null
+            } catch { }
+            # Make node visible in THIS session.
+            $nodeDir = Join-Path $env:ProgramFiles 'nodejs'
+            if ((Test-Path $nodeDir) -and ($env:Path -notlike "*$nodeDir*")) {
+                $env:Path = "$nodeDir;$env:Path"
+            }
+            $nodeMajor = Get-NodeMajor
+        }
+    }
+    return $nodeMajor
+}
+
+# chrome-devtools drives the user's REAL Chrome - it never downloads one.
+# So we only offer it when Chrome is actually installed.
+function Test-ChromeInstalled {
+    foreach ($hive in 'HKLM:', 'HKCU:') {
+        if (Test-Path "$hive\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe") { return $true }
+    }
+    foreach ($d in @($env:ProgramFiles, ${env:ProgramFiles(x86)}, $env:LOCALAPPDATA)) {
+        if ($d -and (Test-Path (Join-Path $d 'Google\Chrome\Application\chrome.exe'))) { return $true }
+    }
+    return $false
+}
+
 function Show-ReferralLine {
     Write-Host ""
     Write-Host "     Don't have a paid Claude plan yet? Start with a free 7-day Pro trial:" -ForegroundColor Yellow
@@ -75,7 +115,7 @@ function Install-ClaudeEngine {
     # ---------------------------------------------------------------
     # Step 1 - Claude Code itself (official Anthropic installer)
     # ---------------------------------------------------------------
-    Write-Step "Step 1/5: Checking Claude Code... / Kiem tra Claude Code..."
+    Write-Step "Step 1/6: Checking Claude Code... / Kiem tra Claude Code..."
 
     if (Test-ClaudeInstalled) {
         Write-Ok "Claude Code is already installed. / Claude Code da duoc cai dat."
@@ -122,7 +162,7 @@ function Install-ClaudeEngine {
     # ---------------------------------------------------------------
     # Step 2 - Add the plugin marketplace (idempotent)
     # ---------------------------------------------------------------
-    Write-Step "Step 2/5: Adding the SoulDrop marketplace... / Them kho plugin SoulDrop..."
+    Write-Step "Step 2/6: Adding the SoulDrop marketplace... / Them kho plugin SoulDrop..."
 
     # `marketplace add` clones this repo with git - many fresh Windows machines
     # don't have git, and beginners should never have to install it themselves.
@@ -168,7 +208,7 @@ function Install-ClaudeEngine {
     # ---------------------------------------------------------------
     # Step 3 - Install the SoulDrop plugin (idempotent)
     # ---------------------------------------------------------------
-    Write-Step "Step 3/5: Installing the SoulDrop plugin... / Cai plugin SoulDrop..."
+    Write-Step "Step 3/6: Installing the SoulDrop plugin... / Cai plugin SoulDrop..."
 
     claude plugin install "$PluginName@$MarketplaceName" 2>$null
     if ($LASTEXITCODE -eq 0) {
@@ -186,36 +226,78 @@ function Install-ClaudeEngine {
     }
 
     # ---------------------------------------------------------------
-    # Step 4 - OPTIONAL: smart memory (agentmemory). Fully automatic,
+    # Step 4 - OPTIONAL: everyday superpowers (documents + browsing).
+    # Fully automatic, fully non-blocking: any failure = one friendly
+    # line, keep going. The user never installs anything themselves.
+    # ---------------------------------------------------------------
+    Write-Step "Step 4/6: Everyday superpowers (documents + browsing)... / Sieu nang luc hang ngay (tai lieu + luot web)..."
+
+    $prevEAP = $ErrorActionPreference
+    $ErrorActionPreference = 'Continue'   # optional extras must never hard-stop
+
+    # 4a. Anthropic document skills - real Word/Excel/PowerPoint/PDF files.
+    # Installed from Anthropic's OWN marketplace, never vendored (their
+    # document skills are source-available; install-only is the legal path).
+    $docsOk = $false
+    try {
+        claude plugin marketplace add anthropics/skills 2>$null
+        if ($LASTEXITCODE -ne 0) { claude plugin marketplace update anthropic-agent-skills 2>$null }
+        claude plugin install document-skills@anthropic-agent-skills 2>$null
+        if ($LASTEXITCODE -eq 0) { $docsOk = $true }
+        else {
+            claude plugin update document-skills 2>$null
+            if ($LASTEXITCODE -eq 0) { $docsOk = $true }
+        }
+        # Creative extras (posters/graphics, incl. canvas-design; Apache-2.0).
+        claude plugin install example-skills@anthropic-agent-skills 2>$null
+        if ($LASTEXITCODE -ne 0) { claude plugin update example-skills 2>$null }
+    } catch { $docsOk = $false }
+    if ($docsOk) {
+        Write-Ok "Documents pack ready - your assistant can make real Word/Excel/PowerPoint/PDF files."
+        Write-Ok "Goi tai lieu san sang - tro ly lam duoc file Word/Excel/PowerPoint/PDF that."
+    } else {
+        Write-Note "Documents pack skipped - your assistant still reads PDFs and writes text just fine."
+        Write-Note "Bo qua goi tai lieu - tro ly van doc PDF va viet van ban binh thuong."
+    }
+
+    # 4b. Browsing power (chrome-devtools MCP, by Google - no account, no
+    # key). Only when Chrome is already installed; needs Node 20+ (npx).
+    $chromeOk = $false
+    if (Test-ChromeInstalled) {
+        try {
+            # Already registered on a previous run? Then we're done.
+            claude mcp get chrome-devtools 2>$null | Out-Null
+            if ($LASTEXITCODE -eq 0) {
+                $chromeOk = $true
+            } elseif ((Ensure-NodeLts) -ge 20) {
+                claude mcp add chrome-devtools --scope user -- npx chrome-devtools-mcp@latest 2>$null
+                if ($LASTEXITCODE -eq 0) { $chromeOk = $true }
+            }
+        } catch { $chromeOk = $false }
+        if ($chromeOk) {
+            Write-Ok "Browsing ready - your assistant can use Chrome with you (only when you ask)."
+            Write-Ok "Luot web san sang - tro ly dung duoc Chrome cung ban (chi khi ban yeu cau)."
+        } else {
+            Write-Note "Browsing power skipped - everything else still works. / Bo qua luot web - moi thu khac van chay."
+        }
+    } else {
+        Write-Note "Chrome not found - skipped browsing power. Install Chrome anytime to unlock it."
+        Write-Note "Khong thay Chrome - bo qua luot web. Cai Chrome bat cu luc nao de mo khoa."
+    }
+    $ErrorActionPreference = $prevEAP
+
+    # ---------------------------------------------------------------
+    # Step 5 - OPTIONAL: smart memory (agentmemory). Fully automatic,
     # fully non-blocking: any failure = one friendly line, keep going.
     # ---------------------------------------------------------------
-    Write-Step "Step 4/5: Smart memory (optional extra)... / Bo nho thong minh (tuy chon)..."
+    Write-Step "Step 5/6: Smart memory (optional extra)... / Bo nho thong minh (tuy chon)..."
 
     $prevEAP = $ErrorActionPreference
     $ErrorActionPreference = 'Continue'   # optional extras must never hard-stop
     $memOk = $false
     try {
         # agentmemory (Apache-2.0, github.com/rohitg00/agentmemory) needs Node 20+.
-        function Get-NodeMajor {
-            $n = Get-Command node -ErrorAction SilentlyContinue
-            if ($null -eq $n) { return 0 }
-            try { return [int](((node -v) -replace '^v','') -split '\.')[0] } catch { return 0 }
-        }
-        $nodeMajor = Get-NodeMajor
-        if ($nodeMajor -lt 20) {
-            $wingetCmd = Get-Command winget -ErrorAction SilentlyContinue
-            if ($null -ne $wingetCmd) {
-                Write-Note "Adding Node.js LTS (needed for smart memory)... / Dang cai Node.js LTS..."
-                winget install --id OpenJS.NodeJS.LTS -e --silent --accept-package-agreements --accept-source-agreements | Out-Null
-                # Make node visible in THIS session.
-                $nodeDir = Join-Path $env:ProgramFiles 'nodejs'
-                if ((Test-Path $nodeDir) -and ($env:Path -notlike "*$nodeDir*")) {
-                    $env:Path = "$nodeDir;$env:Path"
-                }
-                $nodeMajor = Get-NodeMajor
-            }
-        }
-        if ($nodeMajor -ge 20) {
+        if ((Ensure-NodeLts) -ge 20) {
             # agentmemory writes its data store relative to the CURRENT directory -
             # run the install from a stable home dir so memories survive restarts.
             $memHome = Join-Path $env:USERPROFILE '.agentmemory'
@@ -242,10 +324,10 @@ function Install-ClaudeEngine {
     }
 
     # ---------------------------------------------------------------
-    # Step 5 - OPTIONAL: Obsidian note app (for the second brain).
+    # Step 6 - OPTIONAL: Obsidian note app (for the second brain).
     # Same rule: automatic, never blocks, friendly skip on failure.
     # ---------------------------------------------------------------
-    Write-Step "Step 5/5: Obsidian note app (optional extra)... / Ung dung ghi chu Obsidian (tuy chon)..."
+    Write-Step "Step 6/6: Obsidian note app (optional extra)... / Ung dung ghi chu Obsidian (tuy chon)..."
 
     $prevEAP = $ErrorActionPreference
     $ErrorActionPreference = 'Continue'
@@ -300,6 +382,9 @@ function Install-ClaudeEngine {
     Write-Host "  3. Type:  /onboard"
     Write-Host "     to create your own personal AI assistant."
     Write-Host "     de tao tro ly AI ca nhan cua rieng ban."
+    Write-Host ""
+    Write-Host "  Then try: drop a PDF on it, or say 'make me an Excel file' - it can." -ForegroundColor Green
+    Write-Host "  Sau do thu: gui file PDF cho no, hoac noi 'lam cho toi file Excel' - no lam duoc." -ForegroundColor Green
     Write-Host ""
     Write-Host "  Tip: if `claude` is not recognized in a new window, log out"
     Write-Host "  and back in to Windows once so PATH refreshes."

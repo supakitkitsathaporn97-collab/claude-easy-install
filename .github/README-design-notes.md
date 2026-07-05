@@ -44,3 +44,28 @@ and how SoulDrop applies them.
   icons — keeps the markdown source clean and diffable.
 - Translated prose untouched; only presentation (hero, badges, media,
   section icons, footer) changed. Version stays 0.4.0.
+
+## Taste locks (v0.6.0 — from the taste-skill pass, apply to ALL new assets)
+
+1. **Accent semantics, locked.** Amber `#E8B04B` = brand / Pro / paid.
+   Teal `#2FD6C3` = Free / $0 / local. Never introduce a third accent.
+   Audit result (2026-07): badge row uses teal for `license-MIT` and
+   `PRs-welcome` (both "free/open" — acceptable) and the guide cards use a
+   teal pointer-ring as the interaction highlight (established, grandfathered).
+   All six `assets/gallery/` cards follow the lock strictly: amber accents on
+   Pro-powered cards, teal only on `free-local.svg`.
+2. **Shape-consistency lock.** Corner radii: outer tile `rx=16`, inner
+   cards/bubbles/mockups `rx=10`, chips/keys `rx=4`. The mac guide cards
+   (v0.5.1) contain minor variances (`rx=5/12/15`) — shipped, don't churn;
+   every NEW asset uses the locked trio.
+3. **One dominant install CTA.** The Windows `.bat` block stays the single
+   "easiest way" at the top of every README; the one-paste command and the
+   Desktop-app path stay visually secondary (sub-section further down).
+   Never add another same-intent install block to the hero area.
+4. **Gallery honesty rule.** Conversation cards are simplified illustrations,
+   never fake screenshots: every card carries the small
+   "minh họa · illustration" footer, and the README section says so in prose.
+5. **Onboard interview.** One question at a time — free-text questions are
+   asked individually in conversation; option questions go through
+   AskUserQuestion (which presents them one-by-one in its own UI). Verified
+   compliant in v0.6.0.

@@ -195,6 +195,17 @@ Then tell them, briefly:
 - Useful things to say: "remember this" (save a fact), "what did I tell you
   about…" (recall), `/daily-note` (journal today), and "my goals changed"
   (rebuilds their toolkit via `/forge-skills`).
+- **Three concrete things to try right now** (the capability reveal — pick the
+  phrasing that fits `LANG`; VN shape: "Gửi file PDF/hợp đồng cho mình — mình
+  đọc được luôn", "Nói 'làm cho tôi file Excel/Word' — mình làm file thật",
+  "Bảo mình tìm gì đó trên mạng"):
+  1. Drop any PDF (a contract, an invoice) on it — it reads PDFs natively.
+  2. Ask for a real Word / Excel / PowerPoint / PDF file — the documents pack
+     makes real files (if the installer's optional step succeeded; if you're
+     unsure, just present it as "ask me for a document" — it degrades to text
+     gracefully).
+  3. If browsing was set up (Chrome + chrome-devtools), mention it can browse
+     the web with them — only when they ask. Skip this line if it wasn't.
 
 Never mention CLAUDE.md, YAML, frontmatter, file paths (beyond the friendly
 `second-brain` folder name), or any other machinery.

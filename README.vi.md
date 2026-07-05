@@ -16,7 +16,7 @@
 <br>
 
 [![CI](https://img.shields.io/github/actions/workflow/status/kkitkai/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/kkitkai/souldrop/actions/workflows/validate.yml)
-[![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.6.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
@@ -69,10 +69,33 @@ curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh
 **Động cơ Pro (Claude):**
 1. Gõ `claude` rồi nhấn Enter, đăng nhập khi trình duyệt mở ra (cần tài khoản trả phí).
 2. Gõ `/onboard`, chọn ngôn ngữ, và gặp trợ lý mới — nó còn tự rèn 3–5 kỹ năng riêng cho nghề của bạn trước khi chào bạn.
+3. Rồi thử ngay: **gửi file PDF/hợp đồng cho trợ lý — nó đọc được luôn**, hoặc nói *"làm cho tôi file Excel"* — trình cài đặt đã thêm gói tài liệu giúp nó làm ra file Word/Excel/PowerPoint/PDF thật (và nếu máy có Chrome, nó còn lướt web cùng bạn được).
 
 **Động cơ Miễn phí (tại máy):**
 1. Nhấn đúp **SoulDrop** ngoài màn hình (Windows) hoặc gõ `souldrop` trong terminal mới.
 2. Trả lời sáu câu hỏi thân thiện (tên bạn, công việc, mục tiêu, tên trợ lý...) — xong. Mọi thứ chạy trên máy bạn; không có gì rời khỏi máy.
+
+## ✨ Nó làm được gì?
+
+Những việc thường ngày, chỉ cần nói chuyện bình thường. Các thẻ dưới đây là minh họa rút gọn của hội thoại thật — không phải ảnh chụp màn hình:
+
+<table>
+<tr>
+<td><img src="assets/gallery/read-pdf.svg" alt="Gửi file PDF hay hợp đồng cho trợ lý — nó đọc được luôn" width="390"></td>
+<td><img src="assets/gallery/make-excel.svg" alt="Nói một câu — nhận file Excel thật có sẵn công thức" width="390"></td>
+</tr>
+<tr>
+<td><img src="assets/gallery/remember.svg" alt="Nói 'nhớ nhé' — nó nhớ mãi, tuần sau vẫn nhắc lại" width="390"></td>
+<td><img src="assets/gallery/custom-skill.svg" alt="Nó tự tạo kỹ năng riêng cho nghề của bạn — ví dụ: làm báo giá cho thợ ảnh" width="390"></td>
+</tr>
+<tr>
+<td><img src="assets/gallery/daily-note.svg" alt="Một câu mỗi ngày thành sổ tay cả năm trong bộ não thứ hai" width="390"></td>
+<td><img src="assets/gallery/free-local.svg" alt="Bản miễn phí chạy 100% trên máy bạn — không tài khoản, không tốn phí" width="390"></td>
+</tr>
+</table>
+
+<!-- TODO(Nick): replace these illustration cards with real captured session
+     screenshots/recordings (Vietnamese) once the demo sessions are recorded. -->
 
 ## 🧭 Hướng dẫn từng bước cho người mới hoàn toàn
 
@@ -174,9 +197,9 @@ SoulDrop tách **bộ não** (trợ lý của bạn là ai — các file markdow
 
 | Động cơ | Chi phí | Bạn nhận được gì |
 |---|---|---|
-| **Pro — [Claude Code](https://code.claude.com)** | Tài khoản Claude trả phí (Pro/Max) | Bậc thông minh nhất: đủ bộ kỹ năng, **tự rèn kỹ năng riêng** cho nghề của bạn, subagent |
+| **Pro — [Claude Code](https://code.claude.com)** | Tài khoản Claude trả phí (Pro/Max) | Bậc thông minh nhất: đủ bộ kỹ năng, **tự rèn kỹ năng riêng** cho nghề của bạn, làm file Word/Excel/PowerPoint/PDF thật, lướt web qua Chrome của bạn, subagent |
 | **Miễn phí — [Ollama](https://ollama.com) (chạy tại máy)** | **0đ, không cần tài khoản** | Trợ lý thật sự chạy 100% trên máy của bạn: tính cách, bộ nhớ, "nhớ ...", bộ não thứ hai. Riêng tư mặc định |
-| Codex · Antigravity · OpenClaw | — | 🔜 sẽ có ở v0.6 |
+| Codex · Antigravity · OpenClaw | — | 🔜 trong kế hoạch |
 
 Bạn không phải chọn gì mang tính kỹ thuật — trình cài đặt **tự phát hiện Claude Code**, nếu chưa có thì chỉ hỏi đúng một câu: *Miễn phí hay Pro?*
 
@@ -196,7 +219,8 @@ Bộ não là **markdown thuần — động cơ nào cũng thay được**: fil
 | Kỹ năng | Công dụng |
 |---|---|
 | `/onboard` | Cuộc phỏng vấn tạo trợ lý cá nhân hóa + bộ nhớ + kỹ năng riêng + bộ não thứ hai — bằng tiếng Anh, Việt, Thái, Hàn, Trung, hoặc ngôn ngữ của riêng bạn |
-| `forge-skills` | **Tự động tạo 3–5 kỹ năng riêng cho nghề nghiệp và mục tiêu của bạn** — chạy tự động cuối `/onboard`; chạy lại bất cứ lúc nào bằng `/forge-skills` |
+| `forge-skills` | **Tự động tạo 3–5 kỹ năng riêng cho nghề nghiệp và mục tiêu của bạn** — chạy tự động cuối `/onboard`; chạy lại bất cứ lúc nào bằng `/forge-skills`. Với nghề thiết kế/nội dung, nó còn thêm 1–2 kỹ năng "gu thẩm mỹ" chuyên nghiệp từ bộ mã nguồn mở [taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT) |
+| `/doctor` | **Kiểm tra sức khỏe** — soát động cơ, plugin, hồ sơ, bộ nhớ, bộ não thứ hai và các phần mở rộng, lặng lẽ tự sửa được gì thì sửa, rồi in một báo cáo thân thiện. Nói "trợ lý bị lỗi" là nó chạy |
 | `create-skill` | Dạy trợ lý một khả năng mới bằng cách mô tả nó — trợ lý tự viết và cài kỹ năng (cùng tiêu chuẩn chất lượng với forge) |
 | `remember` | Lưu thông tin/sở thích vào bộ nhớ dài hạn của trợ lý |
 | `recall` | Tìm lại những gì bạn từng nói với nó |
@@ -208,6 +232,8 @@ Bộ não là **markdown thuần — động cơ nào cũng thay được**: fil
 | `/setup-vault` | Tạo (lại) kho ghi chú "bộ não thứ hai" tại `~/second-brain` — sẵn sàng cho Obsidian |
 | `obsidian-markdown` · `obsidian-cli` | Viết và sắp xếp ghi chú đúng chuẩn (wikilink, tag, thao tác file an toàn) |
 
+Trình cài đặt còn thêm **gói công cụ hằng ngày** — tất cả đều tùy chọn, cài không được thì lặng lẽ bỏ qua: **gói tài liệu** chính thức của Anthropic (trợ lý làm ra file Word/Excel/PowerPoint/PDF thật), **sức mạnh lướt web** qua [chrome-devtools](https://github.com/ChromeDevTools/chrome-devtools-mcp) (chỉ khi máy đã có Chrome — không cần tài khoản, không cần key), kỹ năng đồ họa sáng tạo, và bộ nhớ thông minh. Riêng việc **đọc** PDF thì không cần cài gì cả — có sẵn: cứ gửi file PDF cho trợ lý.
+
 ## 🆓 Bản Miễn phí cho bạn những gì
 
 Trình chat `souldrop` (shortcut ngoài màn hình / lệnh terminal): nạp "linh hồn" của trợ lý, trả lời trực tiếp từ model chạy tại máy được chọn vừa sức máy bạn (RAM 16 GB+ → model 8B, 8–16 GB → 3B, dưới 8 GB → 1B kèm ghi chú thẳng thắn "chỉ ở mức cơ bản"), lưu thông tin khi bạn nói *"nhớ ..."*, và ghi cùng một bộ não thứ hai như bản Pro. Bậc này không có forge kỹ năng — model nhỏ chưa đủ tin cậy để tự viết kỹ năng, nên nội dung các kỹ năng cốt lõi của SoulDrop được gói thẳng vào tính cách trợ lý. Muốn nâng lên Pro lúc nào cũng được: chạy lại trình cài đặt; bộ não đi theo bạn.
@@ -215,6 +241,16 @@ Trình chat `souldrop` (shortcut ngoài màn hình / lệnh terminal): nạp "li
 ## 📔 Bộ não thứ hai của bạn
 
 Quá trình khởi tạo tạo kho ghi chú tại `~/second-brain` — các file markdown thuần mà trợ lý đọc và ghi (nhật ký, dự án, người quen, ý tưởng). Mở thư mục này trong ứng dụng miễn phí [Obsidian](https://obsidian.md) ("Open folder as vault") để xem trực quan — bản Pro còn tự cài Obsidian giúp bạn, không được thì mọi thứ vẫn hoạt động dạng file thuần. Bản Pro cũng thử nâng cấp "bộ nhớ thông minh" tùy chọn (plugin mã nguồn mở [agentmemory](https://github.com/rohitg00/agentmemory)); nếu không cài được, trợ lý vẫn ghi nhớ đầy đủ bằng file.
+
+## 🧹 Gỡ cài đặt
+
+Một dòng lệnh gỡ plugin SoulDrop (chạy được trong PowerShell lẫn Terminal):
+
+```
+claude plugin uninstall souldrop ; claude plugin marketplace remove souldrop
+```
+
+**Những gì được giữ lại — cố ý:** bộ não của bạn. `~/.claude/CLAUDE.md` (hồ sơ), `~/.claude/memory/` (ký ức) và `~/second-brain` (ghi chú) là file thuần thuộc về bạn — SoulDrop không bao giờ tự xóa chúng. Muốn xóa sạch thì bạn tự xóa các thư mục đó. Bản Miễn phí: xóa thư mục `souldrop` trong thư mục người dùng và shortcut ngoài màn hình; không dùng Ollama nữa thì gỡ như ứng dụng bình thường.
 
 ## ❓ Câu hỏi thường gặp
 

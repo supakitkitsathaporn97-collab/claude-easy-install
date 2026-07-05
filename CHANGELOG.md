@@ -3,6 +3,69 @@
 All notable changes to this project are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/) · Versioning: [SemVer](https://semver.org/).
 
+## [0.6.0] — 2026-07-06
+
+The **"Superior"** release: capability breadth + trust. The assistant stops
+being "chat that remembers" and starts producing real files, browsing, and
+diagnosing itself — every new piece optional, silent-skip, zero questions.
+
+### Added
+- **Everyday-tools pack** in both installers (new Pro Step 4/6, fully
+  non-blocking):
+  - **Documents pack** — Anthropic's official document skills
+    (`claude plugin marketplace add anthropics/skills` +
+    `claude plugin install document-skills@anthropic-agent-skills`): the
+    assistant now makes REAL Word/Excel/PowerPoint/PDF files. Installed from
+    Anthropic's own marketplace, never vendored (source-available license).
+    Creative extras (`example-skills`, Apache-2.0, incl. canvas-design)
+    installed the same way.
+  - **Browsing power** — `claude mcp add chrome-devtools --scope user --
+    npx chrome-devtools-mcp@latest` (Google's chrome-devtools MCP, no
+    account/key), gated on Chrome actually being installed (registry /
+    App Paths / standard paths on Windows; `/Applications` on macOS;
+    `google-chrome`/`chromium` on Linux) and Node 20+ (auto-installed via
+    winget/brew where safe). No Chrome → one friendly "install Chrome to
+    unlock it" line, never an error.
+  - Node.js bootstrap refactored into shared helpers
+    (`Ensure-NodeLts` / `ensure_node`) reused by browsing + smart memory.
+- **`/doctor`** — health check command + skill: verifies engine, plugin,
+  profile, memory bank, custom toolkit, second brain, documents pack,
+  browsing, and the Free-tier Ollama state; quietly auto-fixes what's safe
+  (re-install plugin, recreate missing scaffolding, re-register the MCP) and
+  prints one bilingual, jargon-free health card. Never touches brain files.
+- **Taste pass in the forge** — for design/web/content/slides professions,
+  `forge-skills` now also installs 1–2 matching pro taste skills
+  (`design-taste-frontend`, `high-end-visual-design`) from
+  [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT,
+  57k★) — fetched at forge time via shallow git clone, upstream LICENSE
+  copied alongside, attribution added to NOTICE. Non-design professions get
+  nothing extra (no bloat).
+- **Capability gallery** — `assets/gallery/` six self-made SVG conversation
+  cards (VN primary, brand style, honest "minh họa · illustration" footer —
+  explicitly not fake screenshots): read-a-PDF, make-an-Excel, remember,
+  forged quote-builder, daily-note, free-local. Embedded as a "What can it
+  do?" grid in all 5 READMEs. TODO kept to swap in real captured sessions.
+- **Uninstall section** in all 5 READMEs — one line
+  (`claude plugin uninstall souldrop ; claude plugin marketplace remove souldrop`)
+  plus the promise: brain files are never auto-deleted.
+- **PDF reading advertised** — the built-in capability is now told to the
+  user: `/onboard`'s final hello lists 3 concrete things to try, both
+  installers print a "drop a PDF on it" closing line, and the READMEs say it.
+- **Taste locks** recorded in `.github/README-design-notes.md`: amber = Pro,
+  teal = Free semantics; rx 16/10/4 radius trio; one dominant install CTA;
+  gallery honesty rule.
+
+### Changed
+- Pro installer steps renumbered 5 → 6; NOTICE now covers the Anthropic
+  marketplace installs, chrome-devtools-mcp, agentmemory, and taste-skill.
+- Engines table: Pro row now lists real Office/PDF files + browsing;
+  "coming in v0.6" for other engines corrected to "planned".
+
+### Pending (release ritual — Nick)
+- Push to GitHub, cut the **v0.6.0 release** with `SoulDrop-Installer.bat`
+  attached as a release asset, and record the demo videos for the reserved
+  README slots. Sandbox-test both installers end-to-end.
+
 ## [0.5.1] — 2026-07-05
 
 The Windows walkthrough gets siblings: **macOS and Linux hand-holding at the

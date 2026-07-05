@@ -15,7 +15,8 @@
 #    2. PRO  = installs Claude Code via Anthropic's OFFICIAL installer
 #       (we call https://claude.ai/install.sh — never re-host it), adds this
 #       repo as a plugin marketplace, installs the "souldrop" plugin
-#       (/onboard interview + core skills), plus optional non-blocking extras.
+#       (/onboard interview + core skills), plus optional non-blocking extras
+#       (documents pack, browsing, smart memory, Obsidian).
 #    3. FREE = installs Ollama via its official channel (Homebrew / official
 #       install.sh), picks an AI model sized to your RAM, downloads it, and
 #       installs the `souldrop` chat launcher.
@@ -61,7 +62,7 @@ install_claude_engine() {
   # ---------------------------------------------------------------
   # Step 1 — Claude Code itself (official Anthropic installer)
   # ---------------------------------------------------------------
-  step "Step 1/5: Checking Claude Code... / Kiem tra Claude Code..."
+  step "Step 1/6: Checking Claude Code... / Kiem tra Claude Code..."
 
   if claude_installed; then
     ok "Claude Code is already installed. / Claude Code da duoc cai dat."
@@ -99,7 +100,7 @@ install_claude_engine() {
   # ---------------------------------------------------------------
   # Step 2 — Add the plugin marketplace (idempotent)
   # ---------------------------------------------------------------
-  step "Step 2/5: Adding the SoulDrop marketplace... / Them kho plugin SoulDrop..."
+  step "Step 2/6: Adding the SoulDrop marketplace... / Them kho plugin SoulDrop..."
 
   # `marketplace add` clones this repo with git — beginners should never have
   # to install git themselves. Auto-install where we safely can; never block.
@@ -141,7 +142,7 @@ install_claude_engine() {
   # ---------------------------------------------------------------
   # Step 3 — Install the SoulDrop plugin (idempotent)
   # ---------------------------------------------------------------
-  step "Step 3/5: Installing the SoulDrop plugin... / Cai plugin SoulDrop..."
+  step "Step 3/6: Installing the SoulDrop plugin... / Cai plugin SoulDrop..."
 
   if claude plugin install "$PLUGIN_NAME@$MARKETPLACE_NAME" >/dev/null 2>&1; then
     ok "Plugin '$PLUGIN_NAME' installed. / Da cai plugin '$PLUGIN_NAME'."
@@ -154,27 +155,96 @@ install_claude_engine() {
   fi
 
   # ---------------------------------------------------------------
-  # Step 4 — OPTIONAL: smart memory (agentmemory). Fully automatic,
-  # fully non-blocking: any failure = one friendly line, keep going.
+  # Step 4 — OPTIONAL: everyday superpowers (documents + browsing).
+  # Fully automatic, fully non-blocking: any failure = one friendly
+  # line, keep going. The user never installs anything themselves.
   # ---------------------------------------------------------------
-  step "Step 4/5: Smart memory (optional extra)... / Bo nho thong minh (tuy chon)..."
+  step "Step 4/6: Everyday superpowers (documents + browsing)... / Sieu nang luc hang ngay (tai lieu + luot web)..."
 
   node_major() {
     command -v node >/dev/null 2>&1 || { echo 0; return; }
     node -v 2>/dev/null | sed 's/^v//' | cut -d. -f1 | grep -E '^[0-9]+$' || echo 0
   }
 
-  MEM_OK=0
-  NODE_MAJOR="$(node_major)"
-  # agentmemory (Apache-2.0, github.com/rohitg00/agentmemory) needs Node 20+.
-  if [ "$NODE_MAJOR" -lt 20 ] 2>/dev/null; then
-    if [ "$(uname -s)" = "Darwin" ] && command -v brew >/dev/null 2>&1; then
-      note "Adding Node.js (needed for smart memory)... / Dang cai Node.js..."
-      brew install node >/dev/null 2>&1 || true
-      NODE_MAJOR="$(node_major)"
+  # Node 20+ powers two optional extras (browsing + smart memory).
+  # macOS: install via brew when missing. Linux: never auto-sudo — skip.
+  ensure_node() {
+    NODE_MAJOR="$(node_major)"
+    if [ "$NODE_MAJOR" -lt 20 ] 2>/dev/null; then
+      if [ "$(uname -s)" = "Darwin" ] && command -v brew >/dev/null 2>&1; then
+        note "Adding Node.js (a helper tool)... / Dang cai Node.js (cong cu ho tro)..."
+        brew install node >/dev/null 2>&1 || true
+        NODE_MAJOR="$(node_major)"
+      fi
     fi
-    # On Linux we don't sudo-install anything automatically — skip instead.
+  }
+
+  # 4a. Anthropic document skills — real Word/Excel/PowerPoint/PDF files.
+  # Installed from Anthropic's OWN marketplace, never vendored (their
+  # document skills are source-available; install-only is the legal path).
+  DOCS_OK=0
+  claude plugin marketplace add anthropics/skills >/dev/null 2>&1 \
+    || claude plugin marketplace update anthropic-agent-skills >/dev/null 2>&1 || true
+  if claude plugin install document-skills@anthropic-agent-skills >/dev/null 2>&1 \
+     || claude plugin update document-skills >/dev/null 2>&1; then
+    DOCS_OK=1
   fi
+  # Creative extras (posters/graphics, incl. canvas-design; Apache-2.0).
+  claude plugin install example-skills@anthropic-agent-skills >/dev/null 2>&1 \
+    || claude plugin update example-skills >/dev/null 2>&1 || true
+  if [ "$DOCS_OK" -eq 1 ]; then
+    ok "Documents pack ready - your assistant can make real Word/Excel/PowerPoint/PDF files."
+    ok "Goi tai lieu san sang - tro ly lam duoc file Word/Excel/PowerPoint/PDF that."
+  else
+    note "Documents pack skipped - your assistant still reads PDFs and writes text just fine."
+    note "Bo qua goi tai lieu - tro ly van doc PDF va viet van ban binh thuong."
+  fi
+
+  # 4b. Browsing power (chrome-devtools MCP, by Google — no account, no
+  # key). It drives the user's REAL Chrome — it never downloads one — so
+  # only offer it when Chrome is already installed. Needs Node 20+ (npx).
+  chrome_installed() {
+    if [ "$(uname -s)" = "Darwin" ]; then
+      [ -d "/Applications/Google Chrome.app" ]
+    else
+      command -v google-chrome >/dev/null 2>&1 \
+        || command -v google-chrome-stable >/dev/null 2>&1 \
+        || command -v chromium >/dev/null 2>&1 \
+        || command -v chromium-browser >/dev/null 2>&1
+    fi
+  }
+  CHROME_OK=0
+  if chrome_installed; then
+    if claude mcp get chrome-devtools >/dev/null 2>&1; then
+      CHROME_OK=1   # already registered on a previous run
+    else
+      ensure_node
+      if [ "$NODE_MAJOR" -ge 20 ] 2>/dev/null; then
+        if claude mcp add chrome-devtools --scope user -- npx chrome-devtools-mcp@latest >/dev/null 2>&1; then
+          CHROME_OK=1
+        fi
+      fi
+    fi
+    if [ "$CHROME_OK" -eq 1 ]; then
+      ok "Browsing ready - your assistant can use Chrome with you (only when you ask)."
+      ok "Luot web san sang - tro ly dung duoc Chrome cung ban (chi khi ban yeu cau)."
+    else
+      note "Browsing power skipped - everything else still works. / Bo qua luot web - moi thu khac van chay."
+    fi
+  else
+    note "Chrome not found - skipped browsing power. Install Chrome anytime to unlock it."
+    note "Khong thay Chrome - bo qua luot web. Cai Chrome bat cu luc nao de mo khoa."
+  fi
+
+  # ---------------------------------------------------------------
+  # Step 5 — OPTIONAL: smart memory (agentmemory). Fully automatic,
+  # fully non-blocking: any failure = one friendly line, keep going.
+  # ---------------------------------------------------------------
+  step "Step 5/6: Smart memory (optional extra)... / Bo nho thong minh (tuy chon)..."
+
+  MEM_OK=0
+  # agentmemory (Apache-2.0, github.com/rohitg00/agentmemory) needs Node 20+.
+  ensure_node
   if [ "$NODE_MAJOR" -ge 20 ] 2>/dev/null; then
     # agentmemory writes its data store relative to the CURRENT directory —
     # run the install from a stable home dir so memories survive restarts.
@@ -196,10 +266,10 @@ install_claude_engine() {
   fi
 
   # ---------------------------------------------------------------
-  # Step 5 — OPTIONAL: Obsidian note app (for the second brain).
+  # Step 6 — OPTIONAL: Obsidian note app (for the second brain).
   # Same rule: automatic, never blocks, friendly skip on failure.
   # ---------------------------------------------------------------
-  step "Step 5/5: Obsidian note app (optional extra)... / Ung dung Obsidian (tuy chon)..."
+  step "Step 6/6: Obsidian note app (optional extra)... / Ung dung Obsidian (tuy chon)..."
 
   OBS_OK=0
   if [ "$(uname -s)" = "Darwin" ]; then
@@ -243,6 +313,8 @@ install_claude_engine() {
   printf '  3. Type:  /onboard\n'
   printf '     to create your own personal AI assistant.\n'
   printf '     de tao tro ly AI ca nhan cua rieng ban.\n\n'
+  printf '\033[32m  Then try: drop a PDF on it, or say "make me an Excel file" - it can.\n'
+  printf '  Sau do thu: gui file PDF cho no, hoac noi "lam cho toi file Excel" - no lam duoc.\033[0m\n\n'
 }
 
 # =====================================================================

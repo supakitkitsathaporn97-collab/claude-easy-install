@@ -16,7 +16,7 @@
 <br>
 
 [![CI](https://img.shields.io/github/actions/workflow/status/kkitkai/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/kkitkai/souldrop/actions/workflows/validate.yml)
-[![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.6.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
@@ -69,10 +69,33 @@ curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh
 **Pro 엔진 (Claude):**
 1. `claude`를 입력하고 Enter, 브라우저가 열리면 로그인하세요 (유료 요금제 필요).
 2. `/onboard`를 입력하고 언어를 선택하면 새 어시스턴트를 만납니다 — 인사하기 전에 직업에 맞는 커스텀 스킬 3–5개까지 만들어 둡니다.
+3. 바로 시험해 보세요: **PDF나 계약서를 던져 주면 — 그대로 읽습니다.** 또는 *"엑셀 파일 만들어 줘"*라고 말해 보세요 — 설치 프로그램이 진짜 Word/Excel/PowerPoint/PDF 파일을 만드는 문서 팩을 추가했습니다 (Chrome이 있다면 함께 웹 서핑도 합니다).
 
 **무료 엔진 (로컬):**
 1. 바탕화면의 **SoulDrop**을 더블클릭(Windows)하거나 새 터미널에서 `souldrop`을 입력하세요.
 2. 친근한 질문 6개(이름, 하는 일, 목표, 어시스턴트 이름...)에 답하면 끝. 모든 것이 당신 컴퓨터에서 실행되고, 아무것도 밖으로 나가지 않습니다.
+
+## ✨ 무엇을 할 수 있나요?
+
+일상적인 일들을 평범한 대화로 시킵니다. 아래 카드는 실제 대화를 단순화한 일러스트(베트남어)이며 — 스크린샷이 아닙니다:
+
+<table>
+<tr>
+<td><img src="assets/gallery/read-pdf.svg" alt="PDF나 계약서를 던져 주면 — 그대로 읽습니다" width="390"></td>
+<td><img src="assets/gallery/make-excel.svg" alt="한 마디면 — 수식이 들어간 진짜 엑셀 파일" width="390"></td>
+</tr>
+<tr>
+<td><img src="assets/gallery/remember.svg" alt="'기억해'라고 말하면 — 일주일 뒤에도 기억합니다" width="390"></td>
+<td><img src="assets/gallery/custom-skill.svg" alt="직업에 맞는 커스텀 스킬을 스스로 만듭니다 — 예: 사진작가의 견적서 작성" width="390"></td>
+</tr>
+<tr>
+<td><img src="assets/gallery/daily-note.svg" alt="하루 한 줄이 두 번째 뇌 안의 연간 일기가 됩니다" width="390"></td>
+<td><img src="assets/gallery/free-local.svg" alt="무료 티어는 100% 내 컴퓨터에서 — 계정도 비용도 없음" width="390"></td>
+</tr>
+</table>
+
+<!-- TODO(Nick): replace these illustration cards with real captured session
+     screenshots/recordings once the demo sessions are recorded. -->
 
 ## 🧭 왕초보를 위한 단계별 가이드
 
@@ -170,9 +193,9 @@ SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 
 
 | 엔진 | 비용 | 제공 내용 |
 |---|---|---|
-| **Pro — [Claude Code](https://code.claude.com)** | 유료 Claude 요금제 (Pro/Max) | 가장 똑똑한 티어: 전체 스킬, **자동 스킬 단조**(직업에 맞는 커스텀 능력 자동 생성), 서브에이전트 |
+| **Pro — [Claude Code](https://code.claude.com)** | 유료 Claude 요금제 (Pro/Max) | 가장 똑똑한 티어: 전체 스킬, **자동 스킬 단조**(직업에 맞는 커스텀 능력 자동 생성), 진짜 Word/Excel/PowerPoint/PDF 파일 생성, 내 Chrome으로 웹 서핑, 서브에이전트 |
 | **무료 — [Ollama](https://ollama.com) (로컬)** | **0원, 계정 불필요** | 당신 컴퓨터에서 100% 실행되는 진짜 어시스턴트: 페르소나, 기억, "기억해...", 두 번째 뇌. 기본적으로 프라이빗 |
-| Codex · Antigravity · OpenClaw | — | 🔜 v0.6 예정 |
+| Codex · Antigravity · OpenClaw | — | 🔜 계획 중 |
 
 기술적인 선택은 필요 없습니다 — 설치 프로그램이 **Claude Code를 자동 감지**하고, 없으면 딱 한 가지만 묻습니다: *무료 또는 Pro?*
 
@@ -192,7 +215,8 @@ SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 
 | 스킬 | 기능 |
 |---|---|
 | `/onboard` | 개인화된 어시스턴트 + 기억 + 커스텀 스킬 + 두 번째 뇌를 만드는 인터뷰 — 영어, 베트남어, 태국어, 한국어, 중국어 또는 원하는 언어로 |
-| `forge-skills` | **직업과 목표에 맞는 커스텀 스킬 3–5개를 자동 생성** — `/onboard` 끝에 자동 실행, 언제든 재실행 가능 |
+| `forge-skills` | **직업과 목표에 맞는 커스텀 스킬 3–5개를 자동 생성** — `/onboard` 끝에 자동 실행, 언제든 재실행 가능. 디자인/콘텐츠 직업이라면 오픈소스 [taste-skill](https://github.com/Leonxlnx/taste-skill) 컬렉션(MIT)에서 프로 "감각" 스킬 1–2개도 추가합니다 |
+| `/doctor` | **건강 검진** — 엔진, 플러그인, 프로필, 기억, 두 번째 뇌, 부가 기능을 점검하고, 고칠 수 있는 것은 조용히 고친 뒤 친근한 보고서 하나를 출력합니다. "뭔가 이상해"라고 말해도 실행됩니다 |
 | `create-skill` | 설명만 하면 어시스턴트가 새 능력을 직접 작성·설치 (단조와 같은 품질 기준) |
 | `remember` | 사실/선호를 장기 기억에 저장 |
 | `recall` | 이전에 말한 내용 검색 |
@@ -204,6 +228,8 @@ SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 
 | `/setup-vault` | `~/second-brain`에 두 번째 뇌 노트 볼트 (재)생성 — Obsidian 지원 |
 | `obsidian-markdown` · `obsidian-cli` | 볼트 노트를 올바르게 작성·정리 (위키링크, 태그, 안전한 파일 작업) |
 
+설치 프로그램은 **일상 도구 팩**도 추가합니다 — 전부 선택 사항이고, 설치가 안 되면 조용히 건너뜁니다: Anthropic 공식 **문서 팩**(어시스턴트가 진짜 Word/Excel/PowerPoint/PDF 파일을 생성), [chrome-devtools](https://github.com/ChromeDevTools/chrome-devtools-mcp)를 통한 **웹 서핑 능력**(Chrome이 이미 설치된 경우에만 — 계정도 키도 불필요), 창의적 그래픽 스킬, 스마트 메모리. 그리고 PDF **읽기**는 아무 설치도 필요 없습니다 — 기본 내장이니 그냥 PDF를 던져 주세요.
+
 ## 🆓 무료 엔진이 주는 것
 
 `souldrop` 채팅 런처(바탕화면 바로가기 / 터미널 명령): 어시스턴트의 영혼을 로드하고, 컴퓨터에 맞게 선택된 로컬 모델에서 스트리밍으로 응답하며(RAM 16 GB+ → 8B 모델, 8–16 GB → 3B, 8 GB 미만 → 1B + "기본 수준"이라는 솔직한 안내), *"기억해..."*라고 말하면 사실을 저장하고, Pro 티어와 같은 두 번째 뇌를 씁니다. 이 티어에는 스킬 단조가 없습니다 — 작은 로컬 모델은 스킬 작성을 신뢰하기 어려워, SoulDrop 핵심 스킬의 내용을 페르소나에 직접 접어 넣었습니다. 언제든 설치 프로그램을 다시 실행해 Pro로 업그레이드하세요. 뇌는 함께 갑니다.
@@ -211,6 +237,16 @@ SoulDrop은 **뇌**(어시스턴트가 누구인지 — 당신 소유의 일반 
 ## 📔 당신의 두 번째 뇌
 
 온보딩은 `~/second-brain`에 노트 볼트를 만듭니다 — 어시스턴트가 읽고 쓰는 일반 마크다운 파일(일일 노트, 프로젝트, 사람, 아이디어). 무료 [Obsidian](https://obsidian.md) 앱에서 이 폴더를 열면("Open folder as vault") 시각적으로 볼 수 있습니다 — Pro 설치 프로그램은 Obsidian 설치까지 시도하며, 안 되더라도 모든 것이 일반 파일로 작동합니다. Pro 설치 프로그램은 선택적 "스마트 메모리" 업그레이드(오픈소스 [agentmemory](https://github.com/rohitg00/agentmemory) 플러그인)도 시도합니다. 실패해도 어시스턴트는 파일로 모든 것을 기억합니다.
+
+## 🧹 제거
+
+한 줄이면 SoulDrop 플러그인이 제거됩니다 (PowerShell과 터미널 모두에서 작동):
+
+```
+claude plugin uninstall souldrop ; claude plugin marketplace remove souldrop
+```
+
+**남는 것 — 의도적으로:** 당신의 뇌입니다. `~/.claude/CLAUDE.md`(프로필), `~/.claude/memory/`(기억), `~/second-brain`(노트)은 당신 소유의 일반 파일입니다 — SoulDrop은 절대 자동으로 삭제하지 않습니다. 전부 지우고 싶다면 그 폴더들을 직접 삭제하세요. 무료 티어: 홈 폴더의 `souldrop` 폴더와 바탕화면 바로가기를 삭제하고, Ollama가 더 이상 필요 없다면 일반 앱처럼 제거하세요.
 
 ## ❓ FAQ
 

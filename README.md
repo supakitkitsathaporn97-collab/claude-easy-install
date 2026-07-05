@@ -16,7 +16,7 @@
 <br>
 
 [![CI](https://img.shields.io/github/actions/workflow/status/kkitkai/souldrop/validate.yml?branch=main&style=flat-square&label=CI&labelColor=20242C)](https://github.com/kkitkai/souldrop/actions/workflows/validate.yml)
-[![Version](https://img.shields.io/badge/version-0.5.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.6.0-E8B04B?style=flat-square&labelColor=20242C)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-2FD6C3?style=flat-square&labelColor=20242C)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20macOS%20%C2%B7%20Linux-4A5568?style=flat-square&labelColor=20242C)
 ![Languages](https://img.shields.io/badge/languages-EN%20%C2%B7%20VI%20%C2%B7%20TH%20%C2%B7%20KO%20%C2%B7%20ZH-E8B04B?style=flat-square&labelColor=20242C)
@@ -69,10 +69,33 @@ curl -fsSL https://raw.githubusercontent.com/kkitkai/souldrop/main/install/go.sh
 **Pro engine (Claude):**
 1. Type `claude` and press Enter, log in when the browser opens (paid plan required).
 2. Type `/onboard`, pick your language, and meet your new assistant — it even forges 3–5 custom skills for your profession before saying hello.
+3. Then try it: **drop any PDF or contract on it — it reads it natively**, or say *"make me an Excel file"* — the installer added a documents pack that produces real Word/Excel/PowerPoint/PDF files (and, if you have Chrome, it can browse the web with you).
 
 **Free engine (local):**
 1. Double-click **SoulDrop** on your Desktop (Windows) or type `souldrop` in a new terminal.
 2. Answer six friendly questions (your name, your work, your goal, its name...) — done. Everything runs on your machine; nothing leaves it.
+
+## ✨ What can it do?
+
+Everyday things, asked in plain chat. These cards are simplified illustrations of real conversations — not screenshots:
+
+<table>
+<tr>
+<td><img src="assets/gallery/read-pdf.svg" alt="Drop any PDF or contract on it — it reads it natively" width="390"></td>
+<td><img src="assets/gallery/make-excel.svg" alt="Ask in one line — get a real Excel file with formulas" width="390"></td>
+</tr>
+<tr>
+<td><img src="assets/gallery/remember.svg" alt="Say remember — it never forgets, and recalls a week later" width="390"></td>
+<td><img src="assets/gallery/custom-skill.svg" alt="It forges custom skills for your profession — here, a photographer's quote builder" width="390"></td>
+</tr>
+<tr>
+<td><img src="assets/gallery/daily-note.svg" alt="One line a day becomes a yearly journal in your second brain" width="390"></td>
+<td><img src="assets/gallery/free-local.svg" alt="The free tier runs 100% on your machine — no account, no cost" width="390"></td>
+</tr>
+</table>
+
+<!-- TODO(Nick): replace these illustration cards with real captured session
+     screenshots/recordings (Vietnamese) once the demo sessions are recorded. -->
 
 ## 🧭 Complete beginner walkthrough
 
@@ -174,9 +197,9 @@ SoulDrop separates the **brain** (who your assistant is — plain markdown files
 
 | Engine | Cost | What you get |
 |---|---|---|
-| **Pro — [Claude Code](https://code.claude.com)** | Paid Claude plan (Pro/Max) | The smartest tier: full skills, **auto skill-forge** (it builds custom abilities for your profession), subagents |
+| **Pro — [Claude Code](https://code.claude.com)** | Paid Claude plan (Pro/Max) | The smartest tier: full skills, **auto skill-forge** (it builds custom abilities for your profession), real Word/Excel/PowerPoint/PDF files, browsing via your Chrome, subagents |
 | **Free — [Ollama](https://ollama.com) (local)** | **$0, no account** | A real assistant running 100% on your own computer: persona, memory, "remember ...", second brain. Private by default |
-| Codex · Antigravity · OpenClaw | — | 🔜 coming in v0.6 |
+| Codex · Antigravity · OpenClaw | — | 🔜 planned |
 
 You don't have to choose anything technical — the installer **detects Claude Code automatically**, and otherwise asks exactly one human question: *Free or Pro?*
 
@@ -196,7 +219,8 @@ The brain is **plain markdown — engines are interchangeable**: a persona file 
 | Skill | What it does |
 |---|---|
 | `/onboard` | The interview that creates your personalized assistant + memory + custom skills + second brain — in English, Tiếng Việt, ไทย, 한국어, 中文, or your own language |
-| `forge-skills` | **Auto-builds 3–5 custom skills for your profession and goal** — runs automatically at the end of `/onboard`; re-run anytime with `/forge-skills` or "my goals changed" |
+| `forge-skills` | **Auto-builds 3–5 custom skills for your profession and goal** — runs automatically at the end of `/onboard`; re-run anytime with `/forge-skills` or "my goals changed". For design/content professions it also adds 1–2 pro "taste" skills from the open-source [taste-skill](https://github.com/Leonxlnx/taste-skill) collection (MIT) |
+| `/doctor` | **Health check** — verifies engine, plugin, profile, memory, second brain and extras, quietly fixes what it can, and prints one friendly report. Say "something broke" and it runs |
 | `create-skill` | Teach your assistant one new ability by describing it — it authors and installs the skill (same quality gate as the forge) |
 | `remember` | Saves facts/preferences to your assistant's long-term memory |
 | `recall` | Finds things you told it before |
@@ -208,6 +232,8 @@ The brain is **plain markdown — engines are interchangeable**: a persona file 
 | `/setup-vault` | (Re)creates the second-brain note vault at `~/second-brain` — Obsidian-ready |
 | `obsidian-markdown` · `obsidian-cli` | Write and organize vault notes properly (wikilinks, tags, safe file operations) |
 
+The installer also adds an **everyday-tools pack** — all optional, all skipped silently if they can't install: Anthropic's official **documents pack** (your assistant makes real Word/Excel/PowerPoint/PDF files), **browsing power** via [chrome-devtools](https://github.com/ChromeDevTools/chrome-devtools-mcp) (only if Chrome is already on your machine — no account, no key), creative graphics skills, and smart memory. And PDF **reading** needs nothing at all — it's built in: just drop a PDF on your assistant.
+
 ## 🆓 What the Free engine gives you
 
 The `souldrop` chat launcher (Desktop shortcut / terminal command): loads your assistant's soul, streams replies from a local model chosen to fit your computer (16 GB+ RAM → an 8B model, 8–16 GB → 3B, under 8 GB → 1B with an honest "it's basic" note), saves facts when you say *"remember ..."*, and writes the same second brain as the Pro tier. No skill-forge on this tier — small local models aren't reliable skill authors, so the core SoulDrop skills are folded into the persona instead. Upgrade to Pro anytime by re-running the installer; your brain comes with you.
@@ -215,6 +241,16 @@ The `souldrop` chat launcher (Desktop shortcut / terminal command): loads your a
 ## 📔 Your second brain
 
 Onboarding creates a note vault at `~/second-brain` — plain markdown files your assistant reads and writes (daily notes, projects, people, ideas). Open the folder in the free [Obsidian](https://obsidian.md) app ("Open folder as vault") to browse it visually — the Pro installer even tries to install Obsidian for you, and everything still works as plain files without it. The Pro installer also tries an optional "smart memory" upgrade (the open-source [agentmemory](https://github.com/rohitg00/agentmemory) plugin); if it can't, your assistant simply keeps remembering via files.
+
+## 🧹 Uninstall
+
+One line removes the SoulDrop plugin (works in PowerShell and Terminal):
+
+```
+claude plugin uninstall souldrop ; claude plugin marketplace remove souldrop
+```
+
+**What stays — on purpose:** your brain. `~/.claude/CLAUDE.md` (profile), `~/.claude/memory/` (memories), and `~/second-brain` (notes) are plain files that belong to you — SoulDrop never auto-deletes them. Delete those folders yourself if you want everything gone. Free tier: delete the `souldrop` folder in your home folder and the Desktop shortcut; remove Ollama like any normal app if you no longer want it.
 
 ## ❓ FAQ
 

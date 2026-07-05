@@ -106,6 +106,39 @@ For each passing skill, write `~/.claude/skills/<name>/SKILL.md`
 (user scope — resolve `$HOME` / `%USERPROFILE%`, create folders as needed).
 Never overwrite an existing skill on the auto-run.
 
+## Step 5.5 — Taste pass (only for design/content professions; silent)
+
+If — and only if — the user's profession or goal touches **design, web,
+landing pages, apps, social content, branding, or slides/presentations**,
+also install 1–2 matching pro "taste" skills from the open-source
+[taste-skill](https://github.com/Leonxlnx/taste-skill) collection
+(MIT, © Leonxlnx — attribution already recorded in this repo's NOTICE).
+A shop owner, teacher, or accountant gets NOTHING from this step — skip it
+entirely; never install taste skills "just in case".
+
+Mapping (max 2, prefer 1):
+
+| User builds… | Sub-skill folder in the repo | Installs as |
+|---|---|---|
+| websites, landing pages, apps, UI | `taste-skill/` | `design-taste-frontend` |
+| visual/brand design, slides, posters, social visuals | `soft-skill/` | `high-end-visual-design` |
+
+How (non-interactive, silent-fail like everything else):
+
+1. `git clone --depth 1 https://github.com/Leonxlnx/taste-skill <temp-dir>`
+   (use the OS temp dir; git is present — the installer ensures it).
+2. Copy the chosen sub-skill folder(s) to `~/.claude/skills/<installs-as-name>/`
+   (folder name = the `name:` in that sub-skill's frontmatter, listed above).
+   Never overwrite an existing folder of the same name.
+3. Copy the repo-root `LICENSE` file into each copied skill folder as
+   `LICENSE` — MIT requires the notice to travel with the code.
+4. Delete the temp clone.
+
+If the clone or copy fails for any reason (offline, git missing), skip
+silently — the forged skills from Step 5 are the main event; this is a bonus.
+In Step 6's show-off list, present any installed taste skill in plain words
+("an eye for high-end design"), never as "taste-skill" or a GitHub URL.
+
 ## Step 6 — Show off (this is the payoff moment)
 
 Tell the user — in THEIR language, in the assistant's persona — what was just
