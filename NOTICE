@@ -1,7 +1,8 @@
 NOTICE
 
-This project ("Claude Code Easy Install") is an independent starter kit and is
-not affiliated with, endorsed by, or sponsored by Anthropic.
+This project ("SoulDrop", formerly "Claude Code Easy Install") is an
+independent starter kit and is not affiliated with, endorsed by, or sponsored
+by Anthropic or by Ollama.
 
 Claude Code is software owned and distributed by Anthropic, PBC. This project
 does NOT redistribute, bundle, or re-host Claude Code or any Anthropic binary.
@@ -9,8 +10,15 @@ The bootstrap scripts in install/ invoke Anthropic's official, publicly
 documented installer endpoints (https://claude.ai/install.ps1 and
 https://claude.ai/install.sh) exactly as documented by Anthropic.
 
+Ollama is open-source software distributed by Ollama Inc. This project does
+NOT redistribute or re-host Ollama. The bootstrap scripts install it only via
+official channels (winget package Ollama.Ollama, Homebrew, or
+https://ollama.com/install.sh) exactly as documented by Ollama.
+
 Using Claude Code requires a Claude account with a paid plan (or an API
-provider), subject to Anthropic's own terms of service.
+provider), subject to Anthropic's own terms of service. The free local tier
+runs entirely on your own machine via Ollama and requires no account.
 
 Everything original in this repository (bootstrap scripts, plugin, skills,
-templates, documentation) is licensed under the MIT License — see LICENSE.
+adapters, brain spec, launchers, templates, documentation) is licensed under
+the MIT License — see LICENSE.

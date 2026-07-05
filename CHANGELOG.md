@@ -3,6 +3,58 @@
 All notable changes to this project are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/) · Versioning: [SemVer](https://semver.org/).
 
+## [0.4.0] — 2026-07-05
+
+The **SoulDrop** release: rebrand + multi-engine architecture + a free tier.
+"Drop a soul into any machine — your personal AI assistant, fully automatic."
+
+### Renamed
+- **Project renamed: `claude-easy-install` → `souldrop` (product name: SoulDrop).**
+  Marketplace name, plugin name (`nick-starter` → `souldrop`), plugin folder
+  (`plugins/nick-starter/` → `plugins/souldrop/`), install URLs, banners, and
+  all five READMEs. Old GitHub URLs redirect automatically. New install:
+  `claude plugin marketplace add supakitkitsathaporn97-collab/souldrop` +
+  `claude plugin install souldrop@souldrop`.
+
+### Added
+- **One brain, many engines.** New `brain/` spec: the portable assistant =
+  persona file + memory bank + second-brain vault, all plain markdown —
+  engines are interchangeable. New `adapters/` layer with a written adapter
+  contract (install engine → install brain → wire persona → report status)
+  so future engines (Codex, Antigravity, OpenClaw — v0.5) slot in without
+  restructuring. `adapters/claude-code/` documents the existing Pro flow.
+- **FREE TIER (Ollama, local).** For people with no subscription:
+  - Engine auto-detect in both bootstraps: Claude Code present → Pro path,
+    zero questions; otherwise ONE bilingual human question — Free (local,
+    no account) or Pro (smarter, needs a Claude plan).
+  - Free path, fully automatic: installs Ollama via official channels only
+    (winget `Ollama.Ollama` / Homebrew / ollama.com install.sh), detects
+    system RAM and picks a fitting model (≥16 GB → `llama3.1:8b`, 8–16 GB →
+    `llama3.2:3b`, <8 GB → `llama3.2:1b` with an honest "it's basic" note),
+    starts the server, pulls the model with visible progress.
+  - **`souldrop` chat launcher** (`adapters/ollama/souldrop.ps1` /
+    `souldrop.sh` — installed to the user's machine + Desktop shortcut /
+    PATH command): first run is the onboarding interview (six human
+    questions: language, name, work, goal, assistant name, personality) →
+    writes the universal brain (`~/souldrop-brain/persona.md` + `memory/` +
+    shared `~/second-brain/` vault); every run streams chat against the
+    local `/api/chat` with persona + recent memory as system prompt; saying
+    "remember ..." appends to the memory bank live. PowerShell 5.1-native /
+    bash+curl with python3-assisted streaming and a pure-shell fallback —
+    zero extra dependencies. `-Reset`/`--reset` re-onboards (old persona
+    backed up, never deleted).
+  - No skill-forge on this tier (small models can't author skills reliably);
+    the generic SoulDrop skills' content is folded into the persona instead.
+  - Every failure on the free path = one friendly bilingual line + pointer
+    to the Pro path with the referral link. Never a stuck beginner.
+- NOTICE now covers Ollama (installed via official channels, never re-hosted).
+
+### Changed
+- READMEs (all 5 languages) restructured around SoulDrop: bilingual tagline,
+  "Choose your engine" table (Pro / Free / coming-soon engines), per-engine
+  install + next steps, "One brain, many engines" section, free-tier FAQ.
+- Bumped plugin + marketplace manifests to 0.4.0.
+
 ## [0.3.0] — 2026-07-05
 
 The "everything automatic" release. Design rule enforced everywhere: the user

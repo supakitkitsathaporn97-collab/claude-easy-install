@@ -1,25 +1,25 @@
 {
-  "name": "claude-easy-install",
+  "name": "souldrop",
   "owner": {
     "name": "SK Production",
     "email": "hello@example.com"
   },
   "metadata": {
-    "description": "One-command Claude Code setup + a guided interview that builds your own personalized AI assistant — which then auto-forges custom skills for your work and sets up a second brain (English / Vietnamese primary; Thai, Korean, Chinese supported)",
-    "version": "0.3.0"
+    "description": "SoulDrop — drop a soul into any machine. One command installs your personal AI assistant, fully automatic: guided interview, persistent memory, auto-forged custom skills, second-brain vault. Pro engine (Claude Code) or Free engine (local Ollama). EN/VI primary; TH/KO/ZH supported.",
+    "version": "0.4.0"
   },
   "plugins": [
     {
-      "name": "nick-starter",
-      "description": "Starter kit: /onboard interview (EN/VI primary; TH/KO/ZH supported) that writes your personalized assistant (CLAUDE.md + memory), auto-forges custom skills for your profession and goal, and sets up an Obsidian-ready second-brain vault — plus core skills for memory, efficiency, leadership, and daily notes",
-      "version": "0.3.0",
+      "name": "souldrop",
+      "description": "SoulDrop starter for Claude Code: /onboard interview (EN/VI primary; TH/KO/ZH supported) that writes your personalized assistant (CLAUDE.md + memory), auto-forges custom skills for your profession and goal, and sets up an Obsidian-ready second-brain vault — plus core skills for memory, efficiency, leadership, and daily notes",
+      "version": "0.4.0",
       "author": {
         "name": "SK Production"
       },
-      "source": "./plugins/nick-starter",
+      "source": "./plugins/souldrop",
       "category": "productivity",
       "tags": ["starter", "onboarding", "assistant", "skill-forge", "second-brain", "vietnamese", "i18n", "beginner"],
-      "keywords": ["onboarding", "persona", "memory", "second-brain", "skill-forge", "obsidian", "vietnamese", "thai", "korean", "chinese", "starter-kit"]
+      "keywords": ["onboarding", "persona", "memory", "second-brain", "skill-forge", "obsidian", "vietnamese", "thai", "korean", "chinese", "starter-kit", "souldrop"]
     }
   ]
 }
