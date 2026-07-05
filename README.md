@@ -1,16 +1,16 @@
 # Claude Code Easy Install
 
-**One command → Claude Code installed → your own personal AI assistant, in Vietnamese or English.**
+**English** · [Tiếng Việt](README.vi.md) · [ไทย](README.th.md) · [한국어](README.ko.md) · [中文](README.zh.md)
 
-**Một lệnh duy nhất → cài xong Claude Code → có ngay trợ lý AI cá nhân của riêng bạn, bằng tiếng Việt hoặc tiếng Anh.**
+**One command → Claude Code installed → your own personal AI assistant, in your language.**
 
-> 📸 *Screenshots coming soon / Ảnh minh họa sẽ được bổ sung*
+> English and Tiếng Việt are the primary supported onboarding languages. Thai, Korean, and Chinese are fully supported in `/onboard` and these docs; other languages work best-effort via the interview's "Other" option.
+
+> 📸 *Screenshots coming soon*
 
 ---
 
-## 🇬🇧 English
-
-### What is this?
+## What is this?
 
 Most Claude Code starter kits give you files to edit by hand. This one **interviews you** and writes your setup for you:
 
@@ -20,7 +20,7 @@ Most Claude Code starter kits give you files to edit by hand. This one **intervi
 
 No Node.js, no Git, no admin rights required.
 
-### Install — Windows
+## Install — Windows
 
 Open **PowerShell** (press Start, type "PowerShell", Enter) and paste:
 
@@ -28,7 +28,7 @@ Open **PowerShell** (press Start, type "PowerShell", Enter) and paste:
 irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.ps1 | iex
 ```
 
-### Install — macOS / Linux
+## Install — macOS / Linux
 
 Open **Terminal** and paste:
 
@@ -36,30 +36,30 @@ Open **Terminal** and paste:
 curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.sh | bash
 ```
 
-### Then
+## Then
 
 1. Type `claude` and press Enter.
 2. Log in when the browser opens — **a paid Claude plan (Pro or Max) is required**.
-3. Type `/onboard` and meet your new assistant.
+3. Type `/onboard`, pick your language, and meet your new assistant.
 
-### Requirements
+## Requirements
 
 - Windows 10 1809+ / macOS 13+ / Ubuntu 20.04+
 - Internet connection
 - A paid Claude subscription (Pro, Max, or Team) — [claude.ai](https://claude.ai)
 
-### What's inside the plugin
+## What's inside the plugin
 
 | Skill | What it does |
 |---|---|
-| `/onboard` | The interview that creates your personalized assistant + memory |
+| `/onboard` | The interview that creates your personalized assistant + memory — in English, Tiếng Việt, ไทย, 한국어, 中文, or your own language |
 | `remember` | Saves facts/preferences to your assistant's long-term memory |
 | `recall` | Finds things you told it before |
 | `learn-from-mistakes` | Turns your corrections into permanent rules |
 | `daily-note` | Simple daily journal |
 | `work-smart` | Makes the assistant plan before acting and avoid wasted steps |
 
-### FAQ
+## FAQ
 
 **Is this official Anthropic software?**
 No. This is an independent starter kit. It installs Claude Code by calling Anthropic's own official installer, then adds a plugin on top. Claude Code itself belongs to Anthropic.
@@ -75,65 +75,6 @@ Yes. Run `/onboard` again anytime. Your old profile is backed up first, never de
 
 **Does it collect my data?**
 No. Everything the interview writes stays in `~/.claude/` on your own machine.
-
----
-
-## 🇻🇳 Tiếng Việt
-
-### Đây là gì?
-
-Các bộ cài Claude Code khác đưa bạn một đống file để tự sửa. Bộ này **phỏng vấn bạn** rồi tự viết cấu hình cho bạn:
-
-1. Cài [Claude Code](https://code.claude.com) bằng **trình cài đặt chính thức của Anthropic** (chúng tôi không đóng gói lại phần mềm của họ).
-2. Cài plugin `nick-starter` từ repo này.
-3. Bạn gõ `/onboard` → một cuộc phỏng vấn thân thiện hỏi tên bạn, bạn cần giúp gì, **tên** và **tính cách** trợ lý của bạn → nó tự viết hồ sơ cá nhân hóa và tạo bộ nhớ dài hạn ("bộ não thứ hai") cho trợ lý.
-
-Không cần Node.js, không cần Git, không cần quyền admin.
-
-### Cài đặt — Windows
-
-Mở **PowerShell** (bấm Start, gõ "PowerShell", Enter) rồi dán:
-
-```powershell
-irm https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.ps1 | iex
-```
-
-### Cài đặt — macOS / Linux
-
-Mở **Terminal** rồi dán:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/supakitkitsathaporn97-collab/claude-easy-install/main/install/go.sh | bash
-```
-
-### Sau đó
-
-1. Gõ `claude` rồi nhấn Enter.
-2. Đăng nhập khi trình duyệt mở ra — **cần tài khoản Claude trả phí (Pro hoặc Max)**.
-3. Gõ `/onboard` và gặp trợ lý mới của bạn.
-
-### Yêu cầu
-
-- Windows 10 1809+ / macOS 13+ / Ubuntu 20.04+
-- Kết nối internet
-- Tài khoản Claude trả phí (Pro, Max hoặc Team) — [claude.ai](https://claude.ai)
-
-### Câu hỏi thường gặp
-
-**Đây có phải phần mềm chính thức của Anthropic không?**
-Không. Đây là bộ khởi động độc lập. Nó cài Claude Code bằng chính trình cài đặt chính thức của Anthropic, rồi thêm plugin lên trên. Claude Code thuộc về Anthropic.
-
-**Script cài đặt có an toàn không?**
-Có — và bạn không cần tin suông: hãy tự đọc [`install/go.ps1`](install/go.ps1) và [`install/go.sh`](install/go.sh). Chúng chỉ (1) gọi trình cài đặt chính thức của Anthropic, (2) đăng ký repo này làm kho plugin, (3) cài plugin. Windows SmartScreen hoặc phần mềm diệt virus có thể cảnh báo với mọi script tải từ internet — điều đó bình thường với cách cài này.
-
-**Lỡ chạy 2 lần thì sao?**
-Không sao cả — script chạy lại an toàn, phần nào cài rồi sẽ tự bỏ qua.
-
-**Đổi trợ lý sau này được không?**
-Được. Chạy `/onboard` lại bất cứ lúc nào. Hồ sơ cũ luôn được sao lưu trước, không bao giờ bị xóa.
-
-**Có thu thập dữ liệu của tôi không?**
-Không. Mọi thứ cuộc phỏng vấn ghi ra đều nằm trong `~/.claude/` trên máy của chính bạn.
 
 ---
 

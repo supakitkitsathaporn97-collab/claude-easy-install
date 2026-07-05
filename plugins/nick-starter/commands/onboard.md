@@ -1,9 +1,10 @@
 ---
-description: Set up (or re-personalize) your own AI assistant — guided interview in Vietnamese or English / Tạo trợ lý AI cá nhân của bạn
+description: Set up (or re-personalize) your own AI assistant — guided interview in English, Tiếng Việt, ไทย, 한국어, 中文, or your own language / Tạo trợ lý AI cá nhân của bạn
 ---
 
 Run the `onboard` skill from this plugin now, from the very beginning:
-start with the language gate (Tiếng Việt / English), then the interview,
+start with the language gate (English / Tiếng Việt / ไทย / 한국어 / 中文 /
+other), then the interview,
 then generate the profile and memory scaffold, preview, confirm, and greet
 the user as their new assistant.
 

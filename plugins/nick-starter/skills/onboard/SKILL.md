@@ -1,6 +1,6 @@
 ---
 name: onboard
-description: Guided interview (Vietnamese or English) that creates the user's own personalized AI assistant — asks their name, goals, the assistant's name and personality, then writes ~/.claude/CLAUDE.md and a memory scaffold. Use when the user types /onboard, asks to "set up my assistant", "create my AI", "tạo trợ lý", "cài đặt trợ lý", or when they appear to be brand new with no personalized CLAUDE.md.
+description: Guided interview (English, Tiếng Việt, ไทย, 한국어, 中文 — or any language the user names) that creates the user's own personalized AI assistant — asks their name, goals, the assistant's name and personality, then writes ~/.claude/CLAUDE.md and a memory scaffold. Use when the user types /onboard, asks to "set up my assistant", "create my AI", "tạo trợ lý", "cài đặt trợ lý", "สร้างผู้ช่วย", "어시스턴트 만들기", "创建助手", or when they appear to be brand new with no personalized CLAUDE.md.
 ---
 
 # Onboard — build the user's personal AI assistant
@@ -22,16 +22,30 @@ Golden rules for this whole flow:
 
 ## Step 0 — Language gate (ALWAYS FIRST)
 
-Ask with `AskUserQuestion`:
+Supported interview languages: **English** and **Tiếng Việt** (primary), plus
+**ไทย, 한국어, 中文** (fully supported) — and any other language the user names.
 
-> Question: "Bạn muốn dùng tiếng nào? / Which language would you like to use?"
-> Options: "Tiếng Việt", "English"
+Ask with `AskUserQuestion` (options cap at 4, so the gate is two-tier):
 
-**Every subsequent question, preview, and file you generate uses the chosen
-language** (the generated profile is written in that language too, with the
-instruction that the assistant replies in it by default). The examples below are
-shown in English; translate them naturally — not word-for-word — when the user
-picks Tiếng Việt.
+> Question: "Which language would you like to use? / Bạn muốn dùng tiếng nào? /
+> คุณอยากใช้ภาษาอะไร? / 어떤 언어를 사용하시겠어요? / 你想使用哪种语言?"
+> Options: "English", "Tiếng Việt", "ไทย · 한국어 · 中文 …"
+
+- If they pick the third option, ask one follow-up `AskUserQuestion`:
+  Options: "ไทย", "한국어", "中文". The automatic free-text "Other" (on either
+  question) covers any other language — ask them to name it if unclear, then
+  proceed in it. Whatever language they type via "Other" IS the answer.
+
+Set **`LANG` = the chosen language**. From here on, everything happens in
+`LANG`: every question, every option label, the preview, the generated profile,
+and the first greeting. Treat `LANG` as a single clean variable — there are no
+per-language branches in the flow itself.
+
+The English strings written in this file are canonical. For Tiếng Việt, ไทย,
+한국어, and 中文, load `templates/i18n.md` (relative to this skill's directory)
+after the gate and use the matching block as your base wording. For any other
+language, translate the English strings naturally — same warmth, never
+word-for-word.
 
 ## Step 1 — Safety check on existing setup
 
@@ -76,7 +90,8 @@ interview feels quick, not like a form.
    - Options tailored from their Round A answers, e.g.: "Draft & polish writing",
      "Research & summarize", "Organize files & plans", "Debug & explain code"
 6. *Reply language* —
-   - Options: "Tiếng Việt", "English", "Match whatever language I write in"
+   - Options: `LANG` (the interview language — skip this option if `LANG` is
+     English), "English", "Match whatever language I write in"
 
 If any answer is unclear, ask one short follow-up. Do not re-ask what they
 already told you.
@@ -86,7 +101,9 @@ already told you.
 Read the template at `templates/CLAUDE.md.tmpl` (relative to this skill's
 directory) and fill every `{{placeholder}}` from the interview answers. Rules:
 
-- Write the profile in the user's interview language.
+- Write the profile in `LANG` (the interview language). Fill
+  `{{reply_language}}` with the Round B answer — the profile must record the
+  chosen reply language and instruct the assistant to reply in it by default.
 - Personality section must reflect their communication choice with 3-4 concrete
   behavioral lines (e.g. "Short & direct" → "Concise by default. No filler, no
   flattery. Expand only when asked.").
